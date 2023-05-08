@@ -1,5 +1,5 @@
-import { GetStaticProps } from "next";
-import DashboardPage from "src/components/pages/Dashboard";
+import { GetStaticProps } from 'next';
+import DashboardPage from 'src/components/pages/Dashboard';
 
 function Dashboard() {
   return <DashboardPage />;

@@ -1,5 +1,5 @@
-import { GetStaticProps } from "next";
-import LoginPage from "src/components/pages/LoginPage";
+import { GetStaticProps } from 'next';
+import LoginPage from 'src/components/pages/LoginPage';
 
 function Login() {
   return <LoginPage />;

@@ -1,5 +1,5 @@
-import { GetStaticProps } from "next";
-import ResetPassPage from "src/components/pages/ResetPassPage";
+import { GetStaticProps } from 'next';
+import ResetPassPage from 'src/components/pages/ResetPassPage';
 
 function ResetPass() {
   return <ResetPassPage />;

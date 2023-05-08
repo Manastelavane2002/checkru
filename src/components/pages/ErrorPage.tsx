@@ -1,6 +1,6 @@
-import { useRouter } from "next/router";
-import React from "react";
-import { ROUTES, ROUTE_MAP } from "src/constants/routes";
+import { useRouter } from 'next/router';
+import React from 'react';
+import { ROUTES, ROUTE_MAP } from 'src/constants/routes';
 
 interface ErrorPageProps {
   statusCode: number;

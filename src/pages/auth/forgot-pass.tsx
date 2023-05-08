@@ -1,5 +1,5 @@
-import { GetStaticProps } from "next";
-import ForgotPassPage from "src/components/pages/ForgotPassPage";
+import { GetStaticProps } from 'next';
+import ForgotPassPage from 'src/components/pages/ForgotPassPage';
 
 function ForgotPass() {
   return <ForgotPassPage />;

@@ -1,0 +1,99 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "root": true,
+  "ignorePatterns": ["!**/*", "public", ".cache", "node_modules"],
+  "extends": ["plugin:react/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "typescript-sort-keys", "prettier"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@typescript-eslint/ban-ts-comment": "off"
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/no-use-before-define": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "argsIgnorePattern": "^_",
+            "varsIgnorePattern": "^_",
+            "ignoreRestSiblings": true
+          }
+        ],
+        "typescript-sort-keys/interface": "error",
+        "typescript-sort-keys/string-enum": [
+          "error",
+          "asc",
+          {
+            "caseSensitive": false,
+            "natural": true
+          }
+        ],
+        "no-duplicate-imports": "error",
+        "curly": "error",
+        "no-console": [
+          "error",
+          {
+            "allow": ["warn", "error", "info"]
+          }
+        ],
+        "object-shorthand": ["error", "always"],
+        "quotes": [
+          "error",
+          "single",
+          {
+            "avoidEscape": true,
+            "allowTemplateLiterals": true
+          }
+        ],
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "react/display-name": [
+          0,
+          {
+            "ignoreTranspilerName": false
+          }
+        ],
+        "react/function-component-definition": [
+          "error",
+          {
+            "namedComponents": "function-declaration"
+          }
+        ],
+        "react/jsx-boolean-value": ["error", "never"],
+        "react/jsx-no-bind": [
+          "error",
+          {
+            "allowArrowFunctions": true,
+            "allowFunctions": true
+          }
+        ],
+        "react/prop-types": [0],
+        "react-hooks/exhaustive-deps": "error",
+        "react-hooks/rules-of-hooks": "error",
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-uses-react": "off"
+      }
+    }
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
