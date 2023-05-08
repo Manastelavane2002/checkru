@@ -9,7 +9,7 @@ import { Typography } from '../global/Typography';
 import { AuthContainer } from '../modules/auth/AuthContainer';
 import { ROUTES } from 'src/constants/routes';
 
-export default function ResetPassword() {
+export function ResetPassword() {
   const methods = useForm<ResetPasswordPayload>();
   const [showOtpFields, setShowOtpFields] = useState(false);
   const {
