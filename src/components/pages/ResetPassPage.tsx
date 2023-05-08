@@ -2,14 +2,16 @@ import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { ResetPasswordPayload, sendPasswordResetOtp, setNewPassword } from 'src/utils/auth';
 import { Button } from '../global/Button';
 import { TextField } from '../global/TextField';
 import { Typography } from '../global/Typography';
 import { AuthContainer } from '../modules/auth/AuthContainer';
 import { ROUTES } from 'src/constants/routes';
+import { useAuthContext } from '../context/AuthContext/AuthContext';
+import { ResetPasswordPayload } from '../context/AuthContext/AuthContext.types';
 
 export default function ResetPassword() {
+  const { sendPasswordResetOtp, setNewPassword, token } = useAuthContext();
   const methods = useForm<ResetPasswordPayload>();
   const [showOtpFields, setShowOtpFields] = useState(false);
   const {
@@ -21,13 +23,13 @@ export default function ResetPassword() {
   const [error, setError] = useState<string>();
   const onSubmit = async (data: Record<string, string>) => {
     const res = await sendPasswordResetOtp(data?.email as string);
-    if (res.isSuccess) {
+    if (res && res.isSuccess) {
       setShowOtpFields(true);
     }
   };
   const handleResetPassword = async (data: ResetPasswordPayload) => {
     const res = await setNewPassword(data);
-    if (res.isSuccess) {
+    if (res && res.isSuccess) {
       router.push(ROUTES.LOGIN);
     } else {
       setError(res?.error?.message as string);
@@ -36,7 +38,7 @@ export default function ResetPassword() {
   const handleResendOtp = async () => {
     await sendPasswordResetOtp(getValues()?.email);
   };
-  return (
+  return !token ? (
     <AuthContainer
       title="Forgot password?"
       subTitle="Reset your password by entering your email to receive a reset link"
@@ -152,5 +154,7 @@ export default function ResetPassword() {
         </div>
       </FormProvider>
     </AuthContainer>
+  ) : (
+    <div />
   );
 }

@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import * as React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { SignUpPayload, redirectToPrivateSection, signUp } from 'src/utils/auth';
 import { Button } from '../global/Button';
 import { TextField } from '../global/TextField';
 import { Typography } from '../global/Typography';
 import { AuthContainer } from '../modules/auth/AuthContainer';
 import { useRouter } from 'next/router';
 import { ROUTES } from 'src/constants/routes';
+import { SignUpPayload } from '../context/AuthContext/AuthContext.types';
+import { useAuthContext } from '../context/AuthContext/AuthContext';
 
 export default function SignUpPage() {
   const methods = useForm<SignUpPayload>();
@@ -17,15 +18,16 @@ export default function SignUpPage() {
     formState: { errors },
   } = methods;
   const [error, setError] = useState<string>();
+  const { signUp, saveToken, token } = useAuthContext();
 
   const onSubmit = async (data: SignUpPayload) => {
     try {
       const res = await signUp(data);
-      if (!res.userConfirmed) {
-        router.replace(`/confirmSignUp/${res.username}`);
+      if (!res || !res.userConfirmed) {
+        router.replace(`/confirmSignUp/${res?.username || ''}`);
       }
-      if (res.isSuccess) {
-        await redirectToPrivateSection();
+      if (res && res.isSuccess) {
+        await saveToken();
         router.replace(ROUTES.LOGIN);
       } else {
         setError(res?.error?.message as string);
@@ -39,7 +41,7 @@ export default function SignUpPage() {
     router.push(ROUTES.LOGIN);
   };
 
-  return (
+  return !token ? (
     <AuthContainer title="Create an account" error={error}>
       <FormProvider {...methods}>
         <TextField
@@ -99,5 +101,7 @@ export default function SignUpPage() {
         </div>
       </FormProvider>
     </AuthContainer>
+  ) : (
+    <div />
   );
 }

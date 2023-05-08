@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { redirectToPrivateSection, signIn } from 'src/utils/auth';
 import { useRouter } from 'next/router';
 import { ROUTES } from 'src/constants/routes';
 import { AuthContainer } from '../modules/auth/AuthContainer';
 import { Button } from '../global/Button';
 import { TextField } from '../global/TextField';
 import { Typography } from '../global/Typography';
+import { useAuthContext } from '../context/AuthContext/AuthContext';
 
 export default function LoginPage() {
   const methods = useForm<{ email: string; password: string }>();
@@ -15,6 +15,7 @@ export default function LoginPage() {
     formState: { errors },
   } = methods;
   const router = useRouter();
+  const { signIn, saveToken, token } = useAuthContext();
   const checkUserAuth = typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null;
 
   useEffect(() => {
@@ -23,19 +24,22 @@ export default function LoginPage() {
     }
   }, [checkUserAuth, router]);
   const [error, setError] = useState<string>();
+
   const handleSignUpNavigation = () => {
     router.push(ROUTES.SIGN_UP);
   };
+
   const handleResetPasswordNavigation = () => {
     router.push(ROUTES.FORGOT_PASSWORD);
   };
+
   const onSubmit = async (data: { email: string; password: string }) => {
     try {
       const res = await signIn(data);
-      if (res.isSuccess) {
+      if (res && res.isSuccess) {
         localStorage.setItem('email', res!.data!.attributes.email as string);
         localStorage.setItem('name', res!.data!.attributes?.name || ('' as string));
-        await redirectToPrivateSection();
+        await saveToken();
         router.replace(ROUTES.DASHBOARD);
       } else {
         setError(res?.error?.message as string);
@@ -44,7 +48,8 @@ export default function LoginPage() {
       console.error(err);
     }
   };
-  return (
+
+  return !token ? (
     <AuthContainer title="Log in" subTitle="Welcome back! Please enter your details." error={error}>
       <FormProvider {...methods}>
         <TextField
@@ -131,5 +136,7 @@ export default function LoginPage() {
         </div>
       </FormProvider>
     </AuthContainer>
+  ) : (
+    <div />
   );
 }

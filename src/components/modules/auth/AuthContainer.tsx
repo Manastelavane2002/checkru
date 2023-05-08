@@ -1,13 +1,19 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
 import { IMAGES } from 'src/constants/images';
-import { extractErrorCodeFromMessage } from 'src/utils/auth';
 
 export type AuthContainerProps = {
   children: ReactNode;
   error?: string;
   subTitle?: string;
   title: string;
+};
+
+export const extractErrorCodeFromMessage = (string: string) => {
+  return string.replace(
+    /InvalidPasswordException:|NotAuthorizedException:|LimitExceededException:|UsernameExistsException:/g,
+    ''
+  );
 };
 export function AuthContainer({ title, subTitle, children, error }: AuthContainerProps) {
   return (

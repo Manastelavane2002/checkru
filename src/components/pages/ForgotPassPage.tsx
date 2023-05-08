@@ -2,11 +2,11 @@ import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { changePassword } from 'src/utils/auth';
 import { Button } from '../global/Button';
 import { TextField } from '../global/TextField';
 import { AuthContainer } from '../modules/auth/AuthContainer';
 import { ROUTES } from 'src/constants/routes';
+import { useAuthContext } from '../context/AuthContext/AuthContext';
 
 export default function ForgotPassPage() {
   const methods = useForm<{
@@ -20,18 +20,19 @@ export default function ForgotPassPage() {
     formState: { errors },
   } = methods;
   const router = useRouter();
+  const { changePassword, token } = useAuthContext();
   const onSubmit = async (data: { currentPassword: string; newPassword: string }) => {
     const res = await changePassword({
       oldPassword: data?.currentPassword,
       newPassword: data?.newPassword,
     });
-    if (res.isSuccess) {
+    if (res && res.isSuccess) {
       router.replace(ROUTES.DEFAULT);
     } else {
       setError(res?.error?.message as string);
     }
   };
-  return (
+  return !token ? (
     <AuthContainer
       title="Change Password"
       subTitle="Welcome back! Please enter your older password."
@@ -97,5 +98,7 @@ export default function ForgotPassPage() {
         <Button label="Change Password" onClick={handleSubmit(onSubmit)} variant="default" />
       </FormProvider>
     </AuthContainer>
+  ) : (
+    <div />
   );
 }
