@@ -1,17 +1,9 @@
 export enum ROUTES {
-  DASHBOARD = 'dashboard',
-  DEFAULT = 'default',
-  FORGOT_PASSWORD = 'forgotPass',
-  LOGIN = 'login',
-  RESET_PASSWORD = 'resetPass',
-  SIGN_UP = 'signUp'
+  CONFIRM_SIGN_UP = '/auth/confirm-sign-up',
+  DASHBOARD = '/dashboard',
+  DEFAULT = '/',
+  FORGOT_PASSWORD = '/auth/forgot-pass',
+  LOGIN = '/auth/login',
+  RESET_PASSWORD = '/auth/reset-pass',
+  SIGN_UP = '/auth/sign-up',
 }
-
-export const ROUTE_MAP: { [routeName: string]: string } = {
-  [ROUTES.LOGIN]: '/auth/login',
-  [ROUTES.SIGN_UP]: '/atuh/sign-up',
-  [ROUTES.FORGOT_PASSWORD]: '/auth/forgot-pass',
-  [ROUTES.RESET_PASSWORD]: '/auth/reset-pass',
-  [ROUTES.DASHBOARD]: '/dashboard',
-  [ROUTES.DEFAULT]: '/',
-};
