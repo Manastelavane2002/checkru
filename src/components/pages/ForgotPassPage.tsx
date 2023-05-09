@@ -20,7 +20,7 @@ export default function ForgotPassPage() {
     formState: { errors },
   } = methods;
   const router = useRouter();
-  const { changePassword, token } = useAuthContext();
+  const { changePassword } = useAuthContext();
   const onSubmit = async (data: { currentPassword: string; newPassword: string }) => {
     const res = await changePassword({
       oldPassword: data?.currentPassword,
@@ -32,7 +32,7 @@ export default function ForgotPassPage() {
       setError(res?.error?.message as string);
     }
   };
-  return !token ? (
+  return (
     <AuthContainer
       title="Change Password"
       subTitle="Welcome back! Please enter your older password."
@@ -98,7 +98,5 @@ export default function ForgotPassPage() {
         <Button label="Change Password" onClick={handleSubmit(onSubmit)} variant="default" />
       </FormProvider>
     </AuthContainer>
-  ) : (
-    <div />
   );
 }

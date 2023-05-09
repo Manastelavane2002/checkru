@@ -18,7 +18,7 @@ export default function SignUpPage() {
     formState: { errors },
   } = methods;
   const [error, setError] = useState<string>();
-  const { signUp, saveToken, token } = useAuthContext();
+  const { signUp, saveToken } = useAuthContext();
 
   const onSubmit = async (data: SignUpPayload) => {
     try {
@@ -41,7 +41,7 @@ export default function SignUpPage() {
     router.push(ROUTES.LOGIN);
   };
 
-  return !token ? (
+  return (
     <AuthContainer title="Create an account" error={error}>
       <FormProvider {...methods}>
         <TextField
@@ -101,7 +101,5 @@ export default function SignUpPage() {
         </div>
       </FormProvider>
     </AuthContainer>
-  ) : (
-    <div />
   );
 }

@@ -16,7 +16,7 @@ export function ConfirmSignUpPage() {
     handleSubmit,
     formState: { errors },
   } = methods;
-  const { confirmUser, resendUserConfirmOpt, token } = useAuthContext();
+  const { confirmUser, resendUserConfirmOpt } = useAuthContext();
   const onSubmit = async (data: { otp: string }) => {
     try {
       const res = await confirmUser({ ...data, username: String(router.query.username) ?? '' });
@@ -33,7 +33,7 @@ export function ConfirmSignUpPage() {
   const handleResendOtp = async () => {
     await resendUserConfirmOpt(String(router.query.username) ?? '');
   };
-  return !token ? (
+  return (
     <AuthContainer title="Create an account" subTitle="Start your 30-day free trial." error={error}>
       <FormProvider {...methods}>
         <TextField
@@ -79,7 +79,5 @@ export function ConfirmSignUpPage() {
         </div>
       </FormProvider>
     </AuthContainer>
-  ) : (
-    <div />
   );
 }

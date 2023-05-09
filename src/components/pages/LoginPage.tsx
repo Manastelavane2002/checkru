@@ -15,7 +15,7 @@ export default function LoginPage() {
     formState: { errors },
   } = methods;
   const router = useRouter();
-  const { signIn, saveToken, token } = useAuthContext();
+  const { signIn, saveToken } = useAuthContext();
   const checkUserAuth = typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null;
 
   useEffect(() => {
@@ -49,7 +49,7 @@ export default function LoginPage() {
     }
   };
 
-  return !token ? (
+  return (
     <AuthContainer title="Log in" subTitle="Welcome back! Please enter your details." error={error}>
       <FormProvider {...methods}>
         <TextField
@@ -136,7 +136,5 @@ export default function LoginPage() {
         </div>
       </FormProvider>
     </AuthContainer>
-  ) : (
-    <div />
   );
 }

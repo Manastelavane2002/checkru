@@ -34,6 +34,8 @@ const useAuth = () => {
   useEffect(() => {
     if (token && !router.pathname.includes(ROUTES.DASHBOARD)) {
       router.replace(ROUTES.DASHBOARD);
+    } else if (router.pathname === ROUTES.DEFAULT) {
+      router.replace(ROUTES.LOGIN);
     }
   }, [router, router.pathname, token]);
 

@@ -11,7 +11,7 @@ import { useAuthContext } from '../context/AuthContext/AuthContext';
 import { ResetPasswordPayload } from '../context/AuthContext/AuthContext.types';
 
 export default function ResetPassword() {
-  const { sendPasswordResetOtp, setNewPassword, token } = useAuthContext();
+  const { sendPasswordResetOtp, setNewPassword } = useAuthContext();
   const methods = useForm<ResetPasswordPayload>();
   const [showOtpFields, setShowOtpFields] = useState(false);
   const {
@@ -38,7 +38,7 @@ export default function ResetPassword() {
   const handleResendOtp = async () => {
     await sendPasswordResetOtp(getValues()?.email);
   };
-  return !token ? (
+  return (
     <AuthContainer
       title="Forgot password?"
       subTitle="Reset your password by entering your email to receive a reset link"
@@ -154,7 +154,5 @@ export default function ResetPassword() {
         </div>
       </FormProvider>
     </AuthContainer>
-  ) : (
-    <div />
   );
 }
