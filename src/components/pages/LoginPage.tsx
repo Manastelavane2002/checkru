@@ -67,6 +67,7 @@ export default function LoginPage() {
           variant="outlined"
           type="email"
           fullWidth
+          className="rounded-lg bg-formBg text-body"
         />
 
         <TextField
@@ -88,6 +89,7 @@ export default function LoginPage() {
           variant="outlined"
           type="password"
           fullWidth
+          className="rounded-lg bg-formBg  text-body"
         />
         <div
           style={{
@@ -109,7 +111,7 @@ export default function LoginPage() {
           </div>
           <button
             type="submit"
-            className="text-primary px-2 cursor-pointer rounded-md"
+            className="text-primary font-semibold px-2 cursor-pointer rounded-md"
             onClick={handleResetPasswordNavigation}>
             Forgot password
           </button>
@@ -129,10 +131,15 @@ export default function LoginPage() {
             justifyContent: 'center',
             marginTop: 24,
           }}>
-          <Typography variant="p" className="text-secondaryText">
+          <Typography variant="p" className="text-body">
             Don&apos;t have an account?
           </Typography>
-          <Button onClick={handleSignUpNavigation} label="Sign Up" variant="text" />
+          <Button
+            onClick={handleSignUpNavigation}
+            label="Sign Up"
+            variant="text"
+            className="font-semibold"
+          />
         </div>
       </FormProvider>
     </AuthContainer>
