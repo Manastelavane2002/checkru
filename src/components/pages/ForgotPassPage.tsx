@@ -56,6 +56,8 @@ export default function ForgotPassPage() {
           variant="outlined"
           type="password"
           fullWidth
+          className="rounded-lg bg-formBg  text-body"
+          placeholder="Enter your current password"
         />
         <TextField
           validationSchema={{
@@ -75,6 +77,8 @@ export default function ForgotPassPage() {
           variant="outlined"
           type="password"
           fullWidth
+          placeholder="Enter your new password"
+          className="rounded-lg bg-formBg  text-body"
         />
         <TextField
           validationSchema={{
@@ -94,6 +98,8 @@ export default function ForgotPassPage() {
           variant="outlined"
           type="password"
           fullWidth
+          className="rounded-lg bg-formBg  text-body"
+          placeholder="Confirm your new password"
         />
         <Button label="Change Password" onClick={handleSubmit(onSubmit)} variant="default" />
       </FormProvider>

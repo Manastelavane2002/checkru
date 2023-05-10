@@ -60,6 +60,7 @@ export default function ResetPassword() {
           type="email"
           fullWidth
           disabled={showOtpFields}
+          className="rounded-lg bg-formBg text-body"
         />
         {showOtpFields ? (
           <>

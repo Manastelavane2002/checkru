@@ -20,7 +20,7 @@ export function AuthContainer({ title, subTitle, children, error }: AuthContaine
     <div className="container h-screen p-8 bg-dashboardBg">
       <div className="max-w-sm m-auto">
         <div className="flex justify-center">
-          <img src={IMAGES.LOGO} alt="logo" className="cursor-pointer" />
+          <img src={IMAGES.LOGO} alt="logo" className="cursor-pointer h-28" />
         </div>
         <div className="pt-4">
           {title && (

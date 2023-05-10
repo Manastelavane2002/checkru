@@ -53,11 +53,13 @@ export default function SignUpPage() {
               message: 'Email is required',
             },
           }}
+          placeholder="Enter your email"
           error={Boolean(errors.email)}
           helperText={errors.email?.message as string}
           variant="outlined"
           type="email"
           fullWidth
+          className="rounded-lg bg-formBg text-body"
         />
 
         <TextField
@@ -71,6 +73,7 @@ export default function SignUpPage() {
               message: 'Password should contain only 30 chars',
             },
           }}
+          placeholder="Enter your password"
           name="password"
           label="Password"
           error={Boolean(errors.password)}
@@ -78,6 +81,7 @@ export default function SignUpPage() {
           variant="outlined"
           type="password"
           fullWidth
+          className="rounded-lg bg-formBg text-body"
         />
         <div className="flex mb-4">
           <input type="checkbox" className="mr-2" name="tnc" id="tnc" />
@@ -94,10 +98,15 @@ export default function SignUpPage() {
             justifyContent: 'center',
             marginTop: 24,
           }}>
-          <Typography variant="p" className="text-secondaryText">
+          <Typography variant="p" className="text-body">
             Already have an account?
           </Typography>
-          <Button onClick={handleSignInNavigation} label=" Sign in" variant="text" />
+          <Button
+            onClick={handleSignInNavigation}
+            label=" Sign in"
+            variant="text"
+            className="font-semibold"
+          />
         </div>
       </FormProvider>
     </AuthContainer>

@@ -50,6 +50,8 @@ export function ConfirmSignUpPage() {
           variant="outlined"
           type="otp"
           fullWidth
+          placeholder="Enter the OTP"
+          className="rounded-lg bg-formBg  text-body"
         />
         <div
           style={{
@@ -60,10 +62,15 @@ export function ConfirmSignUpPage() {
             marginTop: 24,
             marginBottom: 24,
           }}>
-          <Typography variant="p" className="text-secondaryText">
+          <Typography variant="p" className="text-body">
             Didn’t receive the code?
           </Typography>
-          <Button variant="text" label="Click to resend" onClick={handleResendOtp} />
+          <Button
+            variant="text"
+            label="Click to resend"
+            className="font-semibold"
+            onClick={handleResendOtp}
+          />
         </div>
         <Button onClick={handleSubmit(onSubmit)} label="Confirm Sign Up" />
 
@@ -75,7 +82,12 @@ export function ConfirmSignUpPage() {
             justifyContent: 'center',
             marginTop: 24,
           }}>
-          <Button variant="text" onClick={() => router.replace(ROUTES.SIGN_UP)} label="Go Back" />
+          <Button
+            variant="text"
+            className="font-semibold"
+            onClick={() => router.replace(ROUTES.SIGN_UP)}
+            label="Go Back"
+          />
         </div>
       </FormProvider>
     </AuthContainer>
