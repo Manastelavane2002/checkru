@@ -5,9 +5,15 @@ module.exports = {
     extend: {
       colors: {
         primary: '#D0352F',
-        primaryDashboard: '#3F3F46',
-        primaryText: '#D5D5D5',
-        secondaryText: '#A6A6A6',
+        secondary: '#26272B',
+        dashboardBg: '#18181B',
+        dashboardWhite: '#FFFFFF',
+        dashboardWhite100: '#F4F4F5',
+        tableCell: '#26272B',
+        tableCellText: '#EBEBEB',
+        tableHeader: '#1E1E21',
+        iconBg: '#3F3F46',
+        cellDividerStoke: ' #424242',
       },
     },
   },
