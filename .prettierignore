@@ -1,0 +1,7 @@
+# Add files here to ignore them from prettier formatting
+
+/dist
+/coverage
+*.postman_collection.json
+Readme.md
+swagger-spec.json
