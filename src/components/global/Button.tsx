@@ -1,10 +1,10 @@
 import * as React from 'react';
 
 interface ButtonProps {
+  className?: string;
   label: string;
   onClick: () => void;
   variant?: string;
-  className?: string;
 }
 
 export function Button({ variant = 'Default', label, onClick, className }: ButtonProps) {
