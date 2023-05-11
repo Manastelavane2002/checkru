@@ -7,3 +7,11 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.dark-rounded {
+  @apply rounded-lg bg-formBg  text-body;
+}
+
+.flex-center {
+  @apply flex items-center justify-center text-center;
+}

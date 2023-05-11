@@ -59,7 +59,7 @@ export default function SignUpPage() {
           variant="outlined"
           type="email"
           fullWidth
-          className="rounded-lg bg-formBg text-body"
+          className="dark-rounded"
         />
 
         <TextField
@@ -81,7 +81,7 @@ export default function SignUpPage() {
           variant="outlined"
           type="password"
           fullWidth
-          className="rounded-lg bg-formBg text-body"
+          className="dark-rounded"
         />
         <div className="flex mb-4">
           <input type="checkbox" className="mr-2" name="tnc" id="tnc" />
@@ -90,14 +90,7 @@ export default function SignUpPage() {
           </label>
         </div>
         <Button onClick={handleSubmit(onSubmit)} label="Get started" />
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
-            justifyContent: 'center',
-            marginTop: 24,
-          }}>
+        <div className="flex-center mt-6">
           <Typography variant="p" className="text-body">
             Already have an account?
           </Typography>

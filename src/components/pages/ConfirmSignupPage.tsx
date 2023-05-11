@@ -51,17 +51,9 @@ export function ConfirmSignUpPage() {
           type="otp"
           fullWidth
           placeholder="Enter the OTP"
-          className="rounded-lg bg-formBg  text-body"
+          className="dark-rounded"
         />
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
-            justifyContent: 'center',
-            marginTop: 24,
-            marginBottom: 24,
-          }}>
+        <div className="flex-center my-6">
           <Typography variant="p" className="text-body">
             Didn’t receive the code?
           </Typography>
@@ -73,15 +65,7 @@ export function ConfirmSignUpPage() {
           />
         </div>
         <Button onClick={handleSubmit(onSubmit)} label="Confirm Sign Up" />
-
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
-            justifyContent: 'center',
-            marginTop: 24,
-          }}>
+        <div className="flex-center mt-6">
           <Button
             variant="text"
             className="font-semibold"

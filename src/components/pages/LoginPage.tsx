@@ -67,7 +67,7 @@ export default function LoginPage() {
           variant="outlined"
           type="email"
           fullWidth
-          className="rounded-lg bg-formBg text-body"
+          className="dark-rounded"
         />
 
         <TextField
@@ -89,17 +89,9 @@ export default function LoginPage() {
           variant="outlined"
           type="password"
           fullWidth
-          className="rounded-lg bg-formBg  text-body"
+          className="dark-rounded"
         />
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
-            justifyContent: 'space-between',
-            marginTop: 10,
-            marginBottom: 10,
-          }}>
+        <div className="flex-center my-3">
           <div className="flex">
             <input
               type="checkbox"
@@ -123,14 +115,7 @@ export default function LoginPage() {
           label="Sign In"
         />
 
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
-            justifyContent: 'center',
-            marginTop: 24,
-          }}>
+        <div className="flex-center mt-6">
           <Typography variant="p" className="text-body">
             Don&apos;t have an account?
           </Typography>
