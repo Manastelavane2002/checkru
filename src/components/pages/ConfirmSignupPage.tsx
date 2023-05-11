@@ -3,10 +3,10 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { Button } from '../global/Button';
 import { TextField } from '../global/TextField';
 import { Typography } from '../global/Typography';
-import { AuthContainer } from '../modules/auth/AuthContainer';
+import { AuthContainer } from '../hoc/AuthContainer';
 import { useRouter } from 'next/router';
 import { ROUTES } from 'src/constants/routes';
-import { useAuthContext } from '../context/AuthContext/AuthContext';
+import { useAuthContext } from '../../context/AuthContext/AuthContext';
 
 export function ConfirmSignUpPage() {
   const [error, setError] = useState<string>();
