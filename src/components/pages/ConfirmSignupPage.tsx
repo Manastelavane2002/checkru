@@ -50,32 +50,28 @@ export function ConfirmSignUpPage() {
           variant="outlined"
           type="otp"
           fullWidth
+          placeholder="Enter the OTP"
+          className="dark-rounded"
         />
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
-            justifyContent: 'center',
-            marginTop: 24,
-            marginBottom: 24,
-          }}>
-          <Typography variant="p" className="text-secondaryText">
+        <div className="flex-center my-6">
+          <Typography variant="p" className="text-body">
             Didn’t receive the code?
           </Typography>
-          <Button variant="text" label="Click to resend" onClick={handleResendOtp} />
+          <Button
+            variant="text"
+            label="Click to resend"
+            className="font-semibold"
+            onClick={handleResendOtp}
+          />
         </div>
         <Button onClick={handleSubmit(onSubmit)} label="Confirm Sign Up" />
-
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
-            justifyContent: 'center',
-            marginTop: 24,
-          }}>
-          <Button variant="text" onClick={() => router.replace(ROUTES.SIGN_UP)} label="Go Back" />
+        <div className="flex-center mt-6">
+          <Button
+            variant="text"
+            className="font-semibold"
+            onClick={() => router.replace(ROUTES.SIGN_UP)}
+            label="Go Back"
+          />
         </div>
       </FormProvider>
     </AuthContainer>

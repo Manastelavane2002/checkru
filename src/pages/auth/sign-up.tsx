@@ -5,9 +5,7 @@ function SignUp() {
   return <SignUpPage />;
 }
 
-export const getStaticProps: GetStaticProps<
-  Record<string, unknown>
-> = async () => {
+export const getStaticProps: GetStaticProps<Record<string, unknown>> = async () => {
   return {
     props: {},
   };

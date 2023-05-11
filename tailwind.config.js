@@ -14,6 +14,8 @@ module.exports = {
         tableHeader: '#1E1E21',
         iconBg: '#3F3F46',
         cellDividerStoke: ' #424242',
+        body: '#A6A6A6',
+        formBg: '#2D2D2D',
       },
     },
   },

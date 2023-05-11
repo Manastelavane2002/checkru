@@ -17,17 +17,17 @@ export const extractErrorCodeFromMessage = (string: string) => {
 };
 export function AuthContainer({ title, subTitle, children, error }: AuthContainerProps) {
   return (
-    <div className="container m-auto p-8">
-      <div style={{ maxWidth: 400, margin: 'auto' }}>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <img src={IMAGES.LOGO} alt="logo" className="cursor-pointer invert" />
+    <div className="container h-screen p-8 bg-dashboardBg">
+      <div className="max-w-sm m-auto">
+        <div className="flex justify-center">
+          <img src={IMAGES.LOGO} alt="logo" className="cursor-pointer h-28" />
         </div>
         <div className="pt-4">
           {title && (
             <h1 className="text-center text-[36px] font-[600] text-semibold text-white">{title}</h1>
           )}
           {subTitle && (
-            <h2 className="text-center text-[14px] font-[400] text-md text-secondaryText mx-8">
+            <h2 className="text-center text-[14px] font-[400] text-md text-secondaryText mx-8 text-body">
               {subTitle}
             </h2>
           )}

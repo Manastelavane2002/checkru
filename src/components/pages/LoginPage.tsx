@@ -67,6 +67,7 @@ export default function LoginPage() {
           variant="outlined"
           type="email"
           fullWidth
+          className="dark-rounded"
         />
 
         <TextField
@@ -88,16 +89,9 @@ export default function LoginPage() {
           variant="outlined"
           type="password"
           fullWidth
+          className="dark-rounded"
         />
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
-            justifyContent: 'space-between',
-            marginTop: 10,
-            marginBottom: 10,
-          }}>
+        <div className="flex-center my-3">
           <div className="flex">
             <input
               type="checkbox"
@@ -109,7 +103,7 @@ export default function LoginPage() {
           </div>
           <button
             type="submit"
-            className="text-primary px-2 cursor-pointer rounded-md"
+            className="text-primary font-semibold px-2 cursor-pointer rounded-md"
             onClick={handleResetPasswordNavigation}>
             Forgot password
           </button>
@@ -121,18 +115,16 @@ export default function LoginPage() {
           label="Sign In"
         />
 
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
-            justifyContent: 'center',
-            marginTop: 24,
-          }}>
-          <Typography variant="p" className="text-secondaryText">
+        <div className="flex-center mt-6">
+          <Typography variant="p" className="text-body">
             Don&apos;t have an account?
           </Typography>
-          <Button onClick={handleSignUpNavigation} label="Sign Up" variant="text" />
+          <Button
+            onClick={handleSignUpNavigation}
+            label="Sign Up"
+            variant="text"
+            className="font-semibold"
+          />
         </div>
       </FormProvider>
     </AuthContainer>
