@@ -31,8 +31,11 @@ yarn run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Contributing code
+## Docs
 
+Refer [Contributing](./docs/CONTRIBUTING.md)
+
+Refer [Code Guidelines](./docs/CODE_GUIDELINES.md)
 
 
 ## Learn More

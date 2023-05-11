@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Button } from '../global/Button';
 import { TextField } from '../global/TextField';
-import { AuthContainer } from '../modules/auth/AuthContainer';
+import { AuthContainer } from '../hoc/AuthContainer';
 import { ROUTES } from 'src/constants/routes';
-import { useAuthContext } from '../context/AuthContext/AuthContext';
+import { useAuthContext } from '../../context/AuthContext/AuthContext';
 
 export default function ForgotPassPage() {
   const methods = useForm<{

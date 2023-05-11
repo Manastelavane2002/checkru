@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Auth } from 'aws-amplify';
 import {
   ChangePasswordPayload,
@@ -10,8 +10,6 @@ import {
 } from './AuthContext.types';
 import { getCookie, setCookie, deleteCookie } from 'cookies-next';
 import { STORAGE } from 'src/constants/storage-keys';
-import { useRouter } from 'next/router';
-import { ROUTES } from 'src/constants/routes';
 
 export interface AuthContextProps {
   changePassword: (credentials: ChangePasswordPayload) => Promise<IncognitoApiResponse | null>;
@@ -29,16 +27,6 @@ export interface AuthContextProps {
 
 const useAuth = () => {
   const token = getCookie(STORAGE.TOKEN);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (token && !router.pathname.includes(ROUTES.DASHBOARD)) {
-      router.replace(ROUTES.DASHBOARD);
-    } else if (router.pathname === ROUTES.DEFAULT) {
-      router.replace(ROUTES.LOGIN);
-    }
-  }, [router, router.pathname, token]);
-
   const getCurrentAuthenticatedUser = async () => Auth.currentAuthenticatedUser();
 
   const getAccessToken = async () => {
