@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import * as React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Button } from '../global/Button';
-import { TextField } from '../global/TextField';
-import { Typography } from '../global/Typography';
-import { AuthContainer } from '../hoc/AuthContainer';
 import { useRouter } from 'next/router';
 import { ROUTES } from 'src/constants/routes';
-import { SignUpPayload } from '../../context/AuthContext/AuthContext.types';
-import { useAuthContext } from '../../context/AuthContext/AuthContext';
+import { SignUpPayload } from 'src/context/AuthContext/AuthContext.types';
+import { useAuthContext } from 'src/context/AuthContext/AuthContext';
+import { Button } from 'src/components/global/Button/Button';
+import { TextField } from 'src/components/global/TextField/TextField';
+import { Typography } from 'src/components/global/Typography/Typography';
+import { AuthContainer } from 'src/components/hoc/AuthContainer';
 
 export default function SignUpPage() {
   const methods = useForm<SignUpPayload>();

@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { ConfirmSignUpPage } from 'src/components/pages/ConfirmSignupPage';
+import { ConfirmSignUpPage } from 'src/components/pages/ConfirmSignupPage/ConfirmSignupPage';
 
 function ConfirmSignUp() {
   return <ConfirmSignUpPage />;
