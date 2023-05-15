@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 interface Props {
     navElements: {
-        title: string;
         link: string;
+        title: string;
     }[]
 }
 
