@@ -25,7 +25,6 @@ export function Icon({
     <SVGIcon
       width={size}
       height={size}
-      // viewBox="0 0 28 24"
       className={
         (!isSizeANumber ? `w-[${size}px] h-[${size}px] ` : '') +
         `stroke-${color} fill-${fill} ${className}`
