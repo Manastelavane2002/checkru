@@ -92,7 +92,7 @@ export default function LoginPage() {
           fullWidth
           className="dark-rounded"
         />
-        <Icon name="arrow-left" color="red-400" size={50} />
+        <Icon name="calendar" color="red-600" size={60} fill="red-200" />
         <div className="flex-center my-3">
           <div className="flex">
             <input

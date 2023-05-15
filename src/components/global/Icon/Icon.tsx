@@ -1,25 +1,34 @@
 import React, { FC, useMemo } from 'react';
 import { iconPack } from './Icon.utils';
-import { ArrowLeft } from '../../../../public/assets/icons';
+import { IconTypes } from './Icon.types';
 
 interface Props {
   className?: string;
   color?: string;
-  name: 'arrow-left';
+  name: IconTypes;
   onClick?: () => void;
   size?: number;
+  fill?: string;
 }
 
-export const Icon: FC<Props> = ({ name, color = 'white', size = 20, className = '', onClick }) => {
+export const Icon: FC<Props> = ({
+  name,
+  color = 'white',
+  size = 20,
+  className = '',
+  onClick,
+  fill = 'transparent',
+}) => {
   const SVGIcon = useMemo(() => iconPack[name], [name]);
   const isSizeANumber = typeof size === 'number';
   return (
     <SVGIcon
       width={size}
       height={size}
-      viewBox="0 0 24 24"
+      // viewBox="0 0 28 24"
       className={
-        (!isSizeANumber ? `w-[${size}px] h-[${size}px] ` : '') + `stroke-${color} ${className}`
+        (!isSizeANumber ? `w-[${size}px] h-[${size}px] ` : '') +
+        `stroke-${color} fill-${fill} ${className}`
       }
       onClick={onClick}
     />
