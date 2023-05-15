@@ -1,24 +1,24 @@
-import React, { FC, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { iconPack } from './Icon.utils';
 import { IconTypes } from './Icon.types';
 
 interface Props {
   className?: string;
   color?: string;
+  fill?: string;
   name: IconTypes;
   onClick?: () => void;
   size?: number;
-  fill?: string;
 }
 
-export const Icon: FC<Props> = ({
+export function Icon({
   name,
   color = 'white',
+  fill = 'transparent',
   size = 20,
   className = '',
   onClick,
-  fill = 'transparent',
-}) => {
+}: Props) {
   const SVGIcon = useMemo(() => iconPack[name], [name]);
   const isSizeANumber = typeof size === 'number';
   return (
@@ -33,4 +33,4 @@ export const Icon: FC<Props> = ({
       onClick={onClick}
     />
   );
-};
+}
