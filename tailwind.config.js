@@ -16,6 +16,7 @@ module.exports = {
         cellDividerStoke: ' #424242',
         body: '#A6A6A6',
         formBg: '#2D2D2D',
+        headerButtonHover: ' #FF0000',
       },
     },
   },

@@ -1,15 +1,15 @@
 import React from 'react';
-import { Icon } from '../global/Icon/Icon';
+import Header from '../global/Header';
+import Navbar from '../global/Navbar';
+import {LINKS} from '../../constants/links';
 
 function DashboardPage() {
   return (
-    <>
-      <Icon name="calendar" color="red-600" size={60} fill="red-200" />;
-      <Icon name="mail" color="red-600" size={60} fill="red-200" className = 'stroke-2' />;
-      <Icon name="download" color="red-600" size={60} fill="transparent" />;
-      <Icon name="arrow-left" color="red-600" size={60} fill="red-200" />;
-    </>
-  );
+    <div>
+      <Header/>
+      <Navbar navElements={LINKS.NAVBAR_LINKS}/>
+    </div>
+  )
 }
 
 export default DashboardPage;
