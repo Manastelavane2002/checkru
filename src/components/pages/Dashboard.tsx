@@ -1,7 +1,12 @@
 import React from 'react';
+import Header from '../global/Header';
 
 function DashboardPage() {
-  return <div>Dash</div>;
+  return (
+    <div>
+      <Header/>
+    </div>
+  )
 }
 
 export default DashboardPage;
