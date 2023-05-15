@@ -7,6 +7,7 @@ import { Button } from '../global/Button';
 import { TextField } from '../global/TextField';
 import { Typography } from '../global/Typography';
 import { useAuthContext } from '../../context/AuthContext/AuthContext';
+import { Icon } from '../global/Icon/Icon';
 
 export default function LoginPage() {
   const methods = useForm<{ email: string; password: string }>();
@@ -91,6 +92,7 @@ export default function LoginPage() {
           fullWidth
           className="dark-rounded"
         />
+        <Icon name="arrow-left" color="red-400" size={50} />
         <div className="flex-center my-3">
           <div className="flex">
             <input
@@ -108,7 +110,6 @@ export default function LoginPage() {
             Forgot password
           </button>
         </div>
-
         <Button
           variant="primary"
           onClick={handleSubmit((values) => onSubmit(values))}
