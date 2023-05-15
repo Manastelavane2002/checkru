@@ -15,7 +15,7 @@ export function Header() {
       </div>
       <nav className="flex items-center gap-10 font-semibold">
         {
-          LINKS?.HEADERLINKS.map((link,index) => (
+          LINKS?.HEADER_LINKS.map((link,index) => (
             <Link href={link.link} key={index} className='hover:text-body'>{link.title}</Link>
           ))
         }

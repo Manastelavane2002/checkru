@@ -1,5 +1,5 @@
 export const LINKS = {
-    HEADERLINKS: [
+    HEADER_LINKS: [
         {
             link: '',
             title: 'About Us',
@@ -11,6 +11,28 @@ export const LINKS = {
         {
             link: '',
             title: 'Our Stores',
+        },
+    ],
+    NAVBAR_LINKS: [
+        {
+            link: '',
+            title: 'Shop online',
+        },
+        {
+            link: '',
+            title: 'Your Ruralco Cards',
+        },
+        {
+            link: '',
+            title: 'Fuel & Energy',
+        },
+        {
+            link: '',
+            title: 'Farm Advice & Services',
+        },
+        {
+            link: '',
+            title: 'My Ruralco',
         },
     ],
 };
