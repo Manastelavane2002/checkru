@@ -101,17 +101,17 @@ export default function LoginPage() {
             />
             <label className="text-white">{buttons.rememberMe}</label>
           </div>
-          <button
-            type="submit"
-            className="text-primary font-semibold px-2 cursor-pointer rounded-md"
-            onClick={handleResetPasswordNavigation}>
-            {buttons.forgotPass}
-          </button>
+          <Button
+            variant="text"
+            onClick={handleResetPasswordNavigation}
+            label={buttons.forgotPass}
+            className="text-primary cursor-pointer px-2 rounded-md"
+          />
         </div>
         <Button
-          variant="primary"
           onClick={handleSubmit((values) => onSubmit(values))}
           label={buttons.signIn}
+          className="w-full bg-primary text-white py-2 rounded-[8px]"
         />
 
         <div className="flex-center mt-6">
@@ -119,10 +119,10 @@ export default function LoginPage() {
             {buttons.signupDesc}
           </Typography>
           <Button
+            variant="text"
             onClick={handleSignUpNavigation}
             label={buttons.signUp}
-            variant="text"
-            className="font-semibold"
+            className="text-primary cursor-pointer px-2 rounded-md"
           />
         </div>
       </FormProvider>

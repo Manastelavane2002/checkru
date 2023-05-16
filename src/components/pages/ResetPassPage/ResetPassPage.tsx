@@ -102,7 +102,11 @@ export default function ResetPassPage() {
           className="dark-rounded"
           placeholder="Confirm your new password"
         />
-        <Button label="Change Password" onClick={handleSubmit(onSubmit)} variant="default" />
+        <Button
+          label="Change Password"
+          onClick={handleSubmit(onSubmit)}
+          className="w-full bg-primary text-white py-2 rounded-[8px]"
+        />
       </FormProvider>
     </AuthContainer>
   );

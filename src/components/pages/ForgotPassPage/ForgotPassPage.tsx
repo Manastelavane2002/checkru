@@ -85,7 +85,12 @@ export default function ForgotPassPage() {
               <Typography variant="p" className="text-body">
                 Didn’t receive the code?
               </Typography>
-              <Button variant="text" label="Click to resend" onClick={handleResendOtp} />
+              <Button
+                variant="text"
+                label="Click to resend"
+                onClick={handleResendOtp}
+                className="text-primary cursor-pointer px-2 rounded-md"
+              />
             </div>
             <TextField
               validationSchema={{
@@ -133,6 +138,7 @@ export default function ForgotPassPage() {
         ) : null}
 
         <Button
+          className="w-full bg-primary text-white py-2 rounded-[8px]"
           onClick={showOtpFields ? handleSubmit(handleResetPassword) : handleSubmit(onSubmit)}
           label={showOtpFields ? 'Reset Password' : 'Request OTP'}
         />
@@ -143,6 +149,7 @@ export default function ForgotPassPage() {
             }}
             variant="text"
             label="back to login"
+            className="text-primary cursor-pointer px-2 rounded-md"
           />
         </div>
       </FormProvider>

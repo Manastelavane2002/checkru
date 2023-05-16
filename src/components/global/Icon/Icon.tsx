@@ -8,9 +8,10 @@ interface Props {
   name: IconTypes;
   onClick?: () => void;
   size?: number;
+  className?: string;
 }
 // eg: <Icon name='arrow-left' size={20} color={COLORS.dashboardWhite}/>
-export function Icon({ name, color = 'white', fill, size = 20, onClick }: Props) {
+export function Icon({ name, color = 'white', fill, size = 20, onClick,className }: Props) {
   const SVGIcon: ElementType = iconPack[name];
   return (
     <SVGIcon
@@ -20,6 +21,7 @@ export function Icon({ name, color = 'white', fill, size = 20, onClick }: Props)
       fill={fill}
       stroke={color}
       onClick={onClick}
+      className={className}
     />
   );
 }

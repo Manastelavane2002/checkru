@@ -1,5 +1,5 @@
 import { format, isValid } from 'date-fns';
-import { DATE_PICKER_INPUT_FORMAT } from '../data/constants';
+import { DATE_PICKER_INPUT_FORMAT } from '../../../../constants/date-picker';
 import { DatePickerInputValue } from '../components/date-picker-input';
 
 export const formatDatePickerInput = (d: string | number | Date): DatePickerInputValue => {

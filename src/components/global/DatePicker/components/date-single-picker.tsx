@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button } from '../../Button/Button';
-import { Calendar } from '../../calendar/calendar';
+import { Calendar } from '../../calendar/Calendar';
 import CalendarHeader from '../../calendar/components/calendar-header';
 import useCalendarDate, { CalendarDate } from '../../calendar/hooks/useCalendarDate';
 import { Typography } from '../../Typography/Typography';
@@ -18,7 +18,7 @@ export interface DatePickerProps {
   hideActions?: boolean;
   onApply?: (value: CalendarDate) => void;
   onCancel?: () => void;
-  className?:string
+  className?: string;
 }
 
 export const DateSinglePicker: FC<Omit<DatePickerProps, 'type' | 'hidePresetRanges'>> = ({
@@ -26,7 +26,7 @@ export const DateSinglePicker: FC<Omit<DatePickerProps, 'type' | 'hidePresetRang
   onCancel,
   defaultValue,
   hideActions = false,
-  className
+  className,
 }) => {
   const form = useForm({
     mode: 'onChange',

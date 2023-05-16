@@ -60,15 +60,19 @@ export function ConfirmSignUpPage() {
           <Button
             variant="text"
             label="Click to resend"
-            className="font-semibold"
+            className="text-primary cursor-pointer px-2 rounded-md"
             onClick={handleResendOtp}
           />
         </div>
-        <Button onClick={handleSubmit(onSubmit)} label="Confirm Sign Up" />
+        <Button
+          onClick={handleSubmit(onSubmit)}
+          label="Confirm Sign Up"
+          className="w-full bg-primary text-white py-2 rounded-[8px]"
+        />
         <div className="flex-center mt-6">
           <Button
             variant="text"
-            className="font-semibold"
+            className="text-primary cursor-pointer px-2 rounded-md"
             onClick={() => router.replace(ROUTES.SIGN_UP)}
             label="Go Back"
           />

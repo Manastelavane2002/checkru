@@ -89,7 +89,11 @@ export default function SignUpPage() {
             Terms and conditions
           </label>
         </div>
-        <Button onClick={handleSubmit(onSubmit)} label="Get started" />
+        <Button
+          onClick={handleSubmit(onSubmit)}
+          label="Get started"
+          className="w-full bg-primary text-white py-2 rounded-[8px]"
+        />
         <div className="flex-center mt-6">
           <Typography variant="p" className="text-body">
             Already have an account?
@@ -98,7 +102,8 @@ export default function SignUpPage() {
             onClick={handleSignInNavigation}
             label=" Sign in"
             variant="text"
-            className="font-semibold"
+            
+            className="text-primary cursor-pointer px-2 rounded-md"
           />
         </div>
       </FormProvider>

@@ -12,4 +12,5 @@ export const COLORS = {
   body: '#A6A6A6',
   formBg: '#2D2D2D',
   headerButtonHover: ' #FF0000',
+  componentBody: '#667085',
 };
