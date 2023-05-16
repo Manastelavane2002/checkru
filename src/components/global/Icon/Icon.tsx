@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { ElementType } from 'react';
 import { iconPack } from '../../../constants/icons';
 import { IconTypes } from './Icon.types';
 
@@ -19,7 +19,7 @@ export function Icon({
   className = '',
   onClick,
 }: Props) {
-  const SVGIcon = useMemo(() => iconPack[name], [name]);
+  const SVGIcon: ElementType = iconPack[name];
   return (
     <SVGIcon
       width={size}

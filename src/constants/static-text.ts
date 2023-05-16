@@ -13,7 +13,7 @@ export const STATIC_TEXT = {
     buttons: {
       rememberMe: 'Remember me',
       forgotPass: 'Forgot password',
-      signupDesc: 'Don&apos;t have an account?',
+      signupDesc: `Don't have an account?`,
       signUp: 'Sign Up',
       signIn: 'Sign In',
     },
