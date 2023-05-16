@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { iconPack } from './Icon.utils';
+import { iconPack } from '../../../constants/icons';
 import { IconTypes } from './Icon.types';
 
 interface Props {
@@ -20,13 +20,12 @@ export function Icon({
   onClick,
 }: Props) {
   const SVGIcon = useMemo(() => iconPack[name], [name]);
-  const isSizeANumber = typeof size === 'number';
   return (
     <SVGIcon
       width={size}
       height={size}
       className={
-        (!isSizeANumber ? `w-[${size}px] h-[${size}px] ` : '') +
+        (!(typeof size === 'number') ? `w-[${size}px] h-[${size}px] ` : '') +
         `stroke-${color} fill-${fill} ${className}`
       }
       onClick={onClick}

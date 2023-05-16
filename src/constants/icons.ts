@@ -4,14 +4,14 @@ import {
   Calendar,
   CheckSquare,
   Download,
-  File01,
-  File02,
+  File,
+  FileAlt,
   Lock,
   Mail,
   MinusSquare,
   Square,
   UploadCloud,
-} from '../../../../public/assets/icons';
+} from '../../public/assets/icons';
 
 export const iconPack = {
   'arrow-left': ArrowLeft,
@@ -19,8 +19,8 @@ export const iconPack = {
   calendar: Calendar,
   'check-square': CheckSquare,
   download: Download,
-  'file-01': File01,
-  'file-02': File02,
+  file: File,
+  'file-alt': FileAlt,
   lock: Lock,
   mail: Mail,
   'minus-square': MinusSquare,
