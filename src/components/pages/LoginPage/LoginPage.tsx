@@ -2,11 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { ROUTES } from 'src/constants/routes';
-import { AuthContainer } from '../hoc/AuthContainer';
-import { Button } from '../global/Button';
-import { TextField } from '../global/TextField';
-import { Typography } from '../global/Typography';
-import { useAuthContext } from '../../context/AuthContext/AuthContext';
+import { AuthContainer } from 'src/components/hoc/AuthContainer';
+import { Button } from 'src/components/global/Button/Button';
+import { TextField } from 'src/components/global/TextField/TextField';
+import { Typography } from 'src/components/global/Typography/Typography';
+import { useAuthContext } from 'src/context/AuthContext/AuthContext';
+import { STATIC_TEXT } from 'src/constants/static-text';
+import { capitalizeFirstLetter } from 'src/utils/string-functions';
+import {
+  emailRequiredSchema,
+  passwordMaxLengthSchema,
+  passwordlRequiredSchema,
+} from 'src/components/global/TextField/TextField.constants';
+const { title, subTitle, inputs, placeholders, buttons } = STATIC_TEXT.login;
 
 export default function LoginPage() {
   const methods = useForm<{ email: string; password: string }>();
@@ -50,44 +58,35 @@ export default function LoginPage() {
   };
 
   return (
-    <AuthContainer title="Log in" subTitle="Welcome back! Please enter your details." error={error}>
+    <AuthContainer title={title} subTitle={subTitle} error={error}>
       <FormProvider {...methods}>
         <TextField
-          name="email"
-          label="Email"
+          name={inputs.email}
+          label={capitalizeFirstLetter(inputs.email)}
           validationSchema={{
-            required: {
-              value: true,
-              message: 'Email is required',
-            },
+            required: emailRequiredSchema,
           }}
-          placeholder="Enter your email"
+          placeholder={placeholders.email}
           error={Boolean(errors.email)}
           helperText={errors.email?.message as string}
           variant="outlined"
-          type="email"
+          type={inputs.email}
           fullWidth
           className="dark-rounded"
         />
 
         <TextField
           validationSchema={{
-            required: {
-              value: true,
-              message: 'Password is required',
-            },
-            maxLength: {
-              value: 30,
-              message: 'Password should contain only 8 chars',
-            },
+            required: passwordlRequiredSchema,
+            maxLength: passwordMaxLengthSchema,
           }}
-          placeholder="Enter your password"
-          name="password"
-          label="Password"
+          placeholder={placeholders.password}
+          name={inputs.password}
+          label={capitalizeFirstLetter(inputs.password)}
           error={Boolean(errors.password)}
           helperText={errors.password?.message as string}
           variant="outlined"
-          type="password"
+          type={inputs.password}
           fullWidth
           className="dark-rounded"
         />
@@ -98,30 +97,30 @@ export default function LoginPage() {
               type="checkbox"
               className="mr-2 bg-primaryDashboard"
               id="rememberMe"
-              name="Remember me"
+              name={buttons.rememberMe}
             />
-            <label className="text-white">Remember me</label>
+            <label className="text-white">{buttons.rememberMe}</label>
           </div>
           <button
             type="submit"
             className="text-primary font-semibold px-2 cursor-pointer rounded-md"
             onClick={handleResetPasswordNavigation}>
-            Forgot password
+            {buttons.forgotPass}
           </button>
         </div>
         <Button
           variant="primary"
           onClick={handleSubmit((values) => onSubmit(values))}
-          label="Sign In"
+          label={buttons.signIn}
         />
 
         <div className="flex-center mt-6">
           <Typography variant="p" className="text-body">
-            Don&apos;t have an account?
+            {buttons.signupDesc}
           </Typography>
           <Button
             onClick={handleSignUpNavigation}
-            label="Sign Up"
+            label={buttons.signUp}
             variant="text"
             className="font-semibold"
           />

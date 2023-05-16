@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import { ROUTES } from 'src/constants/routes';
-import { Button } from '../global/Button';
+import { Button } from '../global/Button/Button';
 
 interface ErrorPageProps {
   statusCode: number;
