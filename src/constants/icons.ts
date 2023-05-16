@@ -15,16 +15,16 @@ import {
 } from '../../public/assets/icons';
 
 export const iconPack: Record<string, ElementType> = {
-  'arrow-left': ArrowLeft,
-  'arrow-right': ArrowRight,
-  calendar: Calendar,
-  'check-square': CheckSquare,
-  download: Download,
-  file: File,
-  'file-alt': FileAlt,
-  lock: Lock,
-  mail: Mail,
-  'minus-square': MinusSquare,
-  square: Square,
-  'upload-cloud': UploadCloud,
+  'arrow-left': ArrowLeft as ElementType,
+  'arrow-right': ArrowRight as ElementType,
+  calendar: Calendar as ElementType,
+  'check-square': CheckSquare as ElementType,
+  download: Download as ElementType,
+  file: File as ElementType,
+  'file-alt': FileAlt as ElementType,
+  lock: Lock as ElementType,
+  mail: Mail as ElementType,
+  'minus-square': MinusSquare as ElementType,
+  square: Square as ElementType,
+  'upload-cloud': UploadCloud as ElementType,
 };
