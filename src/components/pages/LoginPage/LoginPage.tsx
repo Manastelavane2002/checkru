@@ -90,7 +90,7 @@ export default function LoginPage() {
           fullWidth
           className="dark-rounded"
         />
-        
+
         <div className="flex-center my-3">
           <div className="flex">
             <input

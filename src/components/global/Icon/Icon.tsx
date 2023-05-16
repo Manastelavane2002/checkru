@@ -3,32 +3,13 @@ import { iconPack } from '../../../constants/icons';
 import { IconTypes } from './Icon.types';
 
 interface Props {
-  className?: string;
   color?: string;
-  fill?: string;
   name: IconTypes;
   onClick?: () => void;
   size?: number;
 }
 
-export function Icon({
-  name,
-  color = 'white',
-  fill = 'transparent',
-  size = 20,
-  className = '',
-  onClick,
-}: Props) {
+export function Icon({ name, color = 'white', size = 20, onClick }: Props) {
   const SVGIcon: ElementType = iconPack[name];
-  return (
-    <SVGIcon
-      width={size}
-      height={size}
-      className={
-        (!(typeof size === 'number') ? `w-[${size}px] h-[${size}px] ` : '') +
-        `stroke-${color} fill-${fill} ${className}`
-      }
-      onClick={onClick}
-    />
-  );
+  return <SVGIcon width={size} height={size} color={color} onClick={onClick} />;
 }
