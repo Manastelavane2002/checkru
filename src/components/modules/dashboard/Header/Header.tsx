@@ -7,7 +7,7 @@ import { LINKS } from '../../../../constants/links';
 export function Header() {
   const onLogout = () => {};
   return (
-    <header className="flex justify-between items-center h-[124px] px-20 py-5 bg-black  text-white inter">
+    <header className="flex justify-between items-center h-[124px] px-[112px] py-5 bg-black  text-white inter" >
       <div className="flex items-center ">
         <img src={IMAGES.LOGO} alt="Logo" className="h-20" />
       </div>
