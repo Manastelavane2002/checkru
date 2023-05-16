@@ -1,3 +1,4 @@
+import { ElementType } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -13,7 +14,7 @@ import {
   UploadCloud,
 } from '../../public/assets/icons';
 
-export const iconPack = {
+export const iconPack: Record<string, ElementType> = {
   'arrow-left': ArrowLeft,
   'arrow-right': ArrowRight,
   calendar: Calendar,
