@@ -1,0 +1,29 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+echo '🏗️👷 Linting, testing and building your project before committing'
+
+# Check Prettier standards
+npm run lint ||
+    (
+        echo 'Lint checks have failed. Please run yarn lint locally and resolve all the issues.'
+        false
+    )
+
+# Check ESLint Standards
+npm run ts ||
+    (
+        echo 'TypeScript checks have failed. Please run yarn ts locally and resolve all the issues.'
+        false
+    )
+
+# If everything passes... Now we can commit
+echo 'Lint and Ts scripts have passed'
+
+npm run build ||
+    (
+        echo 'Build failed.. Please check the error logs.'
+        false
+    )
+
+# If everything passes... Now we can commit
+echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'

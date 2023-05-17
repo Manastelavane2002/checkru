@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint \"src/**/*.{ts,tsx,md}\"",
     "ts": "tsc --noEmit --skipLibCheck",
-    "checks": "yarn lint && yarn ts"
+    "checks": "yarn lint && yarn ts",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "@types/node": "20.1.0",
@@ -35,6 +36,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@svgr/webpack": "^8.0.1"
+    "@svgr/webpack": "^8.0.1",
+    "husky": "^8.0.0"
   }
 }
