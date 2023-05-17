@@ -10,3 +10,6 @@ export { default as Mail } from './mail.svg';
 export { default as MinusSquare } from './minus-square.svg';
 export { default as Square } from './square.svg';
 export { default as UploadCloud } from './upload-cloud.svg';
+export { default as CSV } from './csv.svg';
+export { default as PDF } from './pdf.svg';
+
