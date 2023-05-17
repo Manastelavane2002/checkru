@@ -5,6 +5,10 @@ import { AuthContainer } from 'src/components/hoc/AuthContainer';
 import { useRouter } from 'next/router';
 import { ROUTES } from 'src/constants/routes';
 import { useAuthContext } from 'src/context/AuthContext/AuthContext';
+import { otpRequiredSchema } from 'src/components/global/TextField/TextField.constants';
+import { STATIC_TEXT } from 'src/constants/static-text';
+const { labels, inputs, placeholders } = STATIC_TEXT;
+const { title, subTitle, buttons } = STATIC_TEXT.confirmSignup;
 
 export function ConfirmSignUpPage() {
   const [error, setError] = useState<string>();
@@ -32,43 +36,40 @@ export function ConfirmSignUpPage() {
     await resendUserConfirmOpt(String(router.query.username) ?? '');
   };
   return (
-    <AuthContainer title="Create an account" subTitle="Start your 30-day free trial." error={error}>
+    <AuthContainer title={title} subTitle={subTitle} error={error}>
       <FormProvider {...methods}>
         <TextField
-          name="otp"
-          label="One time Password"
+          name={inputs.otp}
+          label={labels.otp}
           validationSchema={{
-            required: {
-              value: true,
-              message: 'One time Password is required',
-            },
+            required: otpRequiredSchema,
           }}
           error={Boolean(errors.otp)}
           helperText={errors.otp?.message as string}
           variant="outlined"
-          type="otp"
+          type={inputs.otp}
           fullWidth
-          placeholder="Enter the OTP"
+          placeholder={placeholders.otp}
           className="dark-rounded"
         />
         <div className="flex-center my-6">
           <Typography variant="p" className="text-body">
-            Didn’t receive the code?
+            {buttons.resendDesc}
           </Typography>
           <Button
             variant="text"
-            label="Click to resend"
+            label={buttons.resend}
             className="font-semibold"
             onClick={handleResendOtp}
           />
         </div>
-        <Button onClick={handleSubmit(onSubmit)} label="Confirm Sign Up" />
+        <Button onClick={handleSubmit(onSubmit)} label={buttons.signUp} />
         <div className="flex-center mt-6">
           <Button
             variant="text"
             className="font-semibold"
             onClick={() => router.replace(ROUTES.SIGN_UP)}
-            label="Go Back"
+            label={buttons.back}
           />
         </div>
       </FormProvider>

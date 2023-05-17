@@ -3,14 +3,21 @@ import * as React from 'react';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Button, TextField } from 'src/components/global';
+import {
+  passwordlRequiredSchema,
+  passwordMaxLengthSchema,
+} from 'src/components/global/TextField/TextField.constants';
 import { AuthContainer } from 'src/components/hoc/AuthContainer';
 import { ROUTES } from 'src/constants/routes';
+import { STATIC_TEXT } from 'src/constants/static-text';
 import { useAuthContext } from 'src/context/AuthContext';
+const { inputs, placeholders, labels } = STATIC_TEXT;
+const { title, subTitle, button } = STATIC_TEXT.resetPass;
 
 export default function ResetPassPage() {
   const methods = useForm<{
-    currentPassword: string;
     newPassword: string;
+    password: string;
   }>();
   const [error, setError] = useState<string>();
 
@@ -20,9 +27,9 @@ export default function ResetPassPage() {
   } = methods;
   const router = useRouter();
   const { changePassword } = useAuthContext();
-  const onSubmit = async (data: { currentPassword: string; newPassword: string }) => {
+  const onSubmit = async (data: { newPassword: string; password: string }) => {
     const res = await changePassword({
-      oldPassword: data?.currentPassword,
+      oldPassword: data?.password,
       newPassword: data?.newPassword,
     });
     if (res && res.isSuccess) {
@@ -32,75 +39,54 @@ export default function ResetPassPage() {
     }
   };
   return (
-    <AuthContainer
-      title="Change Password"
-      subTitle="Welcome back! Please enter your older password."
-      error={error}>
+    <AuthContainer title={title} subTitle={subTitle} error={error}>
       <FormProvider {...methods}>
         <TextField
           validationSchema={{
-            required: {
-              value: true,
-              message: 'Current password is required',
-            },
-            maxLength: {
-              value: 30,
-              message: 'Password should contain only 8 chars',
-            },
+            required: passwordlRequiredSchema,
+            maxLength: passwordMaxLengthSchema,
           }}
-          name="currentPassword"
-          label="Current Password"
-          error={Boolean(errors.currentPassword)}
-          helperText={errors.currentPassword?.message as string}
+          name={inputs.password}
+          label={labels.currentPass}
+          error={Boolean(errors.password)}
+          helperText={errors.password?.message as string}
           variant="outlined"
-          type="password"
+          type={inputs.password}
           fullWidth
           className="dark-rounded"
-          placeholder="Enter your current password"
+          placeholder={placeholders.currentPass}
         />
         <TextField
           validationSchema={{
-            required: {
-              value: true,
-              message: 'New password is required',
-            },
-            maxLength: {
-              value: 30,
-              message: 'Password should contain only 8 chars',
-            },
+            required: passwordlRequiredSchema,
+            maxLength: passwordMaxLengthSchema,
           }}
-          name="newPassword"
-          label="New Password"
+          name={inputs.newPassword}
+          label={labels.newPass}
           error={Boolean(errors.newPassword)}
           helperText={errors.newPassword?.message as string}
           variant="outlined"
-          type="password"
+          type={inputs.password}
           fullWidth
-          placeholder="Enter your new password"
+          placeholder={placeholders.newPass}
           className="dark-rounded"
         />
         <TextField
           validationSchema={{
-            required: {
-              value: true,
-              message: 'Please re-enter new password',
-            },
-            maxLength: {
-              value: 30,
-              message: 'Password should contain only 8 chars',
-            },
+            required: passwordlRequiredSchema,
+            maxLength: passwordMaxLengthSchema,
           }}
-          name="confirmPassword"
-          label="Confirm Password"
+          name={inputs.confirmPassword}
+          label={labels.confirmPass}
           error={Boolean(errors.newPassword)}
           helperText={errors.newPassword?.message as string}
           variant="outlined"
-          type="password"
+          type={inputs.password}
           fullWidth
           className="dark-rounded"
-          placeholder="Confirm your new password"
+          placeholder={placeholders['confirmPass-alt']}
         />
-        <Button label="Change Password" onClick={handleSubmit(onSubmit)} variant="default" />
+        <Button label={button} onClick={handleSubmit(onSubmit)} variant="default" />
       </FormProvider>
     </AuthContainer>
   );

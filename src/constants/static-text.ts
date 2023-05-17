@@ -30,21 +30,42 @@ export const STATIC_TEXT = {
       backToLogin: 'Back to login',
     },
   },
+  resetPass: {
+    title: 'Change Password',
+    subTitle: 'Welcome back! Please enter your older password.',
+    button: 'Change Password',
+  },
+  confirmSignup: {
+    title: 'Create an account',
+    subTitle: 'Start your 30-day free trial.',
+    buttons: {
+      resendDesc: 'Didn’t receive the code?',
+      resend: 'Click to resend',
+      signUp: 'Confirm Sign Up',
+      back: 'Go back',
+    },
+  },
   inputs: {
     email: 'email',
     password: 'password',
-    confirmPassword: 'cpassword',
+    confirmPassword: 'confirmPassword',
+    newPassword: 'newPassword',
     otp: 'otp',
   },
   labels: {
     otp: 'One Time Password',
     confirmPass: 'Confirm New Password',
+    currentPass: 'Current Password',
+    newPass: 'New Password',
   },
   placeholders: {
     email: 'Enter your email',
     password: 'Enter your password',
     otp: 'Enter the OTP',
     confirmPass: 'Confirm New Password',
+    currentPass: 'Enter your current password',
+    newPass: 'Enter your new password',
+    'confirmPass-alt': 'Confirm your new password',
   },
   errors: {
     emailRequired: 'Email is required',
