@@ -1,33 +1,29 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
-echo '🏗️👷 Styling, testing and building your project before committing'
+echo '🏗️👷 Linting, testing and building your project before committing'
 
 # Check Prettier standards
 npm run lint ||
-(
-    echo '🤢🤮🤢🤮 Its FREAKING RAW - Your styling looks disgusting. 🤢🤮🤢🤮
-            Prettier Check Failed. Run npm run format, add changes and try commit again.';
-    false;
-)
+    (
+        echo 'Lint checks have failed. Please run yarn lint locally and resolve all the issues.'
+        false
+    )
 
 # Check ESLint Standards
 npm run ts ||
-(
-        echo '😤🏀👋😤 Get that weak crap out of here! 😤🏀👋😤 
-                ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
-        false; 
-)
+    (
+        echo 'TypeScript checks have failed. Please run yarn ts locally and resolve all the issues.'
+        false
+    )
 
 # If everything passes... Now we can commit
-echo '🤔🤔🤔🤔... Alright... Code looks good to me... Trying to build now. 🤔🤔🤔🤔'
+echo 'Lint and Ts scripts have passed'
 
 npm run build ||
-(
-    echo '❌👷🔨❌ Better call Bob... Because your build failed ❌👷🔨❌
-            Next build failed: View the errors above to see why. 
-    '
-    false;
-)
+    (
+        echo 'Build failed.. Please check the error logs.'
+        false
+    )
 
 # If everything passes... Now we can commit
 echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'
