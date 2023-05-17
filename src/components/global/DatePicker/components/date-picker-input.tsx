@@ -17,9 +17,9 @@ export const DatePickerInput: FC<DatePickerInputProps> = ({
 }) => {
   return (
     <input
-      className={`bg-white px-[7px] py-[5px] border ${
-        hasError ? 'border-error-600 border-2 focus-visible:outline-0' : 'border-gray-300 border'
-      } rounded-lg text-t-md text-gray-900 ${className}`}
+      className={`bg-transparent px-[7px] py-[5px] border ${
+        hasError ? 'border-red-600 border-2 focus-visible:outline-0' : 'border-gray-300 border'
+      } rounded-lg text-t-md text-componentHeader ${className}`}
       value={value}
       onChange={(e) => onChange?.(e.target.value)}
     />

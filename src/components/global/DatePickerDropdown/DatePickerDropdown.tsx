@@ -42,12 +42,12 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = ({
           className={className}
           variant={buttonVariant}
           selected={buttonSelected ?? !!value}
-          icon="calendar"
+          endIcon="calendar"
         />
       </Dropdown.Button>
       <Dropdown.Panel>
         {openPanel && (
-          <div className="my-2 ">
+          <div className="my-2">
             <DatePicker
               type={type}
               onApply={(v) => {

@@ -22,7 +22,7 @@ export const DatePickerInputRange: FC<DatePickerInputRangeProps> = ({
           {...fromInputProps}
           className={`${fromInputProps.className ?? ''} text-center w-32`}
         />
-        <Typography color="gray-500" className="mx-3">
+        <Typography className="mx-3 text-componentHeader">
           -
         </Typography>
         <DatePickerInput

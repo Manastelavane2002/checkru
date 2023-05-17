@@ -1,37 +1,3 @@
-// import * as React from 'react';
-
-// interface ButtonProps {
-//   className?: string;
-//   label: string;
-//   onClick: () => void;
-//   variant?: string;
-// }
-
-// export function Button({ variant = 'Default', label, onClick, className }: ButtonProps) {
-//   if (variant === 'text') {
-//     return (
-//       <button
-//         className={`text-primary cursor-pointer px-2 rounded-md ${className}`}
-//         onClick={onClick}
-//         type="submit">
-//         {label}
-//       </button>
-//     );
-//   }
-//   return (
-//     <button
-//       onClick={onClick}
-//       type="submit"
-//       className={`w-full bg-primary text-white py-2 rounded-[8px] ${className}`}>
-//       {label}
-//     </button>
-//   );
-// }
-
-// Button.defaultProps = {
-//   variant: null,
-// };
-
 /* eslint-disable sort-keys */
 import * as React from 'react';
 import clsx from 'clsx';

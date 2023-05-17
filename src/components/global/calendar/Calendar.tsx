@@ -95,9 +95,9 @@ export const Calendar: FC<CalendarProps> = ({ className, ...props }) => {
                 <div
                   key={iso}
                   className={clsx(
-                    `flex-1 w-10 h-10`,
+                    `flex-1 text-white w-10 h-10`,
                     isSelected && {
-                      'bg-gray-100': true,
+                      'bg-primary': true,
                       'rounded-l-full': isSingleAndSelected || isSelectionLeftEnd || index === 0,
                       'rounded-r-full': isSingleAndSelected || isSelectionRightEnd || index === 6,
                     }

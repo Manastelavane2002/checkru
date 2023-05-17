@@ -64,7 +64,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = ({
         <Icon name="arrow-left" color={COLORS.componentBody} size={20} />
       </div>
       <div className="grow flex items-center justify-center">
-        <Typography className="gray-700">{date ? format(date, 'MMMM yyyy') : ''}</Typography>
+        <Typography className="text-componentHeader">{date ? format(date, 'MMMM yyyy') : ''}</Typography>
       </div>
       <div
         className={clsx(

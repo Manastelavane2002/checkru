@@ -19,6 +19,7 @@ import toCalendarDate from '../utils/toCalendarDate';
 import formatCalendarDate from '../../calendar/utils/formatCalendarDate';
 import { useCalendar } from '../../calendar/hooks/useCalendar';
 import isValidCalendarDate from '../../calendar/utils/isValidCalendarDate';
+import { COLORS } from '../../../../constants/color-palette';
 
 export interface DateRangePickerProps {
   defaultValue?: CalendarRange;
@@ -139,7 +140,7 @@ export const DateRangePicker: FC<DateRangePickerProps> = ({
   return (
     <>
       <div
-        className={`w-fit hidden sm:flex bg-white border border-gray-100 rounded-lg ${className}`}>
+        className={`w-fit hidden sm:flex bg-componentBg border border-componentStroke rounded-lg ${className}`}>
         {!hidePresetRanges && (
           <div className={`w-48 px-4 py-3 border-r border-gray-200`}>
             {rangeNames.map((id) => {
@@ -163,8 +164,22 @@ export const DateRangePicker: FC<DateRangePickerProps> = ({
         )}
         <div className="grow">
           <div className="flex">
-            <div className="w-[328px] px-6 py-5 border-r border-gray-200">
+            <div className="w-[328px] px-6 py-5 border-r border-componentStroke">
               <CalendarHeader {...fromCalendarHeaderDate.control} />
+              <DatePickerInputRange
+            
+                fromInputProps={{
+                  hasError: !!errorMessage,
+                  value: rangeInput.field.value.from,
+                  onChange: onFromInputChange,
+                }}
+                toInputProps={{
+                  hasError: !!errorMessage,
+                  value: rangeInput.field.value.to,
+                  onChange: onToInputChange,
+                }}
+                error={errorMessage}
+              />
               <Calendar
                 {...calendar.control}
                 month={
@@ -175,31 +190,8 @@ export const DateRangePicker: FC<DateRangePickerProps> = ({
                 year={fromCalendarHeaderDate.date?.getFullYear()}
               />
             </div>
-            {/* <div className="w-[328px] px-6 py-5">
-              <CalendarHeader {...toCalendarHeaderDate.control} />
-              <Calendar
-                {...calendar.control}
-                month={
-                  toCalendarHeaderDate.date ? toCalendarHeaderDate.date.getMonth() + 1 : undefined
-                }
-                year={toCalendarHeaderDate.date?.getFullYear()}
-              />
-            </div> */}
           </div>
           <div className="flex flex-wrap justify-between px-5 py-4 border-t border-gray-200">
-            <DatePickerInputRange
-              fromInputProps={{
-                hasError: !!errorMessage,
-                value: rangeInput.field.value.from,
-                onChange: onFromInputChange,
-              }}
-              toInputProps={{
-                hasError: !!errorMessage,
-                value: rangeInput.field.value.to,
-                onChange: onToInputChange,
-              }}
-              error={errorMessage}
-            />
             {!hideActions && (
               <div className="flex gap-3 items-start">
                 <Button
