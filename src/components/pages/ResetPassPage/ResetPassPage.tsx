@@ -2,12 +2,10 @@ import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Button } from '../../global/Button/Button';
-import { TextField } from '../../global/TextField/TextField';
-import { AuthContainer } from '../../hoc/AuthContainer';
+import { Button, TextField } from 'src/components/global';
+import { AuthContainer } from 'src/components/hoc/AuthContainer';
 import { ROUTES } from 'src/constants/routes';
-import { useAuthContext } from '../../../context/AuthContext/AuthContext';
-
+import { useAuthContext } from 'src/context/AuthContext';
 
 export default function ResetPassPage() {
   const methods = useForm<{

@@ -1,13 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import { IMAGES } from '../../../../constants/images';
-import { Button } from '../../../global/Button/Button';
-import { LINKS } from '../../../../constants/links';
+import { IMAGES } from 'src/constants/images';
+import { Button } from 'src/components/global/Button/Button';
+import { LINKS } from 'src/constants/links';
 
 export function Header() {
   const onLogout = () => {};
   return (
-    <header className="flex justify-between items-center h-[124px] px-[112px] py-5 bg-black text-xs md:text-sm lg:text-base text-white inter whitespace-nowrap" >
+    <header className="flex justify-between items-center h-[124px] px-[112px] py-5 bg-black text-xs md:text-sm lg:text-base text-white inter whitespace-nowrap">
       <div className="flex items-center ">
         <img src={IMAGES.LOGO} alt="Logo" className="h-8 md:h-12 lg:h-20" />
       </div>

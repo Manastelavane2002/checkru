@@ -5,9 +5,7 @@ import { useRouter } from 'next/router';
 import { ROUTES } from 'src/constants/routes';
 import { SignUpPayload } from 'src/context/AuthContext/AuthContext.types';
 import { useAuthContext } from 'src/context/AuthContext/AuthContext';
-import { Button } from 'src/components/global/Button/Button';
-import { TextField } from 'src/components/global/TextField/TextField';
-import { Typography } from 'src/components/global/Typography/Typography';
+import { Button, TextField, Typography } from 'src/components/global';
 import { AuthContainer } from 'src/components/hoc/AuthContainer';
 
 export default function SignUpPage() {

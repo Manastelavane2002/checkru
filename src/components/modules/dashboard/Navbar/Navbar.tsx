@@ -2,10 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 
 interface Props {
-  navElements: {
+  navElements: Array<{
     link: string;
     title: string;
-  }[];
+  }>;
 }
 
 export function Navbar({ navElements }: Props) {
