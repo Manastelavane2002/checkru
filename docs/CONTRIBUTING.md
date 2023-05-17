@@ -12,6 +12,7 @@
 ```bash
 yarn checks
 ```
+- If missed, there is already a husky pre commit hook that runs these scripts before every commit.
 - For some reason if the checks are missed, the lint pipeline on gitlab will indicate you for the errors in your code
 - Do no submit a MR for code approval until the pipeline is successful
 
@@ -32,10 +33,10 @@ In some cases you might want to branch off of a branch created by yourself or a 
 If the base branch is still an open MR when you're done with your work, you may open a MR against that branch. When the base branch is merged, update the base branch of your MR to `develop`. **Do not** merge your MR into a branch other than `develop`.
 
 
-## Submitting PRs
+## Submitting MRs
 
-- Prefer small PRs to make code easier to review and get merged
-- Use **human readable** titles on PRs, including Gitlab tickets numbers:
+- Prefer small MRs to make code easier to review and get merged
+- Use **human readable** titles on MRs, including Gitlab tickets numbers:
 
 ```
 12: Setup readme file
@@ -54,7 +55,7 @@ If the base branch is still an open MR when you're done with your work, you may 
 
 Assign the ticket to [Raj Updhyay](https://gitlab.com/rrajupadhyayy) or [Shubham Navale](https://gitlab.com/shubhamnavale), code approval from either of them is necessary for merging with **develop**
 
-You do not need to assign specific developers to review your MR. Since one team is working on this project, we can use our judgment on which PRs to review. However, if you have come across a MR feel free to review it.
+You do not need to assign specific developers to review your MR. Since one team is working on this project, we can use our judgment on which MRs to review. However, if you have come across a MR feel free to review it.
 
 You can also assign reviewers if you want to specifically request their feedback on your work.
 
