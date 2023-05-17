@@ -7,6 +7,15 @@ import { SignUpPayload } from 'src/context/AuthContext/AuthContext.types';
 import { useAuthContext } from 'src/context/AuthContext/AuthContext';
 import { Button, TextField, Typography } from 'src/components/global';
 import { AuthContainer } from 'src/components/hoc/AuthContainer';
+import { STATIC_TEXT } from 'src/constants/static-text';
+import {
+  emailRequiredSchema,
+  passwordMaxLengthSchema,
+  passwordlRequiredSchema,
+} from 'src/components/global/TextField/TextField.constants';
+import { capitalizeFirstLetter } from 'src/utils/string-functions';
+const { inputs, placeholders } = STATIC_TEXT;
+const { title, terms, buttons, signInDesc } = STATIC_TEXT.signUp;
 
 export default function SignUpPage() {
   const methods = useForm<SignUpPayload>();
@@ -22,7 +31,7 @@ export default function SignUpPage() {
     try {
       const res = await signUp(data);
       if (!res || !res.userConfirmed) {
-        router.replace(`/confirmSignUp/${res?.username || ''}`);
+        router.replace(`${ROUTES.CONFIRM_SIGN_UP}/${res?.username || ''}`);
       }
       if (res && res.isSuccess) {
         await saveToken();
@@ -40,61 +49,52 @@ export default function SignUpPage() {
   };
 
   return (
-    <AuthContainer title="Create an account" error={error}>
+    <AuthContainer title={title} error={error}>
       <FormProvider {...methods}>
         <TextField
-          name="email"
-          label="Email"
+          name={inputs.email}
+          label={capitalizeFirstLetter(inputs.email)}
           validationSchema={{
-            required: {
-              value: true,
-              message: 'Email is required',
-            },
+            required: emailRequiredSchema,
           }}
-          placeholder="Enter your email"
+          placeholder={placeholders.email}
           error={Boolean(errors.email)}
           helperText={errors.email?.message as string}
           variant="outlined"
-          type="email"
+          type={inputs.email}
           fullWidth
           className="dark-rounded"
         />
 
         <TextField
           validationSchema={{
-            required: {
-              value: true,
-              message: 'Password is required',
-            },
-            maxLength: {
-              value: 30,
-              message: 'Password should contain only 30 chars',
-            },
+            required: passwordlRequiredSchema,
+            maxLength: passwordMaxLengthSchema,
           }}
-          placeholder="Enter your password"
-          name="password"
-          label="Password"
+          placeholder={placeholders.password}
+          name={inputs.password}
+          label={capitalizeFirstLetter(inputs.password)}
           error={Boolean(errors.password)}
           helperText={errors.password?.message as string}
           variant="outlined"
-          type="password"
+          type={inputs.password}
           fullWidth
           className="dark-rounded"
         />
         <div className="flex mb-4">
           <input type="checkbox" className="mr-2" name="tnc" id="tnc" />
           <label htmlFor="tnc" className="text-white">
-            Terms and conditions
+            {terms}
           </label>
         </div>
-        <Button onClick={handleSubmit(onSubmit)} label="Get started" />
+        <Button onClick={handleSubmit(onSubmit)} label={buttons.signUp} />
         <div className="flex-center mt-6">
           <Typography variant="p" className="text-body">
-            Already have an account?
+            {signInDesc}
           </Typography>
           <Button
             onClick={handleSignInNavigation}
-            label=" Sign in"
+            label={buttons.signIn}
             variant="text"
             className="font-semibold"
           />

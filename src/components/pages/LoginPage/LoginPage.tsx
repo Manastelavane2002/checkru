@@ -12,7 +12,8 @@ import {
   passwordMaxLengthSchema,
   passwordlRequiredSchema,
 } from 'src/components/global/TextField/TextField.constants';
-const { title, subTitle, inputs, placeholders, buttons } = STATIC_TEXT.login;
+const { inputs, placeholders } = STATIC_TEXT;
+const { title, subTitle, buttons } = STATIC_TEXT.login;
 
 export default function LoginPage() {
   const methods = useForm<{ email: string; password: string }>();
