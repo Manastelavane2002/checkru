@@ -9,7 +9,7 @@
     "lint": "eslint \"src/**/*.{ts,tsx,md}\"",
     "ts": "tsc --noEmit --skipLibCheck",
     "checks": "yarn lint && yarn ts",
-    "prepare": "husky install"
+    "postinstall": "husky install"
   },
   "dependencies": {
     "@types/node": "20.1.0",
