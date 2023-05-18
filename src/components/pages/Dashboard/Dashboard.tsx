@@ -1,10 +1,8 @@
 import React from 'react';
-import Header from '../../modules/dashboard/Header/Header';
-import Navbar from '../../modules/dashboard/Navbar/Navbar';
-import { LINKS } from '../../../constants/links';
 import { DatePickerDropdown } from 'src/components/global/DatePickerDropdown';
-import CardList from '../../modules/dashboard/Card/CardList';
-import { cardList } from '../../modules/dashboard/Card/card.mock';
+import { Header, Navbar, CardList } from 'src/components/modules/dashboard';
+import { LINKS } from 'src/constants/links';
+import { cardList } from 'src/components/modules/dashboard/Card/card.mock';
 
 function DashboardPage() {
   return (

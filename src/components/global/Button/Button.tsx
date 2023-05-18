@@ -29,6 +29,9 @@ export function Button({
   ...restProps
 }: ButtonProps) {
   const variants = {
+    default: {
+      button: `w-full bg-primary text-white py-2 rounded-[8px]`,
+    },
     contained: {
       button: `${
         selected ? `btn-${color}-700` : `btn-${color}-600`
@@ -51,7 +54,7 @@ export function Button({
       icon: ``,
     },
     text: {
-      button: `${selected ? `btn-${color}-50` : ``} hover:btn-${color}-50`,
+      button: `text-primary cursor-pointer px-2 rounded-md`,
       typo: ``,
       icon: ``,
     },
@@ -72,8 +75,7 @@ export function Button({
           selected ? `stroke-${color}-800` : ``
         } group-hover:stroke-${color}-800 group-disabled:stroke-${color}-300`
       : '';
-  const typoColor =
-    variant === 'contained' ? 'white' : ((selected ? `${color}-800` : `${color}-700`));
+  const typoColor = variant === 'contained' ? 'white' : selected ? `${color}-800` : `${color}-700`;
   const typoSize = size === '2xl' ? 'lg' : size === 'xl' || size === 'lg' ? 'md' : 'sm';
   const iconSize = size === '2xl' ? 24 : 20;
 
@@ -118,4 +120,3 @@ export function Button({
     </button>
   );
 }
-

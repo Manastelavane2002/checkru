@@ -3,9 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { ROUTES } from 'src/constants/routes';
 import { AuthContainer } from 'src/components/hoc/AuthContainer';
-import { Button } from 'src/components/global/Button/Button';
-import { TextField } from 'src/components/global/TextField/TextField';
-import { Typography } from 'src/components/global/Typography/Typography';
+import { Button, TextField, Typography } from 'src/components/global';
 import { useAuthContext } from 'src/context/AuthContext/AuthContext';
 import { STATIC_TEXT } from 'src/constants/static-text';
 import { capitalizeFirstLetter } from 'src/utils/string-functions';
@@ -14,7 +12,8 @@ import {
   passwordMaxLengthSchema,
   passwordlRequiredSchema,
 } from 'src/components/global/TextField/TextField.constants';
-const { title, subTitle, inputs, placeholders, buttons } = STATIC_TEXT.login;
+const { inputs, placeholders } = STATIC_TEXT;
+const { title, subTitle, buttons } = STATIC_TEXT.login;
 
 export default function LoginPage() {
   const methods = useForm<{ email: string; password: string }>();
@@ -105,25 +104,19 @@ export default function LoginPage() {
             variant="text"
             onClick={handleResetPasswordNavigation}
             label={buttons.forgotPass}
-            className="text-primary cursor-pointer px-2 rounded-md"
           />
         </div>
         <Button
           onClick={handleSubmit((values) => onSubmit(values))}
           label={buttons.signIn}
-          className="w-full bg-primary text-white py-2 rounded-[8px]"
+          variant="default"
         />
 
         <div className="flex-center mt-6">
           <Typography variant="p" className="text-body">
             {buttons.signupDesc}
           </Typography>
-          <Button
-            variant="text"
-            onClick={handleSignUpNavigation}
-            label={buttons.signUp}
-            className="text-primary cursor-pointer px-2 rounded-md"
-          />
+          <Button variant="text" onClick={handleSignUpNavigation} label={buttons.signUp} />
         </div>
       </FormProvider>
     </AuthContainer>

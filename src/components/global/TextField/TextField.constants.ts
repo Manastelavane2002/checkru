@@ -15,3 +15,8 @@ export const passwordMaxLengthSchema = {
   value: 30,
   message: errors.passwordMinLength,
 };
+
+export const otpRequiredSchema = {
+  value: true,
+  message: errors.otpRequired,
+};

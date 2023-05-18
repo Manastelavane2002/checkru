@@ -219,6 +219,7 @@ function ButtonOrLink(props: ButtonProps | LinkProps) {
 }
 ```
 
+
 ## Local Data and Mocks
 
 ### Data
@@ -230,3 +231,8 @@ function ButtonOrLink(props: ButtonProps | LinkProps) {
   - Used in stories
   - Filenames follow the `[ComponentName]Mock.mock` naming pattern
   - Exported constants follow the `[constantName]Mock` naming pattern
+
+  ## Misc
+
+  - All static texts are to be stored in `/constants/static-text.ts`.
+  - Imports should use absolute path `src/...`.
