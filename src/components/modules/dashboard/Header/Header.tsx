@@ -7,11 +7,11 @@ import { LINKS } from '../../../../constants/links';
 export function Header() {
   const onLogout = () => {};
   return (
-    <header className="flex justify-between items-center h-[124px] px-20 py-5 bg-black  text-white inter">
+    <header className="flex justify-between items-center h-[124px] px-[112px] py-5 bg-black text-xs md:text-sm lg:text-base text-white inter whitespace-nowrap" >
       <div className="flex items-center ">
-        <img src={IMAGES.LOGO} alt="Logo" className="h-20" />
+        <img src={IMAGES.LOGO} alt="Logo" className="h-8 md:h-12 lg:h-20" />
       </div>
-      <nav className="flex items-center gap-10 font-semibold">
+      <nav className="flex items-center gap-3 md:gap-4 lg:gap-10 font-semibold">
         {LINKS?.HEADER_LINKS.map((link, index) => (
           <Link href={link.link} key={index} className="hover:text-body">
             {link.title}

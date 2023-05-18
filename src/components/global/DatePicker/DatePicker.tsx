@@ -1,17 +1,17 @@
-import React, { FC } from 'react';
+import React from 'react';
 import DateRangePicker from './components/date-range-picker';
 import DateSinglePicker from './components/date-single-picker';
-import { DatePickerProps } from './DatePicker.types'
+import { DatePickerProps } from './DatePicker.types';
 
-export const DatePicker: FC<DatePickerProps> = ({
+export function DatePicker({
   type = 'single',
   hideActions = false,
   hidePresetRanges = false,
   onApply,
   onCancel,
   defaultValue,
-  className=''
-}) => {
+  className = '',
+}: DatePickerProps) {
   return type === 'range' ? (
     <DateRangePicker
       hidePresetRanges={hidePresetRanges}
@@ -25,9 +25,9 @@ export const DatePicker: FC<DatePickerProps> = ({
     <DateSinglePicker
       hideActions={hideActions}
       onApply={onApply}
-        onCancel={onCancel}
-        className={className}
+      onCancel={onCancel}
+      className={className}
       defaultValue={typeof defaultValue === 'string' ? defaultValue : undefined}
     />
   );
-};
+}

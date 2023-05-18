@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from '../Button';
 import { CalendarValue } from '../calendar/hooks/useCalendar';
 import { DatePicker } from '../DatePicker';
@@ -6,7 +6,7 @@ import toDatePickerInput from '../DatePicker/utils/toDatePickerInput';
 import { Dropdown } from '../Dropdown/dropdown';
 import { DatePickerDropdownProps } from './DatePickerDropdown.types';
 
-export const DatePickerDropdown: FC<DatePickerDropdownProps> = ({
+export function DatePickerDropdown({
   type = 'single',
   value: valueProp,
   buttonSelected,
@@ -15,7 +15,7 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = ({
   buttonVariant,
   hidePresetRanges = false,
   className,
-}) => {
+}: DatePickerDropdownProps) {
   const [internalValue, setInternalValue] = useState<CalendarValue>(
     type === 'single' ? '' : { from: '', to: '' }
   );
@@ -63,4 +63,4 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = ({
       </Dropdown.Panel>
     </Dropdown>
   );
-};
+}

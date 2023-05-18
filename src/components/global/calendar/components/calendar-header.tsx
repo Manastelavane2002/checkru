@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { subMonths, format, addMonths } from 'date-fns';
-import React, { FC } from 'react';
+import React from 'react';
 import { Icon } from '../../Icon/Icon';
 import { Typography } from '../../Typography/Typography';
 import useCalendarDate, { CalendarDate } from '../hooks/useCalendarDate';
@@ -17,7 +17,7 @@ export interface CalendarHeaderProps {
   value?: CalendarDate;
 }
 
-export const CalendarHeader: FC<CalendarHeaderProps> = ({
+export function CalendarHeader({
   defaultValue = formatCalendarDate(new Date()),
   value,
   onNext,
@@ -25,7 +25,7 @@ export const CalendarHeader: FC<CalendarHeaderProps> = ({
   onChange,
   hideNextActionButton = false,
   hidePreviousActionButton = false,
-}) => {
+}: CalendarHeaderProps) {
   const { date, setDate } = useCalendarDate({
     defaultValue,
     value,
@@ -64,7 +64,9 @@ export const CalendarHeader: FC<CalendarHeaderProps> = ({
         <Icon name="arrow-left" color={COLORS.componentBody} size={20} />
       </div>
       <div className="grow flex items-center justify-center">
-        <Typography className="text-componentHeader">{date ? format(date, 'MMMM yyyy') : ''}</Typography>
+        <Typography className="text-componentHeader">
+          {date ? format(date, 'MMMM yyyy') : ''}
+        </Typography>
       </div>
       <div
         className={clsx(
@@ -76,6 +78,6 @@ export const CalendarHeader: FC<CalendarHeaderProps> = ({
       </div>
     </div>
   );
-};
+}
 
 export default CalendarHeader;

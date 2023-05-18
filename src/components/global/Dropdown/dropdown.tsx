@@ -1,19 +1,18 @@
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
-import { SubComponents, DropdownProps, emptyValues } from './';
+import React, {  useEffect, useMemo, useRef, useState } from 'react';
+import {DropdownProps, emptyValues } from './';
 
 const emptyRect: DOMRect = {
   ...emptyValues,
   toJSON: () => JSON.stringify(emptyValues),
 };
-
-export const Dropdown: FC<DropdownProps> & SubComponents = ({
+export function Dropdown({
   children,
   position = 'auto',
   open: openProp,
   onChange,
   className = '',
   fullWidth = false,
-}) => {
+}: DropdownProps) {
   const [internalOpen, setInternalOpen] = useState(false);
   const [mouseOverButton, setMouseOverButton] = useState(false);
   const [mouseOverPanel, setMouseOverPanel] = useState(false);
@@ -52,7 +51,7 @@ export const Dropdown: FC<DropdownProps> & SubComponents = ({
   let positionValues = useMemo(() => {
     let positionValues = {};
     let vertical = 'bottom';
-    let horizontal = 'right';
+    let horizontal = 'left';
     if (position === 'auto') {
       const screenWidth = global?.window?.screen.availWidth;
       const screenHeight = global?.window?.screen.availHeight;
@@ -109,12 +108,12 @@ export const Dropdown: FC<DropdownProps> & SubComponents = ({
       </div>
     </div>
   );
-};
+}
 
-Dropdown.Panel = ({ children }) => {
+Dropdown.Panel = function ({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 };
 
-Dropdown.Button = ({ children }) => {
+Dropdown.Button = function ({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 };

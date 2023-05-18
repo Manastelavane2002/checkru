@@ -7,7 +7,7 @@ export const COLORS = {
   tableCell: '#26272B',
   tableCellText: '#EBEBEB',
   tableHeader: '#1E1E21',
-  cellDividerStoke: ' #424242',
+  cellDividerStroke: ' #424242',
   body: '#A6A6A6',
   formBg: '#2D2D2D',
   headerButtonHover: ' #FF0000',
@@ -15,5 +15,7 @@ export const COLORS = {
   componentBg: '#0D0D0D',
   componentStroke: '#171717',
   componentHeader: '#C9C9C9',
+  calendarSelected: '#161616',
   iconBg: '#3F3F46',
+  divider: '#191D24',
 };

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { isAfter, isSameDay } from 'date-fns';
 import { useController, useForm } from 'react-hook-form';
 import DatePickerInputRange from './date-picker-input-range';
@@ -19,25 +19,24 @@ import toCalendarDate from '../utils/toCalendarDate';
 import formatCalendarDate from '../../calendar/utils/formatCalendarDate';
 import { useCalendar } from '../../calendar/hooks/useCalendar';
 import isValidCalendarDate from '../../calendar/utils/isValidCalendarDate';
-import { COLORS } from '../../../../constants/color-palette';
 
 export interface DateRangePickerProps {
+  className?: string;
   defaultValue?: CalendarRange;
   hideActions?: boolean;
   hidePresetRanges?: boolean;
   onApply?: (value: CalendarRange) => void;
   onCancel?: () => void;
-  className?: string;
 }
 
-export const DateRangePicker: FC<DateRangePickerProps> = ({
+export function DateRangePicker({
   hideActions = false,
   hidePresetRanges = false,
   onApply,
   onCancel,
   defaultValue,
   className,
-}) => {
+}: DateRangePickerProps) {
   const form = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -167,7 +166,6 @@ export const DateRangePicker: FC<DateRangePickerProps> = ({
             <div className="w-[328px] px-6 py-5 border-r border-componentStroke">
               <CalendarHeader {...fromCalendarHeaderDate.control} />
               <DatePickerInputRange
-            
                 fromInputProps={{
                   hasError: !!errorMessage,
                   value: rangeInput.field.value.from,
@@ -191,21 +189,18 @@ export const DateRangePicker: FC<DateRangePickerProps> = ({
               />
             </div>
           </div>
-          <div className="flex flex-wrap justify-between px-5 py-4 border-t border-gray-200">
+          <div className="flex flex-wrap justify-between px-5 py-4 border-t border-divider">
             {!hideActions && (
-              <div className="flex gap-3 items-start">
+              <div className="w-full flex gap-3 ">
                 <Button
                   label="Cancel"
-                  variant="outlined"
-                  color="gray"
-                  size="lg"
+                  className="grow py-2 border-2 border-cellDividerStroke rounded-lg bg-black text-white"
                   onClick={() => onCancel?.()}
                 />
                 <Button
                   label="Apply"
-                  color="primary"
+                  className="grow py-2 bg-red-600 text-white rounded-lg"
                   disabled={!form.formState.isValid}
-                  size="lg"
                   onClick={() => onApply?.(toCalendarRange(rangeInput.field.value))}
                 />
               </div>
@@ -259,14 +254,7 @@ export const DateRangePicker: FC<DateRangePickerProps> = ({
         </div>
         {!hideActions && (
           <div className="flex flex-wrap items-center gap-3 px-5 py-4 border-t border-gray-200">
-            <Button
-              label="Cancel"
-              variant="outlined"
-              color="gray"
-              size="lg"
-              className="flex-1"
-              onClick={() => onCancel?.()}
-            />
+            <Button label="Cancel" size="lg" className="flex-1" onClick={() => onCancel?.()} />
             <Button
               label="Apply"
               color="primary"
@@ -280,6 +268,6 @@ export const DateRangePicker: FC<DateRangePickerProps> = ({
       </div>
     </>
   );
-};
+}
 
 export default DateRangePicker;

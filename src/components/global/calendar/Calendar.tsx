@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React from 'react';
 import clsx from 'clsx';
-import { isSameDay, isToday, max, min } from 'date-fns';
+import { isSameDay, max, min } from 'date-fns';
 import { Typography } from '../Typography/Typography';
 import { UseCalendarProps, useCalendar } from './hooks/useCalendar';
 import formatCalendarDate from './utils/formatCalendarDate';
@@ -18,7 +18,7 @@ export interface CalendarProps extends UseCalendarProps {
   className?: string;
 }
 
-export const Calendar: FC<CalendarProps> = ({ className, ...props }) => {
+export function Calendar ({ className, ...props }: CalendarProps)  {
   const { selectedValue, selectionType, setValue, setEmptyValue } = useCalendar(props);
   const calendarMonth = generateCalendarMonth(props.year, props.month);
   const [firstWeek] = calendarMonth.weeks.length ? calendarMonth.weeks : [{ days: [] }];
@@ -28,7 +28,7 @@ export const Calendar: FC<CalendarProps> = ({ className, ...props }) => {
         {firstWeek.days.map(({ dayShortName }) => {
           return (
             <div key={dayShortName} className="flex-1 flex items-center justify-center w-10 h-10">
-              <Typography size="sm" color="gray-700">
+              <Typography size="sm" className="text-white">
                 {dayShortName}
               </Typography>
             </div>
@@ -58,7 +58,6 @@ export const Calendar: FC<CalendarProps> = ({ className, ...props }) => {
                 isSelectionRightEnd = isSameDay(dateObj, parseCalendarDate(selectedValue.to));
               }
               const isSelectionEnd = isSelectionLeftEnd || isSelectionRightEnd;
-              const isTheDateToday = isToday(dateObj);
               const onClick = () => {
                 if (!isWithinMonth) {
                   return;
@@ -95,31 +94,33 @@ export const Calendar: FC<CalendarProps> = ({ className, ...props }) => {
                 <div
                   key={iso}
                   className={clsx(
-                    `flex-1 text-white w-10 h-10`,
+                    `flex-1 w-10 h-10`,
                     isSelected && {
-                      'bg-primary': true,
-                      'rounded-l-full': isSingleAndSelected || isSelectionLeftEnd || index === 0,
-                      'rounded-r-full': isSingleAndSelected || isSelectionRightEnd || index === 6,
+                      'rounded-l-full bg-calendarSelected':
+                        isSingleAndSelected || isSelectionLeftEnd || index === 0,
+                      'rounded-r-full bg-calendarSelected':
+                        isSingleAndSelected || isSelectionRightEnd || index === 6,
+                      'rounded-none bg-calendarSelected': true,
                     }
                   )}>
                   <div
                     className={clsx(
                       `w-full h-full flex items-center justify-center cursor-pointer rounded-full`,
                       isSelected
-                        ? isSelectionEnd || isSingleAndSelected
-                          ? 'bg-primary-600'
-                          : 'bg-primary-100'
-                        : clsx('hover:bg-gray-100', isTheDateToday && 'bg-gray-100')
+                        ? {
+                            'bg-primary': isSingleAndSelected || isSelectionEnd,
+                          }
+                        : clsx('hover:bg-calendarSelected')
                     )}
                     onClick={onClick}>
                     <Typography
                       size="sm"
-                      color={
+                      className={
                         isSingleAndSelected || isSelectionEnd
-                          ? 'white'
+                          ? 'text-white'
                           : isWithinMonth
-                          ? 'gray-700'
-                          : 'gray-500'
+                          ? 'text-white'
+                          : 'text-gray-400'
                       }>
                       {date}
                     </Typography>

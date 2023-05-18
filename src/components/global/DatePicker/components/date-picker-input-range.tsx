@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Typography } from '../../Typography/Typography';
 import DatePickerInput, { DatePickerInputProps } from './date-picker-input';
 
@@ -9,12 +9,12 @@ export interface DatePickerInputRangeProps {
   toInputProps: DatePickerInputProps;
 }
 
-export const DatePickerInputRange: FC<DatePickerInputRangeProps> = ({
+export function DatePickerInputRange ({
   fromInputProps,
   toInputProps,
   error = '',
   className = '',
-}) => {
+}:DatePickerInputRangeProps){
   return (
     <div className={className}>
       <div className="flex items-center">
