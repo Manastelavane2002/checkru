@@ -7,14 +7,16 @@
 - SSR pages are configured/ accessed from `src/pages`
 
 - Components are divided into four sub-categories
+
   - `src/components/global` - All the common global components used in the PWA. Eg `Button`
   - `src/components/hoc` - HOC components used to optimize existing components. Eg `AuthContainer`
   - `src/components/modules` - Components sepcific to a specific module
   - `src/components/pages` - Page containers that recieve the props from SSR.
+  - `src/api` - Contains API management functions
 
 - For storing data, the application uses context. (Read more)[https://react.dev/reference/react/useContext]
-    - All contexts are defined in `src/context`.
-    
+
+  - All contexts are defined in `src/context`.
 
 - Helper functions are defined in `src/utils`. Eg. `src/utils/string-functions`.
 
@@ -22,7 +24,7 @@
 
 - Custom re-usable hooks defined in `src/hooks`.
 
-- All the API functions are defined in `src/api`. *TODO*: Update doc once setting up api.
+- All the API functions are defined in `src/api`. _TODO_: Update doc once setting up api.
 
 - Global styles defined in `src/styles/global.css`. Any other style param can be accessed and managed from `tailwind.config.js`.
 
@@ -122,7 +124,6 @@ Context should live as close to where it's needed as possible.
 - Some context needs to be at the app-level; you can pass these context at `src/pages/_app.tsx`.
 - In other cases, a context provider can wrap a subset of components, like the `AuthContext` module, or a specific page.
 
-
 ## Props
 
 - Destructure props within a component:
@@ -142,6 +143,42 @@ export interface PopularProps {
 interface Props {
   boo: string
 }
+```
+
+## API integration
+
+The application is setup to use server side API calls.
+
+In simple terms the API calls are made from their frontend functions in `src/api/frontend/[apiName].ts` to the `src/pages/api/[apiName].ts` file which then make the SSR call to `src/api/backend/[apiName].ts`.
+
+A global API calling function has been defined at `fetch.ts`, this function should be used when calling API. This will always respond in two params:
+
+```javascript
+{
+  data: ...,
+  isSuccess: boolean
+}
+```
+
+If the response code is any thing other than 200, 204 or 201 it will return `isSuccess = false`.
+
+Methods defined at `api/frontend` and `api/backend` are the ones to use handleFetch. `pages/api/[apiName].ts` is used as a lambda function to act as a middleman to filter data.
+
+Always handle data manipulation and extraction at `pages/api`, `api/frontend` and `api/backend` should be used just to pass paramas and return response.
+
+All API data types should be stored in `src/api/types` and extend interface `CommonResponse`.
+
+## Fetch Props
+
+```javascript
+  backendCall: boolean; // to determine whether to make a FE or BE API call
+  customUrlBase?: string; // Will override both FE and BE logic
+  endpoint: string; // Additions on top of base URL
+  formBody?: Record<string, string>;
+  includeAuthorization?: boolean; // To pass the token or not
+  jsonBody?: Record<string, string> | string;
+  method: FetchMethods; // GET, DELETE, PUT, POST.
+  query?: Record<string, string>; // query params in after base URL + endpoint
 ```
 
 ## Typescript notes
@@ -219,20 +256,21 @@ function ButtonOrLink(props: ButtonProps | LinkProps) {
 }
 ```
 
-
 ## Local Data and Mocks
 
 ### Data
-  - Used in components
-  - Filenames follow the `[ComponentName]Data.data` naming pattern
-  - Exported constants follow the `[constantName]Data` naming pattern
+
+- Used in components
+- Filenames follow the `[ComponentName]Data.data` naming pattern
+- Exported constants follow the `[constantName]Data` naming pattern
 
 ### Mocks:
-  - Used in stories
-  - Filenames follow the `[ComponentName]Mock.mock` naming pattern
-  - Exported constants follow the `[constantName]Mock` naming pattern
 
-  ## Misc
+- Used in stories
+- Filenames follow the `[ComponentName]Mock.mock` naming pattern
+- Exported constants follow the `[constantName]Mock` naming pattern
 
-  - All static texts are to be stored in `/constants/static-text.ts`.
-  - Imports should use absolute path `src/...`.
+## Misc
+
+- All static texts are to be stored in `/constants/static-text.ts`.
+- Imports should use absolute path `src/...`.
