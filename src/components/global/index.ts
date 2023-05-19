@@ -5,5 +5,4 @@ export * from './Typography/Typography';
 export * from './calendar/Calendar';
 export * from './DatePicker';
 export * from './DatePickerDropdown';
-
-// export * from './Dropdown/Dropdown';
+export * from './Dropdown';
