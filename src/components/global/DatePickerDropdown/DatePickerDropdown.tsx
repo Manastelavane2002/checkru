@@ -31,7 +31,7 @@ export function DatePickerDropdown({
     buttonLabel = `${toDatePickerInput(value.from)} - ${toDatePickerInput(value.to)}`;
   }
   return (
-    <Dropdown onChange={(openStatus) => setOpenPanel(openStatus)} open={openPanel}>
+    <Dropdown onChange={(openStatus: boolean) => setOpenPanel(openStatus)} open={openPanel}>
       <Dropdown.Button>
         <Button
           label={buttonLabel}
