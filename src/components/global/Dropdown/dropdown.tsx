@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { DropdownProps, emptyValues } from './Dropdown.types'
+import { DropdownProps, emptyValues } from 'src/components/global/Dropdown/Dropdown.types'
 
 const emptyRect: DOMRect = emptyValues && {
   ...emptyValues,
