@@ -100,29 +100,23 @@ export default function LoginPage() {
             />
             <label className="text-white">{buttons.rememberMe}</label>
           </div>
-          <button
-            type="submit"
-            className="text-primary font-semibold px-2 cursor-pointer rounded-md"
-            onClick={handleResetPasswordNavigation}>
-            {buttons.forgotPass}
-          </button>
+          <Button
+            variant="text"
+            onClick={handleResetPasswordNavigation}
+            label={buttons.forgotPass}
+          />
         </div>
         <Button
-          variant="primary"
           onClick={handleSubmit((values) => onSubmit(values))}
           label={buttons.signIn}
+          variant="fullWidth"
         />
 
         <div className="flex-center mt-6">
           <Typography variant="p" className="text-body">
             {buttons.signupDesc}
           </Typography>
-          <Button
-            onClick={handleSignUpNavigation}
-            label={buttons.signUp}
-            variant="text"
-            className="font-semibold"
-          />
+          <Button variant="text" onClick={handleSignUpNavigation} label={buttons.signUp} />
         </div>
       </FormProvider>
     </AuthContainer>

@@ -86,7 +86,7 @@ export default function ResetPassPage() {
           className="dark-rounded"
           placeholder={placeholders['confirmPass-alt']}
         />
-        <Button label={button} onClick={handleSubmit(onSubmit)} variant="default" />
+        <Button label={button} onClick={handleSubmit(onSubmit)} variant="fullWidth" />
       </FormProvider>
     </AuthContainer>
   );

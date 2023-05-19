@@ -3,6 +3,7 @@ import { iconPack } from 'src/constants/icons';
 import { IconTypes } from './Icon.types';
 
 export interface IconProps {
+  className?: string;
   color?: string;
   fill?: string;
   name: IconTypes;
@@ -16,16 +17,17 @@ export interface IconProps {
  * @description This component is used render custom svg
  * @example <Icon name='arrow-left' size={20} color={COLORS.dashboardWhite}/>
  */
-export function Icon({ name, color = 'white', fill, size = 20, onClick }: IconProps) {
+export function Icon({ name, color = 'white', fill, size = 20, onClick, className }: IconProps) {
   const SVGIcon: ElementType = iconPack[name];
   return (
     <SVGIcon
-      width={size}
-      height={size}
       color={color}
+      className={className}
       fill={fill}
-      stroke={color}
+      height={size}
       onClick={onClick}
+      stroke={color}
+      width={size}
     />
   );
 }

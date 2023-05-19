@@ -56,18 +56,12 @@ export function ConfirmSignUpPage() {
           <Typography variant="p" className="text-body">
             {buttons.resendDesc}
           </Typography>
-          <Button
-            variant="text"
-            label={buttons.resend}
-            className="font-semibold"
-            onClick={handleResendOtp}
-          />
+          <Button variant="text" label={buttons.resend} onClick={handleResendOtp} />
         </div>
-        <Button onClick={handleSubmit(onSubmit)} label={buttons.signUp} />
+        <Button onClick={handleSubmit(onSubmit)} label={buttons.signUp} variant="fullWidth" />
         <div className="flex-center mt-6">
           <Button
             variant="text"
-            className="font-semibold"
             onClick={() => router.replace(ROUTES.SIGN_UP)}
             label={buttons.back}
           />

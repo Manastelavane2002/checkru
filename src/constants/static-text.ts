@@ -73,7 +73,28 @@ export const STATIC_TEXT = {
     passwordMinLength: 'Password should contain only 8 chars',
     otpRequired: 'Otp is required',
   },
+  dateRangePicker: {
+    fromRequired: 'From data is required',
+    toRequired: 'To date is required.',
+    invalidFrom: 'Invalid from date format',
+    invalidTo: 'Invalid to date format',
+    fromBeforeTo: 'From date should be on or before to date',
+    cancelButton: 'Cancel',
+    applyButton: 'Apply',
+  },
+  dateSinglePicker: {
+    invalidDate: 'Invalid date format',
+    cancelButton: 'Cancel',
+    applyButton: 'Apply',
+  },
+  dateRangeName: {
+    sameDay: 'allTime',
+    past: 'past',
+    present: 'present',
+    custom: 'custom',
+    unknown: 'unknown',
+  },
   dashboard: {
     statementTableTitle: 'Statements',
-  }
+  },
 };
