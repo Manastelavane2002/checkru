@@ -1,20 +1,21 @@
 import React from 'react';
 import SectionHeader from './SectionHeader';
 import Statement from './Statement';
+import { DOWNLOAD_TYPES } from './statement.types';
 
-interface Props {
+interface StatementListProps  {
   statementList:{
     downloadOptions: {
         onClick: () => void;
-        title:string,
-        type: string;
+        title: string,
+        type: DOWNLOAD_TYPES.CSV | DOWNLOAD_TYPES.PDF;
     }[]
     enabled: boolean; 
     title: string;
 }[]
 }
 
-export function StatementList({statementList}: Props) {
+export function StatementList({statementList}: StatementListProps) {
   return (
     <div className='pl-[112px]'>
     <div className='w-3/12'>

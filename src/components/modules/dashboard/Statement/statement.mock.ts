@@ -1,7 +1,4 @@
-export const DOWNLOAD_TYPES = {
-    PDF: 'pdf',
-    CSV: 'csv'
-}
+import { DOWNLOAD_TYPES } from './statement.types'
 
 export const statementListMock = [
     {

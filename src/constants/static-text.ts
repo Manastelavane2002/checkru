@@ -73,4 +73,7 @@ export const STATIC_TEXT = {
     passwordMinLength: 'Password should contain only 8 chars',
     otpRequired: 'Otp is required',
   },
+  dashboard: {
+    statementTableTitle: 'Statements',
+  }
 };

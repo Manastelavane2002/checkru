@@ -1,25 +1,26 @@
 import React from 'react';
 import { IMAGES } from 'src/constants/images';
+import { DOWNLOAD_TYPES } from './statement.types';
 
-interface Props {
+interface StatementProps {
     downloadOptions: {
         onClick: () => void;
-        title:string,
-        type: string;
+        type: DOWNLOAD_TYPES.CSV | DOWNLOAD_TYPES.PDF;
     }[]
     title: string;
 }
 
-export function Statement({title,downloadOptions}: Props) {
+export function Statement({title,downloadOptions}: StatementProps) {
     return (
     <div className='flex items-center justify-between cursor-pointer'>
       <div className='mr-auto'>{title}</div>
-      <div className='items-end pr-4 lg:pr-8 '>
-        <img src={IMAGES.PNG} alt='download pdf' className='h-4 lg:h-7' onClick={downloadOptions.find(option => option.type === 'pdf')?.onClick} />
-      </div>
-      <div className=' items-end'>
-        <img src={IMAGES.CSV} alt='download csv' className='h-4 lg:h-7' onClick={downloadOptions.find(option => option.type === 'csv')?.onClick}/>
-      </div>
+      {
+        downloadOptions.map((option, index) => (
+            <div key={index} className='items-end px-2 lg:px-4 '>
+                <img src={option.type === 'pdf' ? IMAGES.PNG : IMAGES.CSV} alt={option.type === 'pdf' ? 'download pdf' : 'download csv'} className='h-4 lg:h-5 xl:h-6' onClick={option.onClick} />
+            </div>
+        ))
+      }
     </div>
   );
 }
