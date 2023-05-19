@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, DatePicker, Dropdown, DatePickerDropdownProps } from 'src/components/global';
+import { Button, DatePicker, DatePickerDropdownProps } from 'src/components/global';
+import { Dropdown } from 'src/components/global/Dropdown';
 import { CalendarValue } from 'src/components/global/calendar/hooks';
 import { toDatePickerInput } from 'src/components/global/DatePicker/utils';
 
