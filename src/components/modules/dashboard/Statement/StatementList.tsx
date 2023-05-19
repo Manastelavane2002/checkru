@@ -4,14 +4,14 @@ import Statement from './Statement';
 
 interface Props {
   statementList:{
-    title: string;
-    enabled: boolean; 
     downloadOptions: {
-      title:string,
-      onClick: () => void;
-      type: string;
+        onClick: () => void;
+        title:string,
+        type: string;
     }[]
-  }[]
+    enabled: boolean; 
+    title: string;
+}[]
 }
 
 export function StatementList({statementList}: Props) {

@@ -5,193 +5,193 @@ export const DOWNLOAD_TYPES = {
 
 export const statementListMock = [
     {
-        title:"January",
+        title:'January',
         enabled: false,
         downloadOptions: [
             {
-                title: "Download PDF",
-                onClick: () => console.log("Download PDF"),
+                title: 'Download PDF',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.PDF
             },
             {
-                title: "Download CSV",
-                onClick: () => console.log("Download CSV"),
+                title: 'Download CSV',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.CSV
             }
         ]
     },
     {
-        title:"February",
+        title:'February',
         enabled: false,
         downloadOptions: [
             {
-                title: "Download PDF",
-                onClick: () => console.log("Download PDF"),
+                title: 'Download PDF',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.PDF
             },
             {
-                title: "Download CSV",
-                onClick: () => console.log("Download CSV"),
+                title: 'Download CSV',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.CSV
             }
         ]
     },
     {
-        title:"March",
+        title:'March',
         enabled: true,
         downloadOptions: [
             {
-                title: "Download PDF",
-                onClick: () => console.log("Download PDF"),
+                title: 'Download PDF',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.PDF
             },
             {
-                title: "Download CSV",
-                onClick: () => console.log("Download CSV"),
+                title: 'Download CSV',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.CSV
             }
         ]
     },
     {
-        title:"April",
+        title:'April',
         enabled: false,
         downloadOptions: [
             {
-                title: "Download PDF",
-                onClick: () => console.log("Download PDF"),
+                title: 'Download PDF',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.PDF
             },
             {
-                title: "Download CSV",
-                onClick: () => console.log("Download CSV"),
+                title: 'Download CSV',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.CSV
             }
         ]
     },
     {
-        title:"May",
+        title:'May',
         enabled: false,
         downloadOptions: [
             {
-                title: "Download PDF",
-                onClick: () => console.log("Download PDF"),
+                title: 'Download PDF',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.PDF
             },
             {
-                title: "Download CSV",
-                onClick: () => console.log("Download CSV"),
+                title: 'Download CSV',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.CSV
             }
         ]
     },
     {
-        title:"June",
+        title:'June',
         enabled: false,
         downloadOptions: [
             {
-                title: "Download PDF",
-                onClick: () => console.log("Download PDF"),
+                title: 'Download PDF',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.PDF
             },
             {
-                title: "Download CSV",
-                onClick: () => console.log("Download CSV"),
+                title: 'Download CSV',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.CSV
             }
         ]
     },
     {
-        title:"July",
+        title:'July',
         enabled: false,
         downloadOptions: [
             {
-                title: "Download PDF",
-                onClick: () => console.log("Download PDF"),
+                title: 'Download PDF',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.PDF
             },
             {
-                title: "Download CSV",
-                onClick: () => console.log("Download CSV"),
+                title: 'Download CSV',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.CSV
             }
         ]
     },
     {
-        title:"August",
+        title:'August',
         enabled: false,
         downloadOptions: [
             {
-                title: "Download PDF",
-                onClick: () => console.log("Download PDF"),
+                title: 'Download PDF',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.PDF
             },
             {
-                title: "Download CSV",
-                onClick: () => console.log("Download CSV"),
+                title: 'Download CSV',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.CSV
             }
         ],
     },
     {
-        title:"September",
+        title:'September',
         enabled: false,
         downloadOptions: [
             {
-                title: "Download PDF",
-                onClick: () => console.log("Download PDF"),
+                title: 'Download PDF',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.PDF
             },
             {
-                title: "Download CSV",
-                onClick: () => console.log("Download CSV"),
+                title: 'Download CSV',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.CSV
             },
         ]
     },
     {
-        title:"October",
+        title:'October',
         enabled: false,
         downloadOptions: [
             {
-                title: "Download PDF",
-                onClick: () => console.log("Download PDF"),
+                title: 'Download PDF',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.PDF,
             },
             {
-                title: "Download CSV",
-                onClick: () => console.log("Download CSV"),
+                title: 'Download CSV',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.CSV,
             },
         ]
     },
     {
-        title:"November",
+        title:'November',
         enabled: false,
         downloadOptions: [
             {
-                title: "Download PDF",
-                onClick: () => console.log("Download PDF"),
+                title: 'Download PDF',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.PDF,
             },
             {
-                title: "Download CSV",
-                onClick: () => console.log("Download CSV"),
+                title: 'Download CSV',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.CSV,
             },
         ]
     },
     {
-        title:"December",
+        title:'December',
         enabled: false,
         downloadOptions: [
             {
-                title: "Download PDF",
-                onClick: () => console.log("Download PDF"),
+                title: 'Download PDF',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.PDF,
             },
             {
-                title: "Download CSV",
-                onClick: () => console.log("Download CSV"),
+                title: 'Download CSV',
+                onClick: () => {},
                 type: DOWNLOAD_TYPES.CSV,
             },
         ]
