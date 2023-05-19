@@ -8,9 +8,6 @@ export enum FetchMethods {
   POST = 'POST',
   PUT = 'PUT',
 }
-
-const backendUrl = 'https://dummyjson.com/';
-
 export interface FetchProps {
   backendCall: boolean;
   customUrlBase?: string;
@@ -66,7 +63,11 @@ export async function handleFetch({
   customUrlBase,
   backendCall,
 }: FetchProps) {
-  const baseUrl = backendCall ? backendUrl : customUrlBase || '/api';
+  const baseUrl = customUrlBase
+    ? customUrlBase
+    : backendCall
+    ? process.env.BACKEND_BASE_URL
+    : '/api';
   const headers: Record<string, string> = {};
   let body;
   if (includeAuthorization) {
@@ -84,7 +85,6 @@ export async function handleFetch({
     headers['Content-Type'] = 'application/x-www-form-urlencoded';
     body = new URLSearchParams(formBody).toString();
   }
-
   const url = buildUrl(`${baseUrl}${endpoint}`, query);
   try {
     const response = await axiosInstance({
