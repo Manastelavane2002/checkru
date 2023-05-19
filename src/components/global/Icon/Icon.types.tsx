@@ -10,6 +10,4 @@ export type IconTypes =
   | 'mail'
   | 'minus-square'
   | 'square'
-  | 'upload-cloud'
-  | 'csv'
-  | 'pdf';
+  | 'upload-cloud';

@@ -12,8 +12,6 @@ import {
   MinusSquare,
   Square,
   UploadCloud,
-  PDF,
-  CSV,
 } from '../../public/assets/icons';
 import { IconTypes } from 'src/components/global/Icon/Icon.types';
 
@@ -30,6 +28,4 @@ export const iconPack: Record<IconTypes, ElementType> = {
   'minus-square': MinusSquare as ElementType,
   square: Square as ElementType,
   'upload-cloud': UploadCloud as ElementType,
-  csv: CSV as ElementType,
-  pdf: PDF as ElementType,
 };
