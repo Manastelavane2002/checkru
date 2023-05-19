@@ -1,25 +1,19 @@
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { Button } from '../../Button/Button';
-import { Calendar } from '../../calendar/Calendar';
-import CalendarHeader from '../../calendar/components/calendar-header';
-import useCalendarDate, { CalendarDate } from '../../calendar/hooks/useCalendarDate';
-import { Typography } from '../../Typography/Typography';
-import DatePickerInput from './date-picker-input';
-import formatDatePickerInput from '../utils/formatDatePickerInput';
-import isValidDatePickerInput from '../utils/isValidDatePickerInput';
-import toCalendarDate from '../utils/toCalendarDate';
-import toDatePickerInput from '../utils/toDatePickerInput';
-import formatCalendarDate from '../../calendar/utils/formatCalendarDate';
-import isValidCalendarDate from '../../calendar/utils/isValidCalendarDate';
+import { Button, Calendar, Typography } from 'src/components/global';
+import CalendarHeader from 'src/components/global/calendar/components/CalendarHeader';
+import { useCalendarDate } from 'src/components/global/calendar/hooks/useCalendarDate';
+import DatePickerInput from 'src/components/global/DatePicker/components/DatePickerInput';
+import { formatCalendarDate, isValidCalendarDate } from 'src/components/global/calendar/utils';
+import { DatePickerProps } from 'src/components/global/DatePicker/components/DateSinglePicker.types';
 
-export interface DatePickerProps {
-  className?: string;
-  defaultValue?: CalendarDate;
-  hideActions?: boolean;
-  onApply?: (value: CalendarDate) => void;
-  onCancel?: () => void;
-}
+import {
+  formatDatePickerInput,
+  isValidDatePickerInput,
+  toCalendarDate,
+  toDatePickerInput,
+} from 'src/components/global/DatePicker/utils';
+import { STATIC_TEXT } from 'src/constants/static-text';
 
 export function DateSinglePicker({
   className,
@@ -28,6 +22,7 @@ export function DateSinglePicker({
   defaultValue,
   hideActions = false,
 }: DatePickerProps) {
+  const { dateSinglePicker } = STATIC_TEXT;
   const form = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -49,7 +44,7 @@ export function DateSinglePicker({
         required: 'Required',
         validate: (value) => {
           if (!isValidDatePickerInput(value)) {
-            return 'Invalid date format';
+            return dateSinglePicker.invalidDate;
           }
         },
       }}
@@ -77,13 +72,13 @@ export function DateSinglePicker({
                 {formState.errors.inputText?.message && (
                   <div className="p-1">
                     <Typography size="xs" color="error-700">
-                      {formState.errors.inputText?.message}
+                      {formState.errors.inputText?.message.toString()}
                     </Typography>
                   </div>
                 )}
               </div>
               <Button
-                variant="outlined"
+                variant="default"
                 color="gray"
                 size="lg"
                 label="Today"
@@ -108,15 +103,15 @@ export function DateSinglePicker({
           {!hideActions && (
             <div className="flex flex-wrap items-center gap-3 px-5 py-4 border-t border-gray-200">
               <Button
-                label="Cancel"
-                variant="outlined"
+                label={dateSinglePicker.cancelButton}
+                variant="default"
                 color="gray"
                 size="lg"
                 className="flex-1"
                 onClick={() => onCancel?.()}
               />
               <Button
-                label="Apply"
+                label={dateSinglePicker.applyButton}
                 color="primary"
                 disabled={!formState.isValid}
                 size="lg"

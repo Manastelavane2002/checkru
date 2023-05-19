@@ -1,24 +1,18 @@
 import React from 'react';
 import clsx from 'clsx';
-import { isSameDay, max, min } from 'date-fns';
-import { Typography } from '../Typography/Typography';
-import { UseCalendarProps, useCalendar } from './hooks/useCalendar';
-import formatCalendarDate from './utils/formatCalendarDate';
-import generateCalendarMonth from './utils/generateCalendarMonth';
-import parseCalendarDate from './utils/parseCalendarDate';
-import isInRange from './utils/isInRange';
-
+import { Typography } from 'src/components/global';
+import { UseCalendarProps, useCalendar } from 'src/components/global/calendar/hooks/useCalendar';
+import { generateCalendarMonth, handleIndividualDates } from 'src/components/global/calendar/utils';
 export interface State {
   day: number;
   month: number;
   year: number;
 }
-
 export interface CalendarProps extends UseCalendarProps {
   className?: string;
 }
 
-export function Calendar ({ className, ...props }: CalendarProps)  {
+export function Calendar({ className, ...props }: CalendarProps) {
   const { selectedValue, selectionType, setValue, setEmptyValue } = useCalendar(props);
   const calendarMonth = generateCalendarMonth(props.year, props.month);
   const [firstWeek] = calendarMonth.weeks.length ? calendarMonth.weeks : [{ days: [] }];
@@ -39,57 +33,22 @@ export function Calendar ({ className, ...props }: CalendarProps)  {
         return (
           <div className="flex flex-1" key={index}>
             {days.map(({ date, iso }, index) => {
-              const dateObj = new Date(iso);
-              const dateValue = formatCalendarDate(dateObj);
-              const isWithinMonth = dateObj.getMonth() + 1 === calendarMonth.month;
-              const isRangeType = selectionType === 'range' && typeof selectedValue !== 'string';
-              const isSingleType = selectionType === 'single' && typeof selectedValue === 'string';
-              const isSingleAndSelected =
-                isSingleType &&
-                selectedValue &&
-                isSameDay(dateObj, parseCalendarDate(selectedValue));
-              const isSelected = isRangeType
-                ? isInRange(formatCalendarDate(dateObj), selectedValue)
-                : isSingleAndSelected;
-              let isSelectionLeftEnd = false;
-              let isSelectionRightEnd = false;
-              if (isSelected && isRangeType) {
-                isSelectionLeftEnd = isSameDay(dateObj, parseCalendarDate(selectedValue.from));
-                isSelectionRightEnd = isSameDay(dateObj, parseCalendarDate(selectedValue.to));
-              }
-              const isSelectionEnd = isSelectionLeftEnd || isSelectionRightEnd;
-              const onClick = () => {
-                if (!isWithinMonth) {
-                  return;
-                }
-                if (isRangeType) {
-                  if (!selectedValue) {
-                    setValue({
-                      from: dateValue,
-                      to: dateValue,
-                    });
-                    return;
-                  }
-                  const { from, to } = selectedValue;
-                  const fromDate = parseCalendarDate(from);
-                  const toDate = parseCalendarDate(to);
-                  if (!isSameDay(fromDate, toDate)) {
-                    setValue({
-                      from: dateValue,
-                      to: dateValue,
-                    });
-                  } else if (isSameDay(fromDate, dateObj)) {
-                    setEmptyValue();
-                  } else {
-                    setValue({
-                      from: formatCalendarDate(min([dateObj, fromDate])),
-                      to: formatCalendarDate(max([dateObj, toDate])),
-                    });
-                  }
-                } else {
-                  setValue(dateValue);
-                }
-              };
+              const {
+                isSelected,
+                isSingleAndSelected,
+                isSelectionLeftEnd,
+                isSelectionRightEnd,
+                isSelectionEnd,
+                onClick,
+                isWithinMonth,
+              } = handleIndividualDates({
+                iso,
+                selectedValue,
+                selectionType,
+                setValue,
+                setEmptyValue,
+                calendarMonth,
+              });
               return (
                 <div
                   key={iso}
@@ -133,4 +92,4 @@ export function Calendar ({ className, ...props }: CalendarProps)  {
       })}
     </div>
   );
-};
+}

@@ -1,7 +1,7 @@
 import { isValid, isWithinInterval } from 'date-fns';
-import { CalendarDate } from '../hooks/useCalendarDate';
-import { CalendarRange } from '../hooks/useCalendarRange';
-import parseCalendarDate from './parseCalendarDate';
+import { CalendarDate } from 'src/components/global/calendar/hooks/useCalendarDate';
+import { CalendarRange } from 'src/components/global/calendar/hooks/useCalendarRange';
+import parseCalendarDate from 'src/components/global/calendar/utils/parseCalendarDate';
 
 export const isInRange = (calDate: CalendarDate, calRange: CalendarRange) => {
   if (!calRange.from || !calRange.to || !calDate) {

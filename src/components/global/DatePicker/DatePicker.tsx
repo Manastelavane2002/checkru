@@ -1,7 +1,14 @@
 import React from 'react';
-import DateRangePicker from './components/date-range-picker';
-import DateSinglePicker from './components/date-single-picker';
-import { DatePickerProps } from './DatePicker.types';
+import { DateRangePicker } from 'src/components/global/DatePicker/components/DateRangePicker';
+import { DateSinglePicker } from 'src/components/global/DatePicker/components/DateSinglePicker';
+import { DatePickerProps } from 'src/components/global/DatePicker/DatePicker.types';
+
+/**
+ * @param {DatePickerProps} props
+ * @returns DatePicker component
+ * @description This component is used to display Date Picker component
+ * @example <DatePicker type = 'range' onApply = {handleSubmit} />
+ */
 
 export function DatePicker({
   type = 'single',

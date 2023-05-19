@@ -1,9 +1,8 @@
-/* eslint-disable sort-keys */
 import * as React from 'react';
 import clsx from 'clsx';
-import { Icon } from '../Icon/Icon';
-import { Typography } from '../Typography/Typography';
+import { Icon, Typography } from 'src/components/global';
 import { ButtonProps, sizes, shapes } from './Button.types';
+import { generateButtonVariants } from './Button.utils';
 
 /**
  * @param {ButtonProps} props
@@ -14,7 +13,7 @@ import { ButtonProps, sizes, shapes } from './Button.types';
 
 export function Button({
   label,
-  variant = 'contained',
+  variant = 'default',
   color = 'primary',
   size = 'md',
   icon,
@@ -23,65 +22,20 @@ export function Button({
   shape = 'square',
   className = '',
   disabled = false,
-  online = false,
   textAlign = 'center',
   selected = false,
   ...restProps
 }: ButtonProps) {
-  const variants = {
-    default: {
-      button: `w-full bg-primary text-white py-2 rounded-[8px]`,
-    },
-    contained: {
-      button: `${
-        selected ? `btn-${color}-700` : `btn-${color}-600`
-      } hover:btn-${color}-700 focus:ring-4 ring-${color}-100 disabled:btn-${color}-200`,
-      typo: ``,
-      icon: ``,
-    },
-    outlined: {
-      button: `${
-        selected ? `btn-${color}-50` : `btn-white`
-      } border border-${color}-300 hover:btn-${color}-50 focus:ring-4 ring-${color}-100 disabled:border-${color}-200`,
-      typo: ``,
-      icon: ``,
-    },
-    light: {
-      button: `${
-        selected ? `btn-${color}-100` : `btn-${color}-50`
-      } hover:btn-${color}-100 focus:ring-4 ring-${color}-100 disabled:btn-${color}-25`,
-      typo: ``,
-      icon: ``,
-    },
-    text: {
-      button: `text-primary cursor-pointer px-2 rounded-md`,
-      typo: ``,
-      icon: ``,
-    },
-    link: {
-      button: `cursor-pointer`,
-      typo: ``,
-      icon: ``,
-    },
-  };
-
+  const variants = generateButtonVariants(color);
   const classes = `group disabled:cursor-not-allowed ${variants[variant].button} ${shapes[shape]} ${sizes[size]} whitespace-nowrap ${className}`;
+  const typoClassName = `group-hover:text-${color}-800 group-disabled:text-${color}-300`;
+  const iconClassName = `${
+    selected ? `stroke-${color}-800` : ``
+  } group-hover:stroke-${color}-800 group-disabled:stroke-${color}-300`;
 
-  const typoClassName =
-    variant !== 'contained' ? `group-hover:text-${color}-800 group-disabled:text-${color}-300` : '';
-  const iconClassName =
-    variant !== 'contained'
-      ? `${
-          selected ? `stroke-${color}-800` : ``
-        } group-hover:stroke-${color}-800 group-disabled:stroke-${color}-300`
-      : '';
-  const typoColor = variant === 'contained' ? 'white' : selected ? `${color}-800` : `${color}-700`;
+  const typoColor = selected ? `${color}-800` : `${color}-700`;
   const typoSize = size === '2xl' ? 'lg' : size === 'xl' || size === 'lg' ? 'md' : 'sm';
   const iconSize = size === '2xl' ? 24 : 20;
-
-  const statusDotColor =
-    variant === 'contained' ? 'white' : disabled ? `${color}-300` : 'success-500';
-
   const children = (
     <div
       className={clsx(
@@ -89,7 +43,6 @@ export function Button({
         size === '2xl' ? 'gap-3' : 'gap-2'
       )}>
       {icon && <Icon name={icon} color={typoColor} size={iconSize} className={iconClassName} />}
-      {online && <div className={`w-1.5 h-1.5 bg-${statusDotColor} rounded-full`} />}
       <div className="flex-1">
         <Typography
           color={typoColor}

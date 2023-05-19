@@ -1,6 +1,6 @@
 import { ButtonProps } from '../Button';
-import { DatePickerProps } from '../DatePicker';
-import { CalendarValue } from '../calendar/hooks/useCalendar';
+import { DatePickerProps } from 'src/components/global/DatePicker';
+import { CalendarValue } from 'src/components/global/calendar/hooks/useCalendar';
 
 /**
  * Defines the props for the Date Picker Dropdown component

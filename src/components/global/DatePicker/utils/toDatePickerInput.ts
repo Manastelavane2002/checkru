@@ -1,6 +1,6 @@
-import { CalendarDate } from '../../calendar/hooks/useCalendarDate';
-import parseCalendarDate from '../../calendar/utils/parseCalendarDate';
-import formatDatePickerInput from './formatDatePickerInput';
+import { CalendarDate } from 'src/components/global/calendar/hooks/useCalendarDate';
+import parseCalendarDate from 'src/components/global/calendar/utils/parseCalendarDate';
+import formatDatePickerInput from 'src/components/global/DatePicker/utils/formatDatePickerInput';
 
 export const toDatePickerInput = (value: CalendarDate) => {
   return formatDatePickerInput(parseCalendarDate(value));

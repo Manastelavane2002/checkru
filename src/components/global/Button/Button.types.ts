@@ -20,12 +20,11 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnch
   href?: string;
   icon?: IconTypes;
   label: string;
-  online?: boolean;
   selected?: boolean;
   shape?: 'rounded' | 'square';
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   textAlign?: 'left' | 'center' | 'right';
-  variant?: 'contained' | 'default' | 'outlined' | 'light' | 'text' | 'link';
+  variant?: 'default' | 'text' | 'link';
 }
 export const sizes = {
   sm: 'btn-sm',

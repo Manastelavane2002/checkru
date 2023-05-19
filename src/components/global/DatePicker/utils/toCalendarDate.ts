@@ -1,8 +1,8 @@
-import formatCalendarDate from '../../calendar/utils/formatCalendarDate';
-import { DatePickerInputValue } from '../components/date-picker-input';
-import parseDatePickerInput from './parseDatePickerInput';
+import formatCalendarDate from 'src/components/global/calendar/utils/formatCalendarDate';
+import { DatePickerInputValue } from 'src/components/global/DatePicker/components/DatePickerInput.types';
+import {parseDatePickerInput} from 'src/components/global/DatePicker/utils';
 
-const toCalendarDate = (value: DatePickerInputValue) => {
+export const toCalendarDate = (value: DatePickerInputValue) => {
   return formatCalendarDate(parseDatePickerInput(value));
 };
 

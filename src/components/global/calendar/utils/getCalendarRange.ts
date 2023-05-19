@@ -1,7 +1,10 @@
 import { subDays } from 'date-fns';
-import { calendarRangeMap, CalendarRangeName } from '../../../../constants/calendar';
-import { CalendarRange } from '../hooks/useCalendarRange';
-import formatCalendarDate from './formatCalendarDate';
+import {
+  calendarRangeMap,
+  CalendarRangeName,
+} from 'src/components/global/calendar/Calendar.constants';
+import { CalendarRange } from 'src/components/global/calendar/hooks/useCalendarRange';
+import formatCalendarDate from 'src/components/global/calendar/utils/formatCalendarDate';
 
 export const getCalendarRange = (id: CalendarRangeName): CalendarRange => {
   if (!id || id === 'custom') {

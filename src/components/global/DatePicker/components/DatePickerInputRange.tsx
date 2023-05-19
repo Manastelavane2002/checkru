@@ -1,20 +1,14 @@
 import React from 'react';
-import { Typography } from '../../Typography/Typography';
-import DatePickerInput, { DatePickerInputProps } from './date-picker-input';
+import { Typography } from 'src/components/global';
+import DatePickerInput from 'src/components/global/DatePicker/components/DatePickerInput';
+import { DatePickerInputRangeProps } from 'src/components/global/DatePicker/components/DatePickerInputRange.types';
 
-export interface DatePickerInputRangeProps {
-  className?: string;
-  error?: string;
-  fromInputProps: DatePickerInputProps;
-  toInputProps: DatePickerInputProps;
-}
-
-export function DatePickerInputRange ({
+export function DatePickerInputRange({
   fromInputProps,
   toInputProps,
   error = '',
   className = '',
-}:DatePickerInputRangeProps){
+}: DatePickerInputRangeProps) {
   return (
     <div className={className}>
       <div className="flex items-center">
@@ -22,9 +16,7 @@ export function DatePickerInputRange ({
           {...fromInputProps}
           className={`${fromInputProps.className ?? ''} text-center w-32`}
         />
-        <Typography className="mx-3 text-componentHeader">
-          -
-        </Typography>
+        <Typography className="mx-3 text-componentHeader">-</Typography>
         <DatePickerInput
           {...toInputProps}
           className={`${fromInputProps.className ?? ''} text-center w-32`}
@@ -39,6 +31,6 @@ export function DatePickerInputRange ({
       )}
     </div>
   );
-};
+}
 
 export default DatePickerInputRange;

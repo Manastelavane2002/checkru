@@ -100,3 +100,4 @@ export type CalendarRangeName = keyof typeof calendarRangeMap;
 export const calendarRanges = Object.values(calendarRangeMap);
 
 export const CALENDAR_DATE_FORMAT = 'dd-MM-yyyy';
+export const DEFAULT_CALENDAR_HEADER_FORMAT = 'MMMM yyyy';

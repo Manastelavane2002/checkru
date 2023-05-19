@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { Button } from '../Button';
-import { CalendarValue } from '../calendar/hooks/useCalendar';
-import { DatePicker } from '../DatePicker';
-import toDatePickerInput from '../DatePicker/utils/toDatePickerInput';
-import { Dropdown } from '../Dropdown/dropdown';
-import { DatePickerDropdownProps } from './DatePickerDropdown.types';
+import { Button, DatePicker, Dropdown, DatePickerDropdownProps } from 'src/components/global';
+import { CalendarValue } from 'src/components/global/calendar/hooks';
+import { toDatePickerInput } from 'src/components/global/DatePicker/utils';
 
 export function DatePickerDropdown({
   type = 'single',

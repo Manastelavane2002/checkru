@@ -1,8 +1,8 @@
 import { isBefore, isSameDay } from 'date-fns';
-import { CalendarRange } from '../hooks/useCalendarRange';
-import parseCalendarDate from './parseCalendarDate';
+import { CalendarRange } from 'src/components/global/calendar/hooks/useCalendarRange';
+import parseCalendarDate from 'src/components/global/calendar/utils/parseCalendarDate';
 
-const isValidCalendarRange = (range: CalendarRange) => {
+export const isValidCalendarRange = (range: CalendarRange) => {
   const { from, to } = range;
   const fromDate = parseCalendarDate(from);
   const toDate = parseCalendarDate(to);

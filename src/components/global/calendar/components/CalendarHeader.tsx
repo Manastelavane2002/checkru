@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import { subMonths, format, addMonths } from 'date-fns';
 import React from 'react';
-import { Icon } from '../../Icon/Icon';
-import { Typography } from '../../Typography/Typography';
-import useCalendarDate, { CalendarDate } from '../hooks/useCalendarDate';
-import formatCalendarDate from '../utils/formatCalendarDate';
+import { Icon, Typography } from 'src/components/global';
+import useCalendarDate, { CalendarDate } from 'src/components/global/calendar/hooks/useCalendarDate';
+import { formatCalendarDate } from 'src/components/global/calendar/utils';
 import { COLORS } from 'src/constants/color-palette';
+import { DEFAULT_CALENDAR_HEADER_FORMAT } from 'src/components/global/calendar/Calendar.constants';
 
 export interface CalendarHeaderProps {
   defaultValue?: CalendarDate;
@@ -65,7 +65,7 @@ export function CalendarHeader({
       </div>
       <div className="grow flex items-center justify-center">
         <Typography className="text-componentHeader">
-          {date ? format(date, 'MMMM yyyy') : ''}
+          {date ? format(date, DEFAULT_CALENDAR_HEADER_FORMAT) : ''}
         </Typography>
       </div>
       <div

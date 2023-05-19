@@ -1,7 +1,7 @@
-import React, {  useEffect, useMemo, useRef, useState } from 'react';
-import {DropdownProps, emptyValues } from './';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { DropdownProps, emptyValues } from './Dropdown.types'
 
-const emptyRect: DOMRect = {
+const emptyRect: DOMRect = emptyValues && {
   ...emptyValues,
   toJSON: () => JSON.stringify(emptyValues),
 };

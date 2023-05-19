@@ -1,14 +1,5 @@
 import React from 'react';
-
-export type DatePickerInputValue = string;
-
-export interface DatePickerInputProps {
-  className?: string;
-  hasError?: boolean;
-  onChange?: (value: DatePickerInputValue) => void;
-  value?: DatePickerInputValue;
-}
-
+import { DatePickerInputProps } from 'src/components/global/DatePicker/components/DatePickerInput.types';
 export function DatePickerInput({
   value,
   onChange,

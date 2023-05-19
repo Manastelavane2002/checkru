@@ -1,7 +1,6 @@
-import { CalendarRange } from '../../calendar/hooks/useCalendarRange';
-import formatCalendarDate from '../../calendar/utils/formatCalendarDate';
-import isValidCalendarRange from '../../calendar/utils/isValidCalendarRange';
-import { DatePickerInputValue } from '../components/date-picker-input';
+import { CalendarRange } from 'src/components/global/calendar/hooks/useCalendarRange';
+import { formatCalendarDate, isValidCalendarRange } from 'src/components/global/calendar/utils';
+import { DatePickerInputValue } from 'src/components/global/DatePicker/components/DatePickerInput.types';
 import parseDatePickerInput from './parseDatePickerInput';
 
 export const toCalendarRange = ({

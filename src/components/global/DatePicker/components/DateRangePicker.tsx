@@ -1,33 +1,33 @@
 import React from 'react';
 import { isAfter, isSameDay } from 'date-fns';
 import { useController, useForm } from 'react-hook-form';
-import DatePickerInputRange from './date-picker-input-range';
-import { Calendar } from '../../calendar/Calendar';
-import useCalendarDate from '../../calendar/hooks/useCalendarDate';
-import toDatePickerInput from '../utils/toDatePickerInput';
-import { calendarRangeMap, CalendarRangeName } from '../../../../constants/calendar';
-import { CalendarRange } from '../../calendar/hooks/useCalendarRange';
-import { getCalendarRange } from '../../calendar/utils/getCalendarRange';
-import toCalendarRange from '../utils/toCalendarRange';
-import parseDatePickerInput from '../utils/parseDatePickerInput';
-import { Button } from '../../Button/Button';
-import CalendarHeader from '../../calendar/components/calendar-header';
-import parseCalendarDate from '../../calendar/utils/parseCalendarDate';
-import { Typography } from '../../Typography/Typography';
-import isValidDatePickerInput from '../utils/isValidDatePickerInput';
-import toCalendarDate from '../utils/toCalendarDate';
-import formatCalendarDate from '../../calendar/utils/formatCalendarDate';
-import { useCalendar } from '../../calendar/hooks/useCalendar';
-import isValidCalendarDate from '../../calendar/utils/isValidCalendarDate';
+import DatePickerInputRange from 'src/components/global/DatePicker/components/DatePickerInputRange';
+import { Calendar, Button, Typography } from 'src/components/global';
+import {
+  calendarRangeMap,
+  CalendarRangeName,
+} from 'src/components/global/calendar/Calendar.constants';
+import CalendarHeader from 'src/components/global/calendar/components/CalendarHeader';
+import { RANGE_NAMES, MOBILE_RANGE_NAMES } from 'src/components/global/DatePicker/date-picker';
+import { useCalendar, CalendarRange, useCalendarDate } from 'src/components/global/calendar/hooks';
+import { DateRangePickerProps } from 'src/components/global/DatePicker/components/DateRangePicker.types';
+import {
+  getCalendarRange,
+  isValidCalendarDate,
+  parseCalendarDate,
+  formatCalendarDate,
+} from 'src/components/global/calendar/utils';
 
-export interface DateRangePickerProps {
-  className?: string;
-  defaultValue?: CalendarRange;
-  hideActions?: boolean;
-  hidePresetRanges?: boolean;
-  onApply?: (value: CalendarRange) => void;
-  onCancel?: () => void;
-}
+import {
+  toCalendarDate,
+  toDatePickerInput,
+  toCalendarRange,
+  parseDatePickerInput,
+  isValidDatePickerInput,
+} from 'src/components/global/DatePicker/utils';
+
+import { STATIC_TEXT } from 'src/constants/static-text';
+const { dateRangePicker } = STATIC_TEXT;
 
 export function DateRangePicker({
   hideActions = false,
@@ -52,15 +52,15 @@ export function DateRangePicker({
     rules: {
       validate: (value) => {
         if (!value.from) {
-          return 'From date is required';
+          return dateRangePicker.fromRequired;
         } else if (!value.to) {
-          return 'To date is required.';
+          return dateRangePicker.toRequired;
         } else if (!isValidDatePickerInput(value.from)) {
-          return 'Invalid from date format';
+          return dateRangePicker.invalidFrom;
         } else if (!isValidDatePickerInput(value.to)) {
-          return 'Invalid to date format';
+          return dateRangePicker.invalidTo;
         } else if (isAfter(parseDatePickerInput(value.from), parseDatePickerInput(value.to))) {
-          return 'From date should be on or before to date';
+          return dateRangePicker.fromBeforeTo;
         }
       },
     },
@@ -123,18 +123,8 @@ export function DateRangePicker({
       to: value,
     });
   };
-  const rangeNames: CalendarRangeName[] = [
-    'today',
-    'yesterday',
-    'thisWeek',
-    'lastWeek',
-    'thisMonth',
-    'lastMonth',
-    'thisYear',
-    'lastYear',
-    'allTime',
-  ];
-  const mobileRangeNames: CalendarRangeName[] = ['lastWeek', 'lastMonth', 'lastYear'];
+  const rangeNames: CalendarRangeName[] = RANGE_NAMES as CalendarRangeName[];
+  const mobileRangeNames: CalendarRangeName[] = MOBILE_RANGE_NAMES as CalendarRangeName[];
 
   return (
     <>
@@ -193,13 +183,15 @@ export function DateRangePicker({
             {!hideActions && (
               <div className="w-full flex gap-3 ">
                 <Button
-                  label="Cancel"
-                  className="grow py-2 border-2 border-cellDividerStroke rounded-lg bg-black text-white"
+                  label={dateRangePicker.cancelButton}
+                  variant="text"
+                  className="w-1/2 py-2 border-2 border-cellDividerStroke rounded-lg text-white"
                   onClick={() => onCancel?.()}
                 />
                 <Button
-                  label="Apply"
-                  className="grow py-2 bg-red-600 text-white rounded-lg"
+                  label={dateRangePicker.applyButton}
+                  variant="default"
+                  className="w-1/2 py-2 rounded-lg"
                   disabled={!form.formState.isValid}
                   onClick={() => onApply?.(toCalendarRange(rangeInput.field.value))}
                 />
@@ -256,7 +248,7 @@ export function DateRangePicker({
           <div className="flex flex-wrap items-center gap-3 px-5 py-4 border-t border-gray-200">
             <Button label="Cancel" size="lg" className="flex-1" onClick={() => onCancel?.()} />
             <Button
-              label="Apply"
+              label={dateRangePicker.applyButton}
               color="primary"
               disabled={!form.formState.isValid}
               size="lg"

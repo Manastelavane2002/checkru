@@ -13,7 +13,7 @@ export interface CalendarDateControl {
 
 export type UseCalendarDateParams = CalendarDateControl;
 
-const useCalendarDate = ({
+export const useCalendarDate = ({
   value: valueProp,
   defaultValue = '',
   onChange,
