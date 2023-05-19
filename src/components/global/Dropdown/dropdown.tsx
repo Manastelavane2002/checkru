@@ -117,3 +117,5 @@ Dropdown.Panel = function ({ children }: { children: React.ReactNode }) {
 Dropdown.Button = function ({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 };
+
+export default Dropdown
