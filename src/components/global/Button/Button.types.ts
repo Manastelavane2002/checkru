@@ -24,7 +24,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnch
   shape?: 'rounded' | 'square';
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   textAlign?: 'left' | 'center' | 'right';
-  variant?: 'default' | 'text' | 'link';
+  variant?: 'default' | 'text' | 'outlined' | 'fullWidth';
 }
 export const sizes = {
   sm: 'btn-sm',

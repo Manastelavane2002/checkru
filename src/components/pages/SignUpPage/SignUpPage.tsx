@@ -88,12 +88,12 @@ export default function SignUpPage() {
           </label>
         </div>
 
-        <Button onClick={handleSubmit(onSubmit)} label={buttons.signUp} variant="default" />
+        <Button onClick={handleSubmit(onSubmit)} label={buttons.signUp} variant="fullWidth" />
         <div className="flex-center mt-6">
           <Typography variant="p" className="text-body">
             {signInDesc}
           </Typography>
-          <Button onClick={handleSignInNavigation} label={buttons.signIn} variant="text" />
+          <Button onClick={handleSignInNavigation} label={buttons.signIn} variant="text"/>
         </div>
       </FormProvider>
     </AuthContainer>

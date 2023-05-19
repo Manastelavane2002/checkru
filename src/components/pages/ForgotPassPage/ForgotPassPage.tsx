@@ -117,7 +117,7 @@ export default function ForgotPassPage() {
         ) : null}
 
         <Button
-          variant='default'
+          variant="fullWidth"
           onClick={showOtpFields ? handleSubmit(handleResetPassword) : handleSubmit(onSubmit)}
           label={showOtpFields ? buttons.resetPassword : buttons.sendOTP}
         />

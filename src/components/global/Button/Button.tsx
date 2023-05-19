@@ -63,11 +63,7 @@ export function Button({
     </div>
   );
 
-  return variant === 'link' ? (
-    <a className={clsx('inline-block w-fit', classes, className)} href={href} {...restProps}>
-      {children}
-    </a>
-  ) : (
+  return (
     <button className={`${classes} ${className}`} {...restProps} disabled={disabled}>
       {children}
     </button>

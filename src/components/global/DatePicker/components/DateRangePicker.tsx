@@ -181,17 +181,17 @@ export function DateRangePicker({
           </div>
           <div className="flex flex-wrap justify-between px-5 py-4 border-t border-divider">
             {!hideActions && (
-              <div className="w-full flex gap-3 ">
+              <div className="w-full flex gap-3">
                 <Button
                   label={dateRangePicker.cancelButton}
-                  variant="text"
-                  className="w-1/2 py-2 border-2 border-cellDividerStroke rounded-lg text-white"
+                  variant="outlined"
+                  className="w-1/2"
                   onClick={() => onCancel?.()}
                 />
                 <Button
                   label={dateRangePicker.applyButton}
                   variant="default"
-                  className="w-1/2 py-2 rounded-lg"
+                  className="py-2 rounded-lg w-1/2"
                   disabled={!form.formState.isValid}
                   onClick={() => onApply?.(toCalendarRange(rangeInput.field.value))}
                 />

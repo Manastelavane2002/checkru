@@ -1,15 +1,20 @@
 export function generateButtonVariants(color: string) {
   return {
-    default: {
+    fullWidth: {
       button: `w-full bg-${color} text-white py-2 rounded-[8px]`,
     },
     text: {
-      button: `text-${color} cursor-pointer px-2 rounded-md`,
+      button: `text-primary cursor-pointer px-2 rounded-md`,
       typo: ``,
       icon: ``,
     },
-    link: {
-      button: `cursor-pointer`,
+    outlined: {
+      button: 'py-2 border-2 border-cellDividerStroke rounded-lg text-white',
+      typo: ``,
+      icon: ``,
+    },
+    default: {
+      button: ` bg-${color} text-white py-2 rounded-[8px]`,
       typo: ``,
       icon: ``,
     },

@@ -109,7 +109,7 @@ export default function LoginPage() {
         <Button
           onClick={handleSubmit((values) => onSubmit(values))}
           label={buttons.signIn}
-          variant="default"
+          variant="fullWidth"
         />
 
         <div className="flex-center mt-6">
