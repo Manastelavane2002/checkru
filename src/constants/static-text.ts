@@ -73,7 +73,6 @@ export const STATIC_TEXT = {
     passwordMinLength: 'Password should contain only 8 chars',
     otpRequired: 'Otp is required',
   },
-
   dateRangePicker: {
     fromRequired: 'From data is required',
     toRequired: 'To date is required.',
@@ -94,5 +93,8 @@ export const STATIC_TEXT = {
     present: 'present',
     custom: 'custom',
     unknown: 'unknown',
+  },
+  dashboard: {
+    statementTableTitle: 'Statements',
   },
 };

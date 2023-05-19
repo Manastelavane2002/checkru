@@ -13,8 +13,9 @@ import {
   Square,
   UploadCloud,
 } from '../../public/assets/icons';
+import { IconTypes } from 'src/components/global/Icon/Icon.types';
 
-export const iconPack: Record<string, ElementType> = {
+export const iconPack: Record<IconTypes, ElementType> = {
   'arrow-left': ArrowLeft as ElementType,
   'arrow-right': ArrowRight as ElementType,
   calendar: Calendar as ElementType,

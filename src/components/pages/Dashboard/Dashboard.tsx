@@ -3,10 +3,12 @@ import { DatePickerDropdown } from 'src/components/global/DatePickerDropdown';
 import { Header, Navbar, CardList } from 'src/components/modules/dashboard';
 import { LINKS } from 'src/constants/links';
 import { cardList } from 'src/components/modules/dashboard/Card/card.mock';
+import StatementList from 'src/components/modules/dashboard/Statement/StatementList';
+import { statementListMock } from 'src/components/modules/dashboard/Statement/statement.mock';
 
 function DashboardPage() {
   return (
-    <div>
+    <div className='bg-dashboardBg text-white'>
       <Header />
       <Navbar navElements={LINKS.NAVBAR_LINKS} />
       <div className="w-full bg-tableHeader p-4 flex flex-row-reverse ">
@@ -18,6 +20,7 @@ function DashboardPage() {
       </div>
 
       <CardList cardList={cardList} />
+      <StatementList statementList={statementListMock} />
     </div>
   );
 }
