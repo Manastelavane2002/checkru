@@ -19,12 +19,13 @@ build:
     - npm install
     - npm run build
 
-# deploy:
-#   stage: deploy
-#   image: node:16
-#   script:
-#     - npm install -g firebase-tools
-#     - firebase use --add ruralco-f54ad
-#     - firebase deploy --token "1//0gCNNPVXzH5dqCgYIARAAGBASNgF-L9IrW0TH1zS1ELZzmydCrC5iEg_Pkz1b-GHBJqmeq8me8MVD2O2Ufdxv8uQfAnH0xo69MA"
-#   only:
-#     - develop
+deploy:
+  stage: deploy
+  image: node:16
+  script:
+    - npm install
+    - npm install -g firebase-tools
+    - firebase experiments:enable webframeworks
+    - firebase deploy --token 1//0g5yYdNL3x9yFCgYIARAAGBASNwF-L9IreAG-94TfdEuXu7gfOGeFU11qJBxYoEPqLlcXuBpr5TrpNyZ-ej6aHWKfwbe7yqQaDAM --project ruralco-testing
+  only:
+    - develop
