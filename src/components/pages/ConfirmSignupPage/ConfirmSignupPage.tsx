@@ -21,7 +21,7 @@ export function ConfirmSignUpPage() {
   const { confirmUser, resendUserConfirmOpt } = useAuthContext();
   const onSubmit = async (data: { otp: string }) => {
     try {
-      const res = await confirmUser({ ...data, username: String(router.query.username) ?? '' });
+      const res = await confirmUser({ ...data, username: 'raj.upadhyay+1@techwondoe.com' ?? '' });
       if (res && res?.isSuccess) {
         router.replace(ROUTES.LOGIN);
       } else {
@@ -33,7 +33,7 @@ export function ConfirmSignUpPage() {
   };
 
   const handleResendOtp = async () => {
-    await resendUserConfirmOpt(String(router.query.username) ?? '');
+    await resendUserConfirmOpt('raj.upadhyay+1@techwondoe.com' ?? '');
   };
   return (
     <AuthContainer title={title} subTitle={subTitle} error={error}>

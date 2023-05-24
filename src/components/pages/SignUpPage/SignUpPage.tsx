@@ -31,7 +31,7 @@ export default function SignUpPage() {
     try {
       const res = await signUp(data);
       if (!res || !res.userConfirmed) {
-        router.replace(`${ROUTES.CONFIRM_SIGN_UP}/${res?.username || ''}`);
+        router.replace(`${ROUTES.CONFIRM_SIGN_UP}?${res?.username || ''}`);
       }
       if (res && res.isSuccess) {
         await saveToken();

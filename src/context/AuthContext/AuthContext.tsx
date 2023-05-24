@@ -28,7 +28,7 @@ export interface AuthContextProps {
 const useAuth = () => {
   const token = getCookie(STORAGE.TOKEN);
   const getCurrentAuthenticatedUser = async () => Auth.currentAuthenticatedUser();
-
+console.log(token)
   const getAccessToken = async () => {
     const session = await Auth.currentSession();
     return session.getIdToken().getJwtToken();
@@ -36,7 +36,7 @@ const useAuth = () => {
 
   const signUp = async ({ email, password }: SignUpPayload): Promise<IncognitoApiResponse> => {
     try {
-      const res = await Auth.signUp({ username: email, password });
+      const res = await Auth.signUp({ username: email, password, attributes: { email } });
       return {
         isSuccess: true,
         data: res.user as unknown as Record<string, Record<string, string>>,
