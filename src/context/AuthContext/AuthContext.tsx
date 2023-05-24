@@ -28,7 +28,6 @@ export interface AuthContextProps {
 const useAuth = () => {
   const token = getCookie(STORAGE.TOKEN);
   const getCurrentAuthenticatedUser = async () => Auth.currentAuthenticatedUser();
-console.log(token)
   const getAccessToken = async () => {
     const session = await Auth.currentSession();
     return session.getIdToken().getJwtToken();
