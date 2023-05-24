@@ -1,12 +1,24 @@
 import React from 'react';
-import { STATIC_TEXT } from 'src/constants/static-text';
+import { DatePickerDropdown } from 'src/components/global';
+interface SectionHeaderProps {
+  className?: string;
+  showDatePicker?: boolean;
+  text: string;
+}
 
-export function SectionHeader() {
+export function SectionHeader({ text, showDatePicker = false, className }: SectionHeaderProps) {
   return (
-    <div className="border-b-[1px] border-cellDividerStoke bg-tableHeader">
-        <div className='text-lg py-6 px-6 inter font-semibold gap-5'>{STATIC_TEXT.dashboard.statementTableTitle}</div>
+    <div
+      className={`bg-tableHeader flex items-center justify-between h-20 px-6  ${className}`}>
+      <div className="text-lg inter font-semibold ">{text}</div>
+      {showDatePicker && (
+        <DatePickerDropdown
+          type="range"
+          hidePresetRanges
+          className="py-2 px-4 font-semibold text-dashboardWhite100 fill-transparent bg-secondary border-2 border-iconBg rounded-lg"
+        />
+      )}
     </div>
   );
 }
-
 export default SectionHeader;
