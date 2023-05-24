@@ -1,7 +1,7 @@
 export const cardList = [
     {
       title: 'Statement Period',
-      desc: 'Feb 02 - 28, 23'
+      desc: 'Feb 03 - 28, 23'
     },
     {
       title: 'Payment Due Date',
