@@ -6,3 +6,4 @@ export * from './calendar/Calendar';
 export * from './DatePicker';
 export * from './DatePickerDropdown';
 export * from './Dropdown';
+export * from './Table';
