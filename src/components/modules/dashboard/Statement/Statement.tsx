@@ -12,7 +12,7 @@ interface StatementProps {
 
 export function Statement({title,downloadOptions}: StatementProps) {
     return (
-    <div className='flex items-center justify-between cursor-pointer'>
+    <div className='grow flex items-center justify-between cursor-pointer'>
       <div className='mr-auto'>{title}</div>
       {
         downloadOptions.map((option, index) => (

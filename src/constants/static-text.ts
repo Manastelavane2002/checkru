@@ -96,5 +96,7 @@ export const STATIC_TEXT = {
   },
   dashboard: {
     statementTableTitle: 'Statements',
+    transactionTableTitle: 'Transactions',
+    transactionTableHeaders: ['Doc Date', 'Doc Num', 'Ref', 'Statement Period', 'Debit', 'Credit'],
   },
 };

@@ -1,28 +1,19 @@
 import React from 'react';
-import Link from 'next/link';
 import { IMAGES } from 'src/constants/images';
 import { Button } from 'src/components/global/Button/Button';
-import { LINKS } from 'src/constants/links';
 
 export function Header() {
-  const onLogout = () => {};
+  const onLogout = () => { };
   return (
-    <header className="flex justify-between items-center h-[124px] px-[112px] py-5 bg-black text-xs md:text-sm lg:text-base text-white inter whitespace-nowrap">
+    <header className="flex justify-between items-center px-[112px] py-5 bg-black text-xs md:text-sm lg:text-base text-white inter whitespace-nowrap">
       <div className="flex items-center ">
-        <img src={IMAGES.LOGO} alt="Logo" className="h-8 md:h-12 lg:h-20" />
+        <img src={IMAGES.LOGO} alt="Logo" />
       </div>
-      <nav className="flex items-center gap-3 md:gap-4 lg:gap-10 font-semibold">
-        {LINKS?.HEADER_LINKS.map((link, index) => (
-          <Link href={link.link} key={index} className="hover:text-body">
-            {link.title}
-          </Link>
-        ))}
-        <Button
-          className="w-max bg-transparent border-white border rounded-full px-4 py-2 hover:bg-headerButtonHover hover:border-headerButtonHover"
-          onClick={onLogout}
-          label="Log out"
-        />
-      </nav>
+      <Button
+        className="w-max bg-transparent border-white border rounded-full px-4 py-2 hover:bg-headerButtonHover hover:border-headerButtonHover"
+        onClick={onLogout}
+        label="Log out"
+      />
     </header>
   );
 }
