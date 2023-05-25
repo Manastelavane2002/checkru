@@ -16,7 +16,7 @@ export function DatePickerInputRange({
           {...fromInputProps}
           className={`${fromInputProps.className ?? ''} text-center w-32`}
         />
-        <Typography className="mx-3 text-componentHeader">-</Typography>
+        <Typography variant='calender-range-dash'>-</Typography>
         <DatePickerInput
           {...toInputProps}
           className={`${fromInputProps.className ?? ''} text-center w-32`}
@@ -24,7 +24,7 @@ export function DatePickerInputRange({
       </div>
       {error && (
         <div className="p-1">
-          <Typography size="xs" color="error-700">
+          <Typography variant='calender-error'>
             {error}
           </Typography>
         </div>

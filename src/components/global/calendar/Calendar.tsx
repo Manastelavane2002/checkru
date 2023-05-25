@@ -22,7 +22,7 @@ export function Calendar({ className, ...props }: CalendarProps) {
         {firstWeek.days.map(({ dayShortName }) => {
           return (
             <div key={dayShortName} className="flex-1 flex items-center justify-center w-10 h-10">
-              <Typography size="sm" className="text-white">
+              <Typography variant='calender-day-name'>
                 {dayShortName}
               </Typography>
             </div>

@@ -78,7 +78,7 @@ export default function ForgotPassPage() {
               className="dark-rounded"
             />
             <div className="flex-center mt-2">
-              <Typography variant="p" className="text-body">
+              <Typography htmlElement="p" variant="login-signup-extra-end-white">
                 {buttons.resendCodeDesc}
               </Typography>
               <Button variant="text" label={buttons.resendCode} onClick={handleResendOtp} />
