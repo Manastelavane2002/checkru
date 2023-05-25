@@ -53,6 +53,20 @@ const handleServerError = async ({ error }: FetchErrorProps) => {
   };
 };
 
+/**
+ * @param {FetchProps} props
+ * @returns { data: unknown, isSuccess: boolean }
+ * @description The api response/error will be mapped to data and the flag isSuccess determines the api outcome
+ * @example const getMockDataFrontend = async (): Promise<CommonResponse | ErrorResponse> => {
+                  const fetchProps: FetchProps = {
+                    includeAuthorization: true,
+                    endpoint: URL_ENDPOINTS.MOCK,
+                    method: FetchMethods.GET,
+                    backendCall: false,
+                  };
+                  return await handleFetch(fetchProps);
+                };
+ */
 export async function handleFetch({
   includeAuthorization = true,
   jsonBody,
