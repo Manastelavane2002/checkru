@@ -93,7 +93,7 @@ export default function SignUpPage() {
           <Typography variant="p" className="text-body">
             {signInDesc}
           </Typography>
-          <Button onClick={handleSignInNavigation} label={buttons.signIn} variant="text"/>
+          <Button onClick={handleSignInNavigation} label={buttons.signIn} variant="text" />
         </div>
       </FormProvider>
     </AuthContainer>

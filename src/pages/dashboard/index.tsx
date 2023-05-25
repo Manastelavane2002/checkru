@@ -1,16 +1,13 @@
-import { GetStaticProps } from 'next';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import DashboardPage from 'src/components/pages/Dashboard/Dashboard';
+import { checkSSRTokenAndRedirect } from 'src/utils/auth-redirect';
 
-function Dashboard() {
-  return <DashboardPage />;
-}
-
-export const getStaticProps: GetStaticProps<
-  Record<string, unknown>
-> = async () => {
-  return {
-    props: {},
-  };
+export const getServerSideProps: GetServerSideProps<{}> = async (
+  context: GetServerSidePropsContext
+) => {
+  return checkSSRTokenAndRedirect({ context, isDashboardOrUndefinedPath: true });
 };
 
-export default Dashboard;
+export default function Dashboard() {
+  return <DashboardPage />;
+}

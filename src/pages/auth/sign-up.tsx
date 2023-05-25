@@ -1,14 +1,13 @@
-import { GetStaticProps } from 'next';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import SignUpPage from 'src/components/pages/SignUpPage/SignUpPage';
+import { checkSSRTokenAndRedirect } from 'src/utils/auth-redirect';
 
-function SignUp() {
-  return <SignUpPage />;
-}
-
-export const getStaticProps: GetStaticProps<Record<string, unknown>> = async () => {
-  return {
-    props: {},
-  };
+export const getServerSideProps: GetServerSideProps<{}> = async (
+  context: GetServerSidePropsContext
+) => {
+  return checkSSRTokenAndRedirect({ context });
 };
 
-export default SignUp;
+export default function SignUp() {
+  return <SignUpPage />;
+}

@@ -1,14 +1,13 @@
-import { GetStaticProps } from 'next';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import LoginPage from 'src/components/pages/LoginPage/LoginPage';
+import { checkSSRTokenAndRedirect } from 'src/utils/auth-redirect';
 
-function Login() {
-  return <LoginPage />;
-}
-
-export const getStaticProps: GetStaticProps<Record<string, unknown>> = async () => {
-  return {
-    props: {},
-  };
+export const getServerSideProps: GetServerSideProps<{}> = async (
+  context: GetServerSidePropsContext
+) => {
+  return checkSSRTokenAndRedirect({ context });
 };
 
-export default Login;
+export default function Login() {
+  return <LoginPage />;
+}

@@ -7,6 +7,7 @@ import { ROUTES } from 'src/constants/routes';
 import { useAuthContext } from 'src/context/AuthContext/AuthContext';
 import { otpRequiredSchema } from 'src/components/global/TextField/TextField.constants';
 import { STATIC_TEXT } from 'src/constants/static-text';
+import ErrorPage from '../ErrorPage';
 const { labels, inputs, placeholders } = STATIC_TEXT;
 const { title, subTitle, buttons } = STATIC_TEXT.confirmSignup;
 
@@ -19,9 +20,10 @@ export function ConfirmSignUpPage() {
     formState: { errors },
   } = methods;
   const { confirmUser, resendUserConfirmOpt } = useAuthContext();
+  const [_base, username] = router.asPath.split('?');
   const onSubmit = async (data: { otp: string }) => {
     try {
-      const res = await confirmUser({ ...data, username: 'raj.upadhyay+1@techwondoe.com' ?? '' });
+      const res = await confirmUser({ ...data, username });
       if (res && res?.isSuccess) {
         router.replace(ROUTES.LOGIN);
       } else {
@@ -33,8 +35,13 @@ export function ConfirmSignUpPage() {
   };
 
   const handleResendOtp = async () => {
-    await resendUserConfirmOpt('raj.upadhyay+1@techwondoe.com' ?? '');
+    await resendUserConfirmOpt(String(username));
   };
+
+  if (!username) {
+    return <ErrorPage statusCode={404} />;
+  }
+
   return (
     <AuthContainer title={title} subTitle={subTitle} error={error}>
       <FormProvider {...methods}>

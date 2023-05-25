@@ -10,6 +10,8 @@ import {
 } from './AuthContext.types';
 import { getCookie, setCookie, deleteCookie } from 'cookies-next';
 import { STORAGE } from 'src/constants/storage-keys';
+import { useRouter } from 'next/router';
+import { ROUTES } from 'src/constants/routes';
 
 export interface AuthContextProps {
   changePassword: (credentials: ChangePasswordPayload) => Promise<IncognitoApiResponse | null>;
@@ -27,6 +29,7 @@ export interface AuthContextProps {
 
 const useAuth = () => {
   const token = getCookie(STORAGE.TOKEN);
+  const routes = useRouter();
   const getCurrentAuthenticatedUser = async () => Auth.currentAuthenticatedUser();
   const getAccessToken = async () => {
     const session = await Auth.currentSession();
@@ -125,6 +128,7 @@ const useAuth = () => {
     await Auth.signOut();
     deleteCookie(STORAGE.TOKEN);
     localStorage.clear();
+    routes.replace(ROUTES.LOGIN);
   };
 
   const getAccessTokenExpiration = async () => {

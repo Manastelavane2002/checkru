@@ -1,14 +1,13 @@
-import { GetStaticProps } from 'next';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import ForgotPassPage from 'src/components/pages/ForgotPassPage/ForgotPassPage';
+import { checkSSRTokenAndRedirect } from 'src/utils/auth-redirect';
 
-function ForgotPass() {
-  return <ForgotPassPage />;
-}
-
-export const getStaticProps: GetStaticProps<Record<string, unknown>> = async () => {
-  return {
-    props: {},
-  };
+export const getServerSideProps: GetServerSideProps<{}> = async (
+  context: GetServerSidePropsContext
+) => {
+  return checkSSRTokenAndRedirect({ context });
 };
 
-export default ForgotPass;
+export default function ForgotPass() {
+  return <ForgotPassPage />;
+}

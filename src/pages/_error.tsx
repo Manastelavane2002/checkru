@@ -1,10 +1,11 @@
-import ErrorPage from 'src/components/pages/ErrorPage';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { checkSSRTokenAndRedirect } from 'src/utils/auth-redirect';
 
-interface Props {
-  statusCode: number;
+export const getServerSideProps: GetServerSideProps<{}> = async (
+  context: GetServerSidePropsContext
+) => {
+  return checkSSRTokenAndRedirect({ context, isDashboardOrUndefinedPath: true });
+};
+export default function Error() {
+  return <div />;
 }
-function Error({ statusCode }: Props) {
-  return <ErrorPage statusCode={statusCode} />;
-}
-
-export default Error;
