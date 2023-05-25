@@ -7,3 +7,11 @@ export enum ROUTES {
   RESET_PASSWORD = '/auth/reset-pass',
   SIGN_UP = '/auth/sign-up',
 }
+
+export const AUTH_ROUTES = [
+  ROUTES.LOGIN,
+  ROUTES.SIGN_UP,
+  ROUTES.FORGOT_PASSWORD,
+  ROUTES.CONFIRM_SIGN_UP,
+  ROUTES.RESET_PASSWORD,
+];

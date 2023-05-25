@@ -5,7 +5,7 @@ import { checkSSRTokenAndRedirect } from 'src/utils/auth-redirect';
 export const getServerSideProps: GetServerSideProps<{}> = async (
   context: GetServerSidePropsContext
 ) => {
-  return checkSSRTokenAndRedirect({ context, isDashboardOrUndefinedPath: true });
+  return checkSSRTokenAndRedirect({ context });
 };
 
 export default function Index() {
