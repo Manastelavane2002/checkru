@@ -1,7 +1,7 @@
 export const cardList = [
     {
       title: 'Statement Period',
-      desc: 'Feb 10 - 28, 23'
+      desc: 'Feb 01 - 28, 23'
     },
     {
       title: 'Payment Due Date',
@@ -9,7 +9,7 @@ export const cardList = [
     },
     {
       title: 'Minimum Amount Due',
-      desc: '$ 353.79'
+      desc: '$ 354.79'
     },
     {
       title: 'Credit Limit',
