@@ -9,7 +9,7 @@ export const cardList = [
     },
     {
       title: 'Minimum Amount Due',
-      desc: '$ 353.79'
+      desc: '$ 354.79'
     },
     {
       title: 'Credit Limit',
