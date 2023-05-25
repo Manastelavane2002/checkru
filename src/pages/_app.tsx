@@ -5,9 +5,9 @@ import { Amplify } from 'aws-amplify';
 
 Amplify.configure({
   Auth: {
-    region: 'ap-southeast-2',
-    userPoolId: 'ap-southeast-2_0pe4dltcU',
-    userPoolWebClientId: '5brg58l9fjgm3g44qkpnq4n64k',
+    region: process.env.AWS_REGION,
+    userPoolId: process.env.AWS_POOL_ID,
+    userPoolWebClientId: process.env.AWS_CLIENT_ID,
   },
 });
 

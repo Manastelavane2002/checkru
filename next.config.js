@@ -25,5 +25,11 @@ module.exports = {
     return config;
   },
 
+  env: {
+    AWS_REGION: 'ap-southeast-2',
+    AWS_POOL_ID: 'ap-southeast-2_0pe4dltcU',
+    AWS_CLIENT_ID: '5brg58l9fjgm3g44qkpnq4n64k',
+  },
+
   // ...other config
 };
