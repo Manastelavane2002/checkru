@@ -6,13 +6,19 @@ import { STATIC_TEXT } from 'src/constants/static-text';
 
 interface StatementListProps {
   statementList: {
-    downloadOptions: {
+    availableCredit: number;
+    creditLimit: number;
+    downloadOptions?: {
       onClick: () => void;
       title: string;
       type: DOWNLOAD_TYPES.CSV | DOWNLOAD_TYPES.PDF;
     }[];
-    enabled: boolean;
-    title: string;
+    endDate: string;
+    minAmountDue: number;
+    paymentDueDate: string;
+    startDate: string;
+    statementPeriod: string;
+    totalAmountDue: number;
   }[];
 }
 
@@ -24,11 +30,9 @@ export function StatementList({ statementList }: StatementListProps) {
         {statementList.map((statement, index) => (
           <div
             key={index}
-            className={`border-b border-cellDividerStroke ${
-              !statement.enabled ? 'bg-tableCell' : 'bg-dashboardBg'
-            } hover:bg-dashboardBg`}>
+            className={`border-b border-cellDividerStroke  bg-tableCell hover:bg-dashboardBg`}>
             <div className="h-16 flex item-center pl-6 pr-4 text-sm leading-5 inter font-medium ">
-              <Statement title={statement.title} downloadOptions={statement.downloadOptions} />
+              <Statement title={statement.statementPeriod} downloadOptions={statement.downloadOptions || []} />
             </div>
           </div>
         ))}
