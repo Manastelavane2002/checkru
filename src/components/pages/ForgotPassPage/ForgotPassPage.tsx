@@ -126,6 +126,7 @@ export default function ForgotPassPage() {
           onClick={showOtpFields ? handleSubmit(handleResetPassword) : handleSubmit(onSubmit)}
           label={showOtpFields ? buttons.resetPassword : buttons.sendOTP}
           loader={loading}
+          disabled={loading}
         />
         <div className="flex-center mt-6">
           <Button

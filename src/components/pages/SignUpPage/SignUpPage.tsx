@@ -105,7 +105,7 @@ export default function SignUpPage() {
           onClick={handleSubmit(onSubmit)}
           label={buttons.signUp}
           variant="fullWidth"
-          disabled={!checked}
+          disabled={!checked || loading}
           loader={loading}
         />
         <div className="flex-center mt-6">

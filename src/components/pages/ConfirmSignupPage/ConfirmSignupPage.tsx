@@ -73,6 +73,7 @@ export function ConfirmSignUpPage() {
           label={buttons.signUp}
           variant="fullWidth"
           loader={loading}
+          disabled={loading}
         />
         <div className="flex-center mt-6">
           <Button

@@ -94,6 +94,7 @@ export default function ResetPassPage() {
           onClick={handleSubmit(onSubmit)}
           variant="fullWidth"
           loader={loading}
+          disabled={loading}
         />
       </FormProvider>
     </AuthContainer>

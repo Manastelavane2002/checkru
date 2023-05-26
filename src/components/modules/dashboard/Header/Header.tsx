@@ -22,6 +22,7 @@ export function Header() {
         onClick={handleLogOut}
         label="Log out"
         loader={loading}
+        disabled={loading}
       />
     </header>
   );
