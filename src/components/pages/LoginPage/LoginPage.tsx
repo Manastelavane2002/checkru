@@ -12,12 +12,15 @@ import {
   passwordMaxLengthSchema,
   passwordlRequiredSchema,
 } from 'src/components/global/TextField/TextField.constants';
+import { STORAGE } from 'src/constants/storage-keys';
+import { setCookie } from 'cookies-next';
 const { inputs, placeholders } = STATIC_TEXT;
 const { title, subTitle, buttons } = STATIC_TEXT.login;
 
 export default function LoginPage() {
   const methods = useForm<{ email: string; password: string }>();
   const [loading, setLoading] = useState(false);
+  const [checked, setChecked] = useState(false);
   const {
     handleSubmit,
     formState: { errors },
@@ -48,12 +51,13 @@ export default function LoginPage() {
       if (res && res.isSuccess) {
         localStorage.setItem('email', res!.data!.attributes.email as string);
         localStorage.setItem('name', res!.data!.attributes?.name || ('' as string));
+        checked && setCookie(STORAGE.REMEMBER, true);
         await saveToken();
-        setLoading(false);
         router.replace(ROUTES.DASHBOARD);
       } else {
         setError(res?.error?.message as string);
       }
+      setLoading(false);
     } catch (err) {
       console.error(err);
     }
@@ -94,14 +98,19 @@ export default function LoginPage() {
         />
 
         <div className="flex-center my-3">
-          <div className="flex">
+          <div className="flex w-full">
             <input
               type="checkbox"
               className="mr-2 bg-primaryDashboard"
               id="rememberMe"
+              onChange={(e) => {
+                setChecked(e.target.checked);
+              }}
               name={buttons.rememberMe}
             />
-            <label className="text-white">{buttons.rememberMe}</label>
+            <label className="text-white" htmlFor="rememberMe">
+              {buttons.rememberMe}
+            </label>
           </div>
           <Button
             variant="text"

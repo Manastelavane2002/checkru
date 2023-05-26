@@ -28,6 +28,11 @@ export interface AuthContextProps {
 }
 
 const useAuth = () => {
+  const rememberMe = getCookie(STORAGE.REMEMBER);
+  if (rememberMe !== true) {
+    deleteCookie(STORAGE.TOKEN);
+    deleteCookie(STORAGE.REMEMBER);
+  }
   const token = getCookie(STORAGE.TOKEN);
   const routes = useRouter();
   const getCurrentAuthenticatedUser = async () => Auth.currentAuthenticatedUser();
@@ -127,6 +132,7 @@ const useAuth = () => {
   const logout = async () => {
     await Auth.signOut();
     deleteCookie(STORAGE.TOKEN);
+    deleteCookie(STORAGE.REMEMBER);
     localStorage.clear();
     routes.replace(ROUTES.LOGIN);
   };

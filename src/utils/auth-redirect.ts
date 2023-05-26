@@ -1,4 +1,4 @@
-import { getCookie } from 'cookies-next';
+import {  getCookie } from 'cookies-next';
 import { GetServerSidePropsContext } from 'next';
 import { AUTH_ROUTES, ROUTES } from 'src/constants/routes';
 import { STORAGE } from 'src/constants/storage-keys';
@@ -26,7 +26,6 @@ function redirectOnSSRToken({ isLoggedIn }: { isLoggedIn: boolean }) {
 export function checkSSRTokenAndRedirect({ context, pageProps = {} }: AuthRedirecProps) {
   const { req, res } = context;
   const token = getCookie(STORAGE.TOKEN, { req, res });
-
   if (context.resolvedUrl !== ROUTES.DASHBOARD && token) {
     return redirectOnSSRToken({ isLoggedIn: true }); // If route is not dashboard and user is logged in, redirect to dashboard
   } else if (!token && context.resolvedUrl.includes(ROUTES.CONFIRM_SIGN_UP)) {
