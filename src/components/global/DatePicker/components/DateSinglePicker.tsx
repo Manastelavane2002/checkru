@@ -71,7 +71,7 @@ export function DateSinglePicker({
                 />
                 {formState.errors.inputText?.message && (
                   <div className="p-1">
-                    <Typography size="xs" color="error-700">
+                    <Typography variant='calender-error'>
                       {formState.errors.inputText?.message.toString()}
                     </Typography>
                   </div>

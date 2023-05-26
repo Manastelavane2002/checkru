@@ -1,14 +1,13 @@
-import { GetStaticProps } from 'next';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import ResetPassPage from 'src/components/pages/ResetPassPage/ResetPassPage';
+import { checkSSRTokenAndRedirect } from 'src/utils/auth-redirect';
 
-function ResetPass() {
-  return <ResetPassPage />;
-}
-
-export const getStaticProps: GetStaticProps<Record<string, unknown>> = async () => {
-  return {
-    props: {},
-  };
+export const getServerSideProps: GetServerSideProps<{}> = async (
+  context: GetServerSidePropsContext
+) => {
+  return checkSSRTokenAndRedirect({ context,  });
 };
 
-export default ResetPass;
+export default function ResetPass() {
+  return <ResetPassPage />;
+}

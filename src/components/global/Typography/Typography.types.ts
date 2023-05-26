@@ -6,7 +6,7 @@ import { ReactNode } from 'react';
  * @params children - Content of the component.
  * @params align - Text-align on the component.
  * @params color - Color of the component. It supports those theme colors that make sense for this component.
- * @params variant - Component used for the root node. Either a string to use a HTML element or a component.
+ * @params htmlElement - Component used for the root node. Either a string to use a HTML element or a component.
  * @params whitespace - White space to apply to the component.
  * @params className - Override or extend the styles applied to the component.
  */
@@ -32,8 +32,9 @@ export interface TypographyProps {
   children: ReactNode;
   className?: string;
   color?: string;
+  htmlElement?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
   size?: TypographySizeType;
   type?: TypographyTextType;
-  variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
+  variant?: string;
   weight?: TypographyWeightType;
 }

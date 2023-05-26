@@ -64,8 +64,8 @@ export function CalendarHeader({
         <Icon name="arrow-left" color={COLORS.componentBody} size={20} />
       </div>
       <div className="grow flex items-center justify-center">
-        <Typography className="text-componentHeader">
-          {date ? format(date, DEFAULT_CALENDAR_HEADER_FORMAT) : ''}
+        <Typography variant='calender-month-name'>
+          {date ? format(date, DEFAULT_CALENDAR_HEADER_FORMAT) : ''} 
         </Typography>
       </div>
       <div

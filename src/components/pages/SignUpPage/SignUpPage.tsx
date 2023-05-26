@@ -31,7 +31,7 @@ export default function SignUpPage() {
     try {
       const res = await signUp(data);
       if (!res || !res.userConfirmed) {
-        router.replace(`${ROUTES.CONFIRM_SIGN_UP}/${res?.username || ''}`);
+        router.replace(`${ROUTES.CONFIRM_SIGN_UP}?${res?.username || ''}`);
       }
       if (res && res.isSuccess) {
         await saveToken();
@@ -90,10 +90,10 @@ export default function SignUpPage() {
 
         <Button onClick={handleSubmit(onSubmit)} label={buttons.signUp} variant="fullWidth" />
         <div className="flex-center mt-6">
-          <Typography variant="p" className="text-body">
+          <Typography htmlElement="p" variant='login-signup-extra-end-white'>
             {signInDesc}
           </Typography>
-          <Button onClick={handleSignInNavigation} label={buttons.signIn} variant="text"/>
+          <Button onClick={handleSignInNavigation} label={buttons.signIn} variant="text" />
         </div>
       </FormProvider>
     </AuthContainer>
