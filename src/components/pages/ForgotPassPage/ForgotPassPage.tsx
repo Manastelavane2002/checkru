@@ -27,19 +27,24 @@ export default function ForgotPassPage() {
   } = methods;
   const router = useRouter();
   const [error, setError] = useState<string>();
+  const [loading, setLoading] = useState<boolean>(false);
   const onSubmit = async (data: Record<string, string>) => {
+    setLoading(true);
     const res = await sendPasswordResetOtp(data?.email as string);
     if (res && res.isSuccess) {
       setShowOtpFields(true);
     }
+    setLoading(false);
   };
   const handleResetPassword = async (data: ResetPasswordPayload) => {
+    setLoading(true);
     const res = await setNewPassword(data);
     if (res && res.isSuccess) {
       router.push(ROUTES.LOGIN);
     } else {
       setError(res?.error?.message as string);
     }
+    setLoading(false);
   };
   const handleResendOtp = async () => {
     await sendPasswordResetOtp(getValues()?.email);
@@ -120,6 +125,7 @@ export default function ForgotPassPage() {
           variant="fullWidth"
           onClick={showOtpFields ? handleSubmit(handleResetPassword) : handleSubmit(onSubmit)}
           label={showOtpFields ? buttons.resetPassword : buttons.sendOTP}
+          loader={loading}
         />
         <div className="flex-center mt-6">
           <Button

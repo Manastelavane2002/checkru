@@ -26,13 +26,14 @@ export default function SignUpPage() {
   } = methods;
   const [error, setError] = useState<string>();
   const [checked, setChecked] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { signUp } = useAuthContext();
 
   const onSubmit = async (data: SignUpPayload) => {
+    setLoading(true);
     try {
       const res = await signUp(data);
-
       if (res && res.isSuccess) {
         if (!res.userConfirmed) {
           router.replace(`${ROUTES.CONFIRM_SIGN_UP}?${res?.username || ''}`);
@@ -45,6 +46,7 @@ export default function SignUpPage() {
     } catch (err) {
       console.error(err);
     }
+    setLoading(false);
   };
 
   const handleSignInNavigation = () => {
@@ -104,6 +106,7 @@ export default function SignUpPage() {
           label={buttons.signUp}
           variant="fullWidth"
           disabled={!checked}
+          loader={loading}
         />
         <div className="flex-center mt-6">
           <Typography htmlElement="p" variant="login-signup-extra-end-white">

@@ -13,6 +13,7 @@ const { title, subTitle, buttons } = STATIC_TEXT.confirmSignup;
 
 export function ConfirmSignUpPage() {
   const [error, setError] = useState<string>();
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const methods = useForm<{ otp: string }>();
   const {
@@ -22,6 +23,7 @@ export function ConfirmSignUpPage() {
   const { confirmUser, resendUserConfirmOpt } = useAuthContext();
   const [_base, username] = router.asPath.split('?');
   const onSubmit = async (data: { otp: string }) => {
+    setLoading(true);
     try {
       const res = await confirmUser({ ...data, username });
       if (res && res?.isSuccess) {
@@ -32,6 +34,7 @@ export function ConfirmSignUpPage() {
     } catch (err) {
       console.error(err);
     }
+    setLoading(false);
   };
 
   const handleResendOtp = async () => {
@@ -60,12 +63,17 @@ export function ConfirmSignUpPage() {
           className="dark-rounded"
         />
         <div className="flex-center my-6">
-          <Typography htmlElement="p" variant='login-signup-extra-end-white'>
+          <Typography htmlElement="p" variant="login-signup-extra-end-white">
             {buttons.resendDesc}
           </Typography>
           <Button variant="text" label={buttons.resend} onClick={handleResendOtp} />
         </div>
-        <Button onClick={handleSubmit(onSubmit)} label={buttons.signUp} variant="fullWidth" />
+        <Button
+          onClick={handleSubmit(onSubmit)}
+          label={buttons.signUp}
+          variant="fullWidth"
+          loader={loading}
+        />
         <div className="flex-center mt-6">
           <Button
             variant="text"

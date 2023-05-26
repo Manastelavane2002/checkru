@@ -20,6 +20,7 @@ export default function ResetPassPage() {
     password: string;
   }>();
   const [error, setError] = useState<string>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     handleSubmit,
@@ -28,6 +29,7 @@ export default function ResetPassPage() {
   const router = useRouter();
   const { changePassword } = useAuthContext();
   const onSubmit = async (data: { newPassword: string; password: string }) => {
+    setLoading(true);
     const res = await changePassword({
       oldPassword: data?.password,
       newPassword: data?.newPassword,
@@ -37,6 +39,7 @@ export default function ResetPassPage() {
     } else {
       setError(res?.error?.message as string);
     }
+    setLoading(false);
   };
   return (
     <AuthContainer title={title} subTitle={subTitle} error={error}>
@@ -86,7 +89,12 @@ export default function ResetPassPage() {
           className="dark-rounded"
           placeholder={placeholders['confirmPass-alt']}
         />
-        <Button label={button} onClick={handleSubmit(onSubmit)} variant="fullWidth" />
+        <Button
+          label={button}
+          onClick={handleSubmit(onSubmit)}
+          variant="fullWidth"
+          loader={loading}
+        />
       </FormProvider>
     </AuthContainer>
   );

@@ -17,6 +17,7 @@ const { title, subTitle, buttons } = STATIC_TEXT.login;
 
 export default function LoginPage() {
   const methods = useForm<{ email: string; password: string }>();
+  const [loading, setLoading] = useState(false);
   const {
     handleSubmit,
     formState: { errors },
@@ -41,12 +42,14 @@ export default function LoginPage() {
   };
 
   const onSubmit = async (data: { email: string; password: string }) => {
+    setLoading(true);
     try {
       const res = await signIn(data);
       if (res && res.isSuccess) {
         localStorage.setItem('email', res!.data!.attributes.email as string);
         localStorage.setItem('name', res!.data!.attributes?.name || ('' as string));
         await saveToken();
+        setLoading(false);
         router.replace(ROUTES.DASHBOARD);
       } else {
         setError(res?.error?.message as string);
@@ -109,9 +112,10 @@ export default function LoginPage() {
         <Button
           onClick={handleSubmit((values) => onSubmit(values))}
           label={buttons.signIn}
+          loader={loading}
+          disabled={loading}
           variant="fullWidth"
         />
-
         <div className="flex-center mt-6">
           <Typography htmlElement="p" variant="login-signup-extra-end-white">
             {buttons.signupDesc}

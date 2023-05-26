@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Icon, Typography } from 'src/components/global';
 import { ButtonProps, sizes, shapes } from './Button.types';
 import { generateButtonVariants } from './Button.utils';
+import Loader from '../Loader/Loader';
 
 /**
  * @param {ButtonProps} props
@@ -23,6 +24,7 @@ export function Button({
   className = '',
   disabled = false,
   textAlign = 'center',
+  loader = false,
   selected = false,
   ...restProps
 }: ButtonProps) {
@@ -43,7 +45,8 @@ export function Button({
         size === '2xl' ? 'gap-3' : 'gap-2'
       )}>
       {icon && <Icon name={icon} color={typoColor} size={iconSize} className={iconClassName} />}
-      <div className="flex-1">
+      <div className="flex w-full justify-center items-center">
+        {loader && <Loader />}
         <Typography
           color={typoColor}
           className={`${typoClassName} ${
@@ -52,8 +55,8 @@ export function Button({
               : textAlign === 'right'
               ? 'text-right'
               : 'text-center'
-          }`}
-          size={typoSize}>
+            }`}
+            size={typoSize}>
           {label}
         </Typography>
       </div>
