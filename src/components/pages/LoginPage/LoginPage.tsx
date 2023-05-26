@@ -113,7 +113,7 @@ export default function LoginPage() {
         />
 
         <div className="flex-center mt-6">
-          <Typography variant="p" className="text-body">
+          <Typography htmlElement="p" variant="login-signup-extra-end-white">
             {buttons.signupDesc}
           </Typography>
           <Button variant="text" onClick={handleSignUpNavigation} label={buttons.signUp} />

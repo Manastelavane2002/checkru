@@ -6,6 +6,7 @@ import {
   typographySizes,
   typographyWeights,
 } from './Typography.types';
+import { generateTypographyVariants } from './Typography.utils';
 
 const compare = (array: string[], a: string, b: string) => {
   const aIndex = array.findIndex((v) => v === a);
@@ -21,12 +22,13 @@ const isGreaterWeightThan = (a: TypographyWeightType, b: TypographyWeightType) =
  * @param {TypographyProps} props
  * @returns Typography component
  * @description This component is used to render text
- * @example <Typography variant="h1">Heading 1</Typography>
+ * @example <Typography htmlElement="h1">Heading 1</Typography>
  */
 export function Typography({
   children,
+  htmlElement='h1',
   color = 'neutral-900',
-  variant = 'h1',
+  variant ,
   size = 'md',
   weight = 'normal',
   type = 'text',
@@ -47,10 +49,10 @@ export function Typography({
   }-${size} font-${fontWeight} ${fontFamily} ${className}`;
 
   return React.createElement(
-    variant,
+    htmlElement,
     {
       ...restProps,
-      className: classes,
+      className: !variant ? classes : generateTypographyVariants(variant),
     },
     children
   );

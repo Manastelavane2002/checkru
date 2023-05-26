@@ -143,7 +143,7 @@ export function DateRangePicker({
                     isSelected ? 'bg-gray-50' : ''
                   } cursor-pointer`}
                   onClick={() => calendar.setValue(rangeValue)}>
-                  <Typography size="sm" color={isSelected ? 'gray-800' : 'gray-700'}>
+                  <Typography variant={isSelected?'calender-range-name-isSelected':'calender-range-name-isNotSelected'}>
                     {title}
                   </Typography>
                 </div>

@@ -60,7 +60,7 @@ export function ConfirmSignUpPage() {
           className="dark-rounded"
         />
         <div className="flex-center my-6">
-          <Typography variant="p" className="text-body">
+          <Typography htmlElement="p" variant='login-signup-extra-end-white'>
             {buttons.resendDesc}
           </Typography>
           <Button variant="text" label={buttons.resend} onClick={handleResendOtp} />
