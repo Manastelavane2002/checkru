@@ -25,17 +25,20 @@ export default function SignUpPage() {
     formState: { errors },
   } = methods;
   const [error, setError] = useState<string>();
-  const { signUp, saveToken } = useAuthContext();
+  const [checked, setChecked] = useState(false);
+
+  const { signUp } = useAuthContext();
 
   const onSubmit = async (data: SignUpPayload) => {
     try {
       const res = await signUp(data);
-      if (!res || !res.userConfirmed) {
-        router.replace(`${ROUTES.CONFIRM_SIGN_UP}?${res?.username || ''}`);
-      }
+
       if (res && res.isSuccess) {
-        await saveToken();
-        router.replace(ROUTES.LOGIN);
+        if (!res.userConfirmed) {
+          router.replace(`${ROUTES.CONFIRM_SIGN_UP}?${res?.username || ''}`);
+        } else {
+          router.replace(ROUTES.LOGIN);
+        }
       } else {
         setError(res?.error?.message as string);
       }
@@ -82,15 +85,28 @@ export default function SignUpPage() {
           className="dark-rounded"
         />
         <div className="flex mb-4">
-          <input type="checkbox" className="mr-2" name="tnc" id="tnc" />
+          <input
+            type="checkbox"
+            className="mr-2"
+            name="tnc"
+            id="tnc"
+            onChange={(e) => {
+              setChecked(e.target.checked);
+            }}
+          />
           <label htmlFor="tnc" className="text-white">
             {terms}
           </label>
         </div>
 
-        <Button onClick={handleSubmit(onSubmit)} label={buttons.signUp} variant="fullWidth" />
+        <Button
+          onClick={handleSubmit(onSubmit)}
+          label={buttons.signUp}
+          variant="fullWidth"
+          disabled={!checked}
+        />
         <div className="flex-center mt-6">
-          <Typography htmlElement="p" variant='login-signup-extra-end-white'>
+          <Typography htmlElement="p" variant="login-signup-extra-end-white">
             {signInDesc}
           </Typography>
           <Button onClick={handleSignInNavigation} label={buttons.signIn} variant="text" />
