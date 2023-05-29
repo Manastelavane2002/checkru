@@ -1,5 +1,5 @@
 import { FetchMethods, FetchProps, handleFetch } from '../fetch/fetch';
-import { ErrorResponse, StatementResponse } from '../types/CommonResponse';
+import { ErrorResponse, StatementResponse } from '../types';
 
 export const getStatementDataBackend = async (): Promise<StatementResponse | ErrorResponse> => {
   const fetchProps: FetchProps = {
@@ -9,5 +9,5 @@ export const getStatementDataBackend = async (): Promise<StatementResponse | Err
     method: FetchMethods.GET,
     backendCall: true,
   };
-  return await handleFetch(fetchProps);
+  return (await handleFetch(fetchProps)) as unknown as StatementResponse | ErrorResponse;
 };

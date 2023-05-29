@@ -1,18 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header, CardList } from 'src/components/modules/dashboard';
 import { cardList } from 'src/components/modules/dashboard/Card/card.mock';
 import { transactionData } from 'src/components/modules/dashboard/Transactions/Table.mock';
 import StatementList from 'src/components/modules/dashboard/Statement/StatementList';
 import TransactionsTable from 'src/components/modules/dashboard/Transactions/TransactionsTable';
 import { getStatementDataFrontend } from 'src/api/frontend/statement';
-import { StatementResponse } from 'src/api/types/CommonResponse';
+import { StatementResponse } from 'src/api/types';
 
 function DashboardPage() {
-  const [statementList, setStatementList] = React.useState<StatementResponse['data']['statements']>([]);
+  const [statementList, setStatementList] = useState<StatementResponse['data']['statements']>([]);
   const func = async () => {
     try {
       const statements = await getStatementDataFrontend();
-      setStatementList(statements?.data?.statement);
+      if (statements.data && statements.isSuccess) {
+        setStatementList(statements?.data?.statements);
+      }
     } catch (error) {
       console.error('Error parsing JSON data:', error);
     }
