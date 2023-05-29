@@ -4,10 +4,10 @@ import { Statement } from 'src/api/types';
 import DashboardPage from 'src/components/pages/Dashboard/Dashboard';
 import { checkSSRTokenAndRedirect } from 'src/utils/auth-redirect';
 
-interface StatementPageProps {
-  accountInfo: null;
+export interface StatementPageProps {
+  accountInfo?: null;
   statements: Array<Statement>;
-  transactions: null;
+  transactions?: null;
 }
 
 export const getServerSideProps: GetServerSideProps<{}> = async (
@@ -28,6 +28,5 @@ export const getServerSideProps: GetServerSideProps<{}> = async (
 };
 
 export default function Dashboard(props: StatementPageProps) {
-  console.info(props);
-  return <DashboardPage />;
+  return <DashboardPage {...props}/>;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Header, CardList } from 'src/components/modules/dashboard';
 import { cardList } from 'src/components/modules/dashboard/Card/card.mock';
 import { transactionData } from 'src/components/modules/dashboard/Transactions/Table.mock';
@@ -8,23 +8,9 @@ import { AccountDetailsMock } from 'src/components/modules/dashboard/AccountDeta
 import { AccountDetails } from 'src/components/modules/dashboard/AccountDetails/AccountDetails';
 import { STATIC_TEXT } from 'src/constants/static-text';
 import { Typography } from 'src/components/global';
+import { StatementPageProps } from 'src/pages/dashboard';
 
-function DashboardPage() {
-  const [statementList, setStatementList] = useState<StatementResponse['data']['statements']>([]);
-  const func = async () => {
-    try {
-      const statements = await getStatementDataFrontend();
-      if (statements.data && statements.isSuccess) {
-        setStatementList(statements?.data?.statements);
-      }
-    } catch (error) {
-      console.error('Error parsing JSON data:', error);
-    }
-  };
-  useEffect(() => {
-    func();
-  }, []);
-
+function DashboardPage({ statements }: StatementPageProps) {
   return (
     <div className="bg-dashboardBg text-white">
       <Header />
@@ -37,7 +23,7 @@ function DashboardPage() {
       </div>
       <CardList cardList={cardList} />
       <div className="px-[112px] flex gap-8 pb-4">
-        <StatementList statementList={statementList} />
+        <StatementList statementList={statements} />
         <TransactionsTable transactionData={transactionData} />
       </div>
     </div>
