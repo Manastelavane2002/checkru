@@ -1,4 +1,5 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document';
+import { STATIC_TEXT } from 'src/constants/static-text';
 
 export default class CustomDocument extends Document {
   render() {
@@ -6,7 +7,7 @@ export default class CustomDocument extends Document {
       <Html>
         <Head>
           <link rel="icon" href="/favicon.ico" />
-          <title>Ruralco Dashboard</title>
+          <title>{STATIC_TEXT.title.mainTitle}</title>
         </Head>
         <body>
           <Main />

@@ -102,4 +102,11 @@ export const STATIC_TEXT = {
     transactionTableTitle: 'Transactions',
     transactionTableHeaders: ['Doc Date', 'Doc Num', 'Ref', 'Statement Period', 'Debit', 'Credit'],
   },
+  accountDetails: {
+    accountNumber: 'Account Number: {number}',
+    accountName: 'Account Name: {name}',
+  },
+  title: {
+    mainTitle: 'Ruralco',
+  },
 };

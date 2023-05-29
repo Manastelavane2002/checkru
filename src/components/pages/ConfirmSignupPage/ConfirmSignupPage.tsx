@@ -14,7 +14,6 @@ const { title, subTitle, buttons } = STATIC_TEXT.confirmSignup;
 
 export function ConfirmSignUpPage() {
   const [error, setError] = useState<string>();
-  // const [loading, setLoading] = useState<boolean>(false);
   const { isLoading, makeLoaderCall } = useLoader();
   const router = useRouter();
   const methods = useForm<{ otp: string }>();

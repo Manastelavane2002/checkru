@@ -20,8 +20,8 @@ const { title, subTitle, buttons } = STATIC_TEXT.login;
 
 export default function LoginPage() {
   const methods = useForm<{ email: string; password: string }>();
-  const {isLoading, makeLoaderCall} = useLoader();
-  const [checked, setChecked] = useState(false);
+  const { isLoading, makeLoaderCall } = useLoader();
+  const [isRememberMeChecked, setIsRememberMeChecked] = useState(false);
   const {
     handleSubmit,
     formState: { errors },
@@ -46,13 +46,12 @@ export default function LoginPage() {
   };
 
   const onSubmit = async (data: { email: string; password: string }) => {
-    
     try {
       const res = await signIn(data);
       if (res && res.isSuccess) {
         localStorage.setItem('email', res!.data!.attributes.email as string);
         localStorage.setItem('name', res!.data!.attributes?.name || ('' as string));
-        checked && setCookie(STORAGE.REMEMBER, true);
+        isRememberMeChecked && setCookie(STORAGE.REMEMBER, true);
         await saveToken();
         router.replace(ROUTES.DASHBOARD);
       } else {
@@ -104,7 +103,7 @@ export default function LoginPage() {
               className="mr-2 bg-primaryDashboard"
               id="rememberMe"
               onChange={(e) => {
-                setChecked(e.target.checked);
+                setIsRememberMeChecked(e.target.checked);
               }}
               name={buttons.rememberMe}
             />
