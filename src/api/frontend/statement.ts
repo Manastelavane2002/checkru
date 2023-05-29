@@ -5,7 +5,7 @@ import { ErrorResponse, StatementResponse } from '../types/CommonResponse';
 export const getStatementDataFrontend = async (): Promise<StatementResponse | ErrorResponse> => {
   const fetchProps: FetchProps = {
     includeAuthorization: true,
-    endpoint: URL_ENDPOINTS.MOCK_STATEMENT,
+    endpoint: URL_ENDPOINTS.STATEMENT,
     method: FetchMethods.GET,
     backendCall: false,
   };

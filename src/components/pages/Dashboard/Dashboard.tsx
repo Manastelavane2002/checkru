@@ -5,20 +5,21 @@ import { transactionData } from 'src/components/modules/dashboard/Transactions/T
 import StatementList from 'src/components/modules/dashboard/Statement/StatementList';
 import TransactionsTable from 'src/components/modules/dashboard/Transactions/TransactionsTable';
 import { getStatementDataFrontend } from 'src/api/frontend/statement';
+import { StatementResponse } from 'src/api/types/CommonResponse';
 
 function DashboardPage() {
-  const [statementList, setStatementList] = React.useState([]);
-  useEffect(() => {
+  const [statementList, setStatementList] = React.useState<StatementResponse['data']['statements']>([]);
   const func = async () => {
     try {
       const statements = await getStatementDataFrontend();
-      setStatementList(statements?.data?.statements);
+      setStatementList(statements?.data?.statement);
     } catch (error) {
       console.error('Error parsing JSON data:', error);
     }
   };
-  func();
-}, []);
+  useEffect(() => {
+    func();
+  }, []);
 
   return (
     <div className="bg-dashboardBg text-white">
