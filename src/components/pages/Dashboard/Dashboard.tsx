@@ -4,13 +4,12 @@ import { cardList } from 'src/components/modules/dashboard/Card/card.mock';
 import { transactionData } from 'src/components/modules/dashboard/Transactions/Table.mock';
 import StatementList from 'src/components/modules/dashboard/Statement/StatementList';
 import TransactionsTable from 'src/components/modules/dashboard/Transactions/TransactionsTable';
-import { AccountDetailsMock } from 'src/components/modules/dashboard/AccountDetails/AccountDetails.mock';
 import { AccountDetails } from 'src/components/modules/dashboard/AccountDetails/AccountDetails';
 import { STATIC_TEXT } from 'src/constants/static-text';
 import { Typography } from 'src/components/global';
-import { StatementPageProps } from 'src/pages/dashboard';
+import { DashboardPageProps } from 'src/pages/dashboard';
 
-function DashboardPage({ statements }: StatementPageProps) {
+function DashboardPage({ statements, accountInfo }: DashboardPageProps) {
   return (
     <div className="bg-dashboardBg text-white">
       <Header />
@@ -19,7 +18,7 @@ function DashboardPage({ statements }: StatementPageProps) {
           {STATIC_TEXT.dashboard.heading}
         </Typography>
         <Typography className="pt-3 t">{STATIC_TEXT.dashboard.subHeading}</Typography>
-        <AccountDetails accountData={AccountDetailsMock} />
+        <AccountDetails accountInfo={accountInfo} />
       </div>
       <CardList cardList={cardList} />
       <div className="px-[112px] flex gap-8 pb-4">
