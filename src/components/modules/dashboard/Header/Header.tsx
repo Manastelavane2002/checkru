@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IMAGES } from 'src/constants/images';
 import { Button } from 'src/components/global/Button/Button';
 import { useAuthContext } from 'src/context/AuthContext';
+import { useLoader } from 'src/hooks/useLoader';
 
 export function Header() {
-  const [loading, setLoading] = useState(false);
+  const { isLoading, makeLoaderCall } = useLoader();
   const { logout } = useAuthContext();
 
   const handleLogOut = async () => {
-    setLoading(true);
     await logout();
   };
 
@@ -19,10 +19,12 @@ export function Header() {
       </div>
       <Button
         className="w-max bg-transparent border-white border rounded-full px-4 py-2 hover:bg-headerButtonHover hover:border-headerButtonHover"
-        onClick={handleLogOut}
+        onClick={() => {
+          makeLoaderCall(handleLogOut);
+        }}
         label="Log out"
-        loader={loading}
-        disabled={loading}
+        loader={isLoading}
+        disabled={isLoading}
       />
     </header>
   );

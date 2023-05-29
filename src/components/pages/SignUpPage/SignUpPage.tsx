@@ -14,10 +14,12 @@ import {
   passwordlRequiredSchema,
 } from 'src/components/global/TextField/TextField.constants';
 import { capitalizeFirstLetter } from 'src/utils/string-functions';
+import { useLoader } from 'src/hooks/useLoader';
 const { inputs, placeholders } = STATIC_TEXT;
 const { title, terms, buttons, signInDesc } = STATIC_TEXT.signUp;
 
 export default function SignUpPage() {
+  const { isLoading, makeLoaderCall } = useLoader();
   const methods = useForm<SignUpPayload>();
   const router = useRouter();
   const {
@@ -26,12 +28,9 @@ export default function SignUpPage() {
   } = methods;
   const [error, setError] = useState<string>();
   const [checked, setChecked] = useState(false);
-  const [loading, setLoading] = useState(false);
-
   const { signUp } = useAuthContext();
 
   const onSubmit = async (data: SignUpPayload) => {
-    setLoading(true);
     try {
       const res = await signUp(data);
       if (res && res.isSuccess) {
@@ -46,7 +45,6 @@ export default function SignUpPage() {
     } catch (err) {
       console.error(err);
     }
-    setLoading(false);
   };
 
   const handleSignInNavigation = () => {
@@ -100,13 +98,12 @@ export default function SignUpPage() {
             {terms}
           </label>
         </div>
-
         <Button
-          onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit((values) => makeLoaderCall(() => onSubmit(values)))}
           label={buttons.signUp}
           variant="fullWidth"
-          disabled={!checked || loading}
-          loader={loading}
+          disabled={!checked || isLoading}
+          loader={isLoading}
         />
         <div className="flex-center mt-6">
           <Typography htmlElement="p" variant="login-signup-extra-end-white">

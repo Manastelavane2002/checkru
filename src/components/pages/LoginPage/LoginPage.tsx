@@ -14,12 +14,13 @@ import {
 } from 'src/components/global/TextField/TextField.constants';
 import { STORAGE } from 'src/constants/storage-keys';
 import { setCookie } from 'cookies-next';
+import { useLoader } from 'src/hooks/useLoader';
 const { inputs, placeholders } = STATIC_TEXT;
 const { title, subTitle, buttons } = STATIC_TEXT.login;
 
 export default function LoginPage() {
   const methods = useForm<{ email: string; password: string }>();
-  const [loading, setLoading] = useState(false);
+  const {isLoading, makeLoaderCall} = useLoader();
   const [checked, setChecked] = useState(false);
   const {
     handleSubmit,
@@ -45,7 +46,7 @@ export default function LoginPage() {
   };
 
   const onSubmit = async (data: { email: string; password: string }) => {
-    setLoading(true);
+    
     try {
       const res = await signIn(data);
       if (res && res.isSuccess) {
@@ -57,7 +58,6 @@ export default function LoginPage() {
       } else {
         setError(res?.error?.message as string);
       }
-      setLoading(false);
     } catch (err) {
       console.error(err);
     }
@@ -119,10 +119,10 @@ export default function LoginPage() {
           />
         </div>
         <Button
-          onClick={handleSubmit((values) => onSubmit(values))}
+          onClick={handleSubmit((values) => makeLoaderCall(() => onSubmit(values)))}
           label={buttons.signIn}
-          loader={loading}
-          disabled={loading}
+          loader={isLoading}
+          disabled={isLoading}
           variant="fullWidth"
         />
         <div className="flex-center mt-6">

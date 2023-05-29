@@ -8,14 +8,17 @@ import TransactionsTable from 'src/components/modules/dashboard/Transactions/Tra
 import { AccountDetailsMock } from 'src/components/modules/dashboard/AccountDetails/AccountDetails.mock';
 import { AccountDetails } from 'src/components/modules/dashboard/AccountDetails/AccountDetails';
 import { STATIC_TEXT } from 'src/constants/static-text';
+import { Typography } from 'src/components/global';
 
 function DashboardPage() {
   return (
     <div className="bg-dashboardBg text-white">
       <Header />
       <div className="px-[112px] py-16">
-        <h1 className="text-5xl font-semibold text-white">{STATIC_TEXT.dashboard.heading}</h1>
-        <p className="pt-3 t">{STATIC_TEXT.dashboard.subHeading}</p>
+        <Typography htmlElement="h1" className="text-5xl font-semibold text-white">
+          {STATIC_TEXT.dashboard.heading}
+        </Typography>
+        <Typography className="pt-3 t">{STATIC_TEXT.dashboard.subHeading}</Typography>
         <AccountDetails accountData={AccountDetailsMock} />
       </div>
       <CardList cardList={cardList} />

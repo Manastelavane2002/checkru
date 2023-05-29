@@ -11,6 +11,7 @@ import { AuthContainer } from 'src/components/hoc/AuthContainer';
 import { ROUTES } from 'src/constants/routes';
 import { STATIC_TEXT } from 'src/constants/static-text';
 import { useAuthContext } from 'src/context/AuthContext';
+import { useLoader } from 'src/hooks/useLoader';
 const { inputs, placeholders, labels } = STATIC_TEXT;
 const { title, subTitle, button } = STATIC_TEXT.resetPass;
 
@@ -20,7 +21,7 @@ export default function ResetPassPage() {
     password: string;
   }>();
   const [error, setError] = useState<string>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const { isLoading, makeLoaderCall } = useLoader();
 
   const {
     handleSubmit,
@@ -29,7 +30,6 @@ export default function ResetPassPage() {
   const router = useRouter();
   const { changePassword } = useAuthContext();
   const onSubmit = async (data: { newPassword: string; password: string }) => {
-    setLoading(true);
     const res = await changePassword({
       oldPassword: data?.password,
       newPassword: data?.newPassword,
@@ -39,7 +39,6 @@ export default function ResetPassPage() {
     } else {
       setError(res?.error?.message as string);
     }
-    setLoading(false);
   };
   return (
     <AuthContainer title={title} subTitle={subTitle} error={error}>
@@ -91,10 +90,10 @@ export default function ResetPassPage() {
         />
         <Button
           label={button}
-          onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit((values) => makeLoaderCall(() => onSubmit(values)))}
           variant="fullWidth"
-          loader={loading}
-          disabled={loading}
+          loader={isLoading}
+          disabled={isLoading}
         />
       </FormProvider>
     </AuthContainer>

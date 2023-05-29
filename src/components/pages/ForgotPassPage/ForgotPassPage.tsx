@@ -13,10 +13,13 @@ import { AuthContainer } from 'src/components/hoc/AuthContainer';
 import { ROUTES } from 'src/constants/routes';
 import { STATIC_TEXT } from 'src/constants/static-text';
 import { useAuthContext, ResetPasswordPayload } from 'src/context/AuthContext';
+import { useLoader } from 'src/hooks/useLoader';
 import { capitalizeFirstLetter } from 'src/utils/string-functions';
 const { inputs, placeholders, labels } = STATIC_TEXT;
 const { title, subTitle, buttons } = STATIC_TEXT.forgotPass;
+
 export default function ForgotPassPage() {
+  const { isLoading, makeLoaderCall } = useLoader();
   const { sendPasswordResetOtp, setNewPassword } = useAuthContext();
   const methods = useForm<ResetPasswordPayload>();
   const [showOtpFields, setShowOtpFields] = useState(false);
@@ -27,24 +30,19 @@ export default function ForgotPassPage() {
   } = methods;
   const router = useRouter();
   const [error, setError] = useState<string>();
-  const [loading, setLoading] = useState<boolean>(false);
   const onSubmit = async (data: Record<string, string>) => {
-    setLoading(true);
     const res = await sendPasswordResetOtp(data?.email as string);
     if (res && res.isSuccess) {
       setShowOtpFields(true);
     }
-    setLoading(false);
   };
   const handleResetPassword = async (data: ResetPasswordPayload) => {
-    setLoading(true);
     const res = await setNewPassword(data);
     if (res && res.isSuccess) {
       router.push(ROUTES.LOGIN);
     } else {
       setError(res?.error?.message as string);
     }
-    setLoading(false);
   };
   const handleResendOtp = async () => {
     await sendPasswordResetOtp(getValues()?.email);
@@ -123,10 +121,14 @@ export default function ForgotPassPage() {
 
         <Button
           variant="fullWidth"
-          onClick={showOtpFields ? handleSubmit(handleResetPassword) : handleSubmit(onSubmit)}
+          onClick={
+            showOtpFields
+              ? handleSubmit((values) => makeLoaderCall(() => handleResetPassword(values)))
+              : handleSubmit((values) => makeLoaderCall(() => onSubmit(values)))
+          }
           label={showOtpFields ? buttons.resetPassword : buttons.sendOTP}
-          loader={loading}
-          disabled={loading}
+          loader={isLoading}
+          disabled={isLoading}
         />
         <div className="flex-center mt-6">
           <Button
