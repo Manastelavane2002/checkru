@@ -29,8 +29,17 @@ export interface AuthContextProps {
 
 const useAuth = () => {
   const token = getCookie(STORAGE.TOKEN);
+  const rememberMeCookieExists = getCookie(STORAGE.REMEMBER);
   const routes = useRouter();
+
+  // If user has not selected remember me but token exists, logout the user.
+  if (rememberMeCookieExists !== true) {
+    deleteCookie(STORAGE.TOKEN);
+    deleteCookie(STORAGE.REMEMBER);
+  }
+
   const getCurrentAuthenticatedUser = async () => Auth.currentAuthenticatedUser();
+
   const getAccessToken = async () => {
     const session = await Auth.currentSession();
     return session.getIdToken().getJwtToken();
@@ -127,6 +136,7 @@ const useAuth = () => {
   const logout = async () => {
     await Auth.signOut();
     deleteCookie(STORAGE.TOKEN);
+    deleteCookie(STORAGE.REMEMBER);
     localStorage.clear();
     routes.replace(ROUTES.LOGIN);
   };

@@ -12,11 +12,16 @@ import {
   passwordMaxLengthSchema,
   passwordlRequiredSchema,
 } from 'src/components/global/TextField/TextField.constants';
+import { STORAGE } from 'src/constants/storage-keys';
+import { setCookie } from 'cookies-next';
+import { useLoader } from 'src/hooks/useLoader';
 const { inputs, placeholders } = STATIC_TEXT;
 const { title, subTitle, buttons } = STATIC_TEXT.login;
 
 export default function LoginPage() {
   const methods = useForm<{ email: string; password: string }>();
+  const { isLoading, makeLoaderCall } = useLoader();
+  const [isRememberMeChecked, setIsRememberMeChecked] = useState(false);
   const {
     handleSubmit,
     formState: { errors },
@@ -46,6 +51,7 @@ export default function LoginPage() {
       if (res && res.isSuccess) {
         localStorage.setItem('email', res!.data!.attributes.email as string);
         localStorage.setItem('name', res!.data!.attributes?.name || ('' as string));
+        isRememberMeChecked && setCookie(STORAGE.REMEMBER, true);
         await saveToken();
         router.replace(ROUTES.DASHBOARD);
       } else {
@@ -91,14 +97,19 @@ export default function LoginPage() {
         />
 
         <div className="flex-center my-3">
-          <div className="flex">
+          <div className="flex w-full">
             <input
               type="checkbox"
               className="mr-2 bg-primaryDashboard"
               id="rememberMe"
+              onChange={(e) => {
+                setIsRememberMeChecked(e.target.checked);
+              }}
               name={buttons.rememberMe}
             />
-            <label className="text-white">{buttons.rememberMe}</label>
+            <label className="text-white" htmlFor="rememberMe">
+              {buttons.rememberMe}
+            </label>
           </div>
           <Button
             variant="text"
@@ -107,11 +118,12 @@ export default function LoginPage() {
           />
         </div>
         <Button
-          onClick={handleSubmit((values) => onSubmit(values))}
+          onClick={handleSubmit((values) => makeLoaderCall(() => onSubmit(values)))}
           label={buttons.signIn}
+          loader={isLoading}
+          disabled={isLoading}
           variant="fullWidth"
         />
-
         <div className="flex-center mt-6">
           <Typography htmlElement="p" variant="login-signup-extra-end-white">
             {buttons.signupDesc}

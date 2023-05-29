@@ -95,8 +95,18 @@ export const STATIC_TEXT = {
     unknown: 'unknown',
   },
   dashboard: {
+    heading: 'My Ruralco Dashboard',
+    subHeading:
+      ' Transactions are listed below as they are made available to Ruralco. Your full list of transactions will be available once your monthly statement has been produced',
     statementTableTitle: 'Statements',
     transactionTableTitle: 'Transactions',
     transactionTableHeaders: ['Doc Date', 'Doc Num', 'Ref', 'Statement Period', 'Debit', 'Credit'],
+  },
+  accountDetails: {
+    accountNumber: 'Account Number: {number}',
+    accountName: 'Account Name: {name}',
+  },
+  title: {
+    mainTitle: 'Ruralco',
   },
 };

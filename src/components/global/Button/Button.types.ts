@@ -20,6 +20,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnch
   href?: string;
   icon?: IconTypes;
   label: string;
+  loader?: boolean;
   selected?: boolean;
   shape?: 'rounded' | 'square';
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';

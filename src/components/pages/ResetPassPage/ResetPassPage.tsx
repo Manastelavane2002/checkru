@@ -11,6 +11,7 @@ import { AuthContainer } from 'src/components/hoc/AuthContainer';
 import { ROUTES } from 'src/constants/routes';
 import { STATIC_TEXT } from 'src/constants/static-text';
 import { useAuthContext } from 'src/context/AuthContext';
+import { useLoader } from 'src/hooks/useLoader';
 const { inputs, placeholders, labels } = STATIC_TEXT;
 const { title, subTitle, button } = STATIC_TEXT.resetPass;
 
@@ -20,6 +21,7 @@ export default function ResetPassPage() {
     password: string;
   }>();
   const [error, setError] = useState<string>();
+  const { isLoading, makeLoaderCall } = useLoader();
 
   const {
     handleSubmit,
@@ -86,7 +88,13 @@ export default function ResetPassPage() {
           className="dark-rounded"
           placeholder={placeholders['confirmPass-alt']}
         />
-        <Button label={button} onClick={handleSubmit(onSubmit)} variant="fullWidth" />
+        <Button
+          label={button}
+          onClick={handleSubmit((values) => makeLoaderCall(() => onSubmit(values)))}
+          variant="fullWidth"
+          loader={isLoading}
+          disabled={isLoading}
+        />
       </FormProvider>
     </AuthContainer>
   );

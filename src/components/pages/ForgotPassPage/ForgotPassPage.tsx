@@ -13,10 +13,13 @@ import { AuthContainer } from 'src/components/hoc/AuthContainer';
 import { ROUTES } from 'src/constants/routes';
 import { STATIC_TEXT } from 'src/constants/static-text';
 import { useAuthContext, ResetPasswordPayload } from 'src/context/AuthContext';
+import { useLoader } from 'src/hooks/useLoader';
 import { capitalizeFirstLetter } from 'src/utils/string-functions';
 const { inputs, placeholders, labels } = STATIC_TEXT;
 const { title, subTitle, buttons } = STATIC_TEXT.forgotPass;
+
 export default function ForgotPassPage() {
+  const { isLoading, makeLoaderCall } = useLoader();
   const { sendPasswordResetOtp, setNewPassword } = useAuthContext();
   const methods = useForm<ResetPasswordPayload>();
   const [showOtpFields, setShowOtpFields] = useState(false);
@@ -77,7 +80,7 @@ export default function ForgotPassPage() {
               placeholder={placeholders.otp}
               className="dark-rounded"
             />
-            <div className="flex-center mt-2">
+            <div className="flex-center my-2">
               <Typography htmlElement="p" variant="login-signup-extra-end-white">
                 {buttons.resendCodeDesc}
               </Typography>
@@ -118,8 +121,14 @@ export default function ForgotPassPage() {
 
         <Button
           variant="fullWidth"
-          onClick={showOtpFields ? handleSubmit(handleResetPassword) : handleSubmit(onSubmit)}
+          onClick={
+            showOtpFields
+              ? handleSubmit((values) => makeLoaderCall(() => handleResetPassword(values)))
+              : handleSubmit((values) => makeLoaderCall(() => onSubmit(values)))
+          }
           label={showOtpFields ? buttons.resetPassword : buttons.sendOTP}
+          loader={isLoading}
+          disabled={isLoading}
         />
         <div className="flex-center mt-6">
           <Button

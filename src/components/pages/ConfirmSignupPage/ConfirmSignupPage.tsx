@@ -8,11 +8,13 @@ import { useAuthContext } from 'src/context/AuthContext/AuthContext';
 import { otpRequiredSchema } from 'src/components/global/TextField/TextField.constants';
 import { STATIC_TEXT } from 'src/constants/static-text';
 import ErrorPage from '../ErrorPage';
+import { useLoader } from 'src/hooks/useLoader';
 const { labels, inputs, placeholders } = STATIC_TEXT;
 const { title, subTitle, buttons } = STATIC_TEXT.confirmSignup;
 
 export function ConfirmSignUpPage() {
   const [error, setError] = useState<string>();
+  const { isLoading, makeLoaderCall } = useLoader();
   const router = useRouter();
   const methods = useForm<{ otp: string }>();
   const {
@@ -60,12 +62,18 @@ export function ConfirmSignUpPage() {
           className="dark-rounded"
         />
         <div className="flex-center my-6">
-          <Typography htmlElement="p" variant='login-signup-extra-end-white'>
+          <Typography htmlElement="p" variant="login-signup-extra-end-white">
             {buttons.resendDesc}
           </Typography>
           <Button variant="text" label={buttons.resend} onClick={handleResendOtp} />
         </div>
-        <Button onClick={handleSubmit(onSubmit)} label={buttons.signUp} variant="fullWidth" />
+        <Button
+          onClick={handleSubmit((values) => makeLoaderCall(() => onSubmit(values)))}
+          label={buttons.signUp}
+          variant="fullWidth"
+          loader={isLoading}
+          disabled={isLoading}
+        />
         <div className="flex-center mt-6">
           <Button
             variant="text"
